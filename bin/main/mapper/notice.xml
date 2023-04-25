@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.erp.repository.NoticeRepository"> 
+	<insert id="insert">
+		insert into notice(emp_id,title,content)
+		values(#{empId},#{title},#{content});
+	</insert>
+	
+	<select id="findById" resultType="com.green.erp.repository.model.Notice">
+		select * from notice where id = #{id}
+	</select>
+	
+	<select id="findAll" resultType="com.green.erp.repository.model.Notice">
+		select * from notice
+	</select>
+</mapper>
