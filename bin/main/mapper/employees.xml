@@ -11,7 +11,7 @@
 
 	<select id="selectById"
 		resultType="com.green.erp.repository.model.Employees">
-		select name from employees where id = #{id};
+		select * from employees where id = #{id};
 	</select>
 
 	<insert id="insert">

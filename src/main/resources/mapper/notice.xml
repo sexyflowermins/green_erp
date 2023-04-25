@@ -14,4 +14,20 @@
 	<select id="findAll" resultType="com.green.erp.repository.model.Notice">
 		select * from notice
 	</select>
+	
+	<select id="findBySearch" resultType="com.green.erp.repository.model.Notice">
+		select * from notice where title like #{search}
+	</select>
+	
+	<update id="updateByForm">
+		update notice set title = #{title}, content = #{content} where id = #{id}
+	</update>
+	
+	<update id="updateViews">
+		update notice set views = views+1 where id = #{id}
+	</update>
+	
+	<delete id="deleteById">
+		delete from notice where id = #{id}
+	</delete>
 </mapper>

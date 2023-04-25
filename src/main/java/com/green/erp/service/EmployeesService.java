@@ -24,8 +24,8 @@ public class EmployeesService {
 		return employeesEntity;
 	}
 	
-	public String selectIdForName(int id) {
-		String employeesEntity = employeesRepository.selectById(id);
+	public Employees selectById(int id) {
+		Employees employeesEntity = employeesRepository.selectById(id);
 		if(employeesEntity == null) {
 			throw new CustomRestfullException("사번을 잘못 입력 했습니다",HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -44,6 +44,7 @@ public class EmployeesService {
 	public void selectDepartment(SignUpFormDto signUpFormDto) {
 		int result = employeesRepository.selectByDepartment(signUpFormDto);
 	}
+	
 	
 	
 }

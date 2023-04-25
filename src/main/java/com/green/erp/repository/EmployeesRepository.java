@@ -10,7 +10,7 @@ import com.green.erp.repository.model.Employees;
 public interface EmployeesRepository {
 	
 	public Employees findByUsernameAndPassword(SignInFormDto signInFormDto);
-	public String selectById(int id);
+	public Employees selectById(int id);
 	public int insert(SignUpFormDto signUpFormDto);
 	public int update(SignUpFormDto signUpFormDto);
 	public int selectByDepartment(SignUpFormDto signUpFormDto);
