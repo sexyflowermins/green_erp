@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.green.erp.dto.SignInFormDto;
 import com.green.erp.dto.SignUpFormDto;
+import com.green.erp.dto.UpdateInformationDto;
 import com.green.erp.handler.exception.CustomRestfullException;
 import com.green.erp.repository.model.Employees;
 import com.green.erp.service.EmployeesService;
@@ -98,5 +99,48 @@ public class EmployeesController {
 		return "redirect:/erp/main";
 	}
 	
+	@GetMapping("/updateIn")
+	public String updateMyIn() {
+		Employees principal = (Employees)session.getAttribute("principal");
+		
+		if(principal == null) {
+			throw new CustomRestfullException("인증된 사용자가 아닙니다.", 
+							HttpStatus.UNAUTHORIZED);
+		}
+		return "updateInformation";
+	}
+
+	@PostMapping("/updateInformation")
+	public String updateMyInfo(UpdateInformationDto updateInformationDto) {
+		Employees principal = (Employees)session.getAttribute("principal");
+		
+		if(principal == null) {
+			throw new CustomRestfullException("인증된 사용자가 아닙니다.", 
+							HttpStatus.UNAUTHORIZED);
+		}
+		if(updateInformationDto.getName() == null || updateInformationDto.getName().isEmpty()) {
+			throw new CustomRestfullException("이름을 입력하세요", HttpStatus.BAD_REQUEST);
+		}
+		
+		if(updateInformationDto.getEmail() == null || updateInformationDto.getEmail().isEmpty()) {
+			throw new CustomRestfullException("e-mail을 입력하세요", HttpStatus.BAD_REQUEST);
+		}
+		if(updateInformationDto.getAge() == null) {
+			throw new CustomRestfullException("나이를 입력하세요", HttpStatus.BAD_REQUEST);
+		}
+		if(updateInformationDto.getAddress() == null || updateInformationDto.getAddress().isEmpty()) {
+			throw new CustomRestfullException("지역을 입력하세요", HttpStatus.BAD_REQUEST);
+		}
+		if(updateInformationDto.getPassword() == null) {
+			throw new CustomRestfullException("비밀번호를 입력하세요", HttpStatus.BAD_REQUEST);
+		}
+		updateInformationDto.setId(principal.getId());
+		employeesService.changeInfo(updateInformationDto);
+		session.invalidate();
+		
+		return "redirect:/ec/signIn";
+	}
+	
+
 	
 }

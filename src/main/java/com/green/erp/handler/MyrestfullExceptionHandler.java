@@ -26,7 +26,7 @@ public class MyrestfullExceptionHandler {
 		sb.append("<script>");
 		//반드시 마지막에 ;을 붙여서 사용하자
 		sb.append("alert('"+e.getMessage()+"');");
-		sb.append("history.back()");
+		sb.append("location.href='/erp/main';");
 		sb.append("</script>");
 		return sb.toString();
 	}
@@ -37,7 +37,7 @@ public class MyrestfullExceptionHandler {
 		sb.append("<script>");
 		//반드시 마지막에 ;을 붙여서 사용하자
 		sb.append("alert('"+e.getMessage()+"');");
-		sb.append("location.href='/employees/signIn';");
+		sb.append("location.href='/ec/signIn';");
 		sb.append("</script>");
 		return sb.toString();
 	}

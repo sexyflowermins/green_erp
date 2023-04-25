@@ -29,4 +29,10 @@
 		select distinct department from employees;
 	</select>
 	
+	<update id="changeMyInfo">
+		update employees
+		set password = #{password} , name = #{name} , email = #{email} , age = #{age} , address = #{address}
+		where id = #{id};
+	</update>
+	
 </mapper>
