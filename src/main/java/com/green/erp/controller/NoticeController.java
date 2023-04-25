@@ -30,4 +30,6 @@ public class NoticeController {
 		return "redirect:/erp/main";
 	}
 	
+	
+	
 }

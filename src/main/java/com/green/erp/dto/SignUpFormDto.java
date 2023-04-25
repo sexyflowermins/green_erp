@@ -1,18 +1,19 @@
-package com.green.erp.repository.model;
+package com.green.erp.dto;
 
 import lombok.Data;
 
 @Data
-public class Employees {
+public class SignUpFormDto {
 	
 	private Integer id;
-	private String password;
+	private String name;
 	private String email;
 	private Integer age;
 	private String address;
+	// 입사일
 	private String hireDate;
-	private String resignDate;
+	// 부서명
 	private String department;
+	// 직급
 	private String grade;
-	
 }

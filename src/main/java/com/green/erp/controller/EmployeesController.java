@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.green.erp.dto.SignInFormDto;
+import com.green.erp.dto.SignUpFormDto;
 import com.green.erp.handler.exception.CustomRestfullException;
 import com.green.erp.repository.model.Employees;
 import com.green.erp.service.EmployeesService;
@@ -39,7 +40,6 @@ public class EmployeesController {
 			throw new CustomRestfullException("비밀번호를 입력하세요", HttpStatus.BAD_REQUEST);
 		}
 		Employees principal = employeesService.signIn(signInFormDto);
-		principal.setPassword(null);
 		session.setAttribute(Define.PRINCIPAL, principal);
 		return "redirect:/erp/main";
 	}
@@ -59,4 +59,44 @@ public class EmployeesController {
 		session.invalidate();
 		return "redirect:/erp/main";
 	}
+	
+	 /* 
+	 * @param employesDto
+	 * @return
+	 * todo
+	 * 리턴 정해야함
+	 * id 값에 현재 날자 비교하는거 만들어야 함
+	 */
+	@PostMapping("/employees-sign-up")
+	public String employeesSignUp(SignUpFormDto signUpFormDto) {
+		if(signUpFormDto.getId() == null) {
+			// 현재 시간이랑 비교해서 만들기
+			throw new CustomRestfullException("사번을 입력하세요", HttpStatus.BAD_REQUEST);
+		}
+		if(signUpFormDto.getName() == null || signUpFormDto.getName().isEmpty()) {
+			throw new CustomRestfullException("이름을 입력하세요", HttpStatus.BAD_REQUEST);
+		}
+		if(signUpFormDto.getEmail() == null || signUpFormDto.getEmail().isEmpty()) {
+			throw new CustomRestfullException("e-mail을 입력하세요", HttpStatus.BAD_REQUEST);
+		}
+		if(signUpFormDto.getAge() == null) {
+			throw new CustomRestfullException("나이를 입력하세요", HttpStatus.BAD_REQUEST);
+		}
+		if(signUpFormDto.getAddress() == null || signUpFormDto.getAddress().isEmpty()) {
+			throw new CustomRestfullException("지역을 입력하세요", HttpStatus.BAD_REQUEST);
+		}
+		if(signUpFormDto.getHireDate() == null || signUpFormDto.getHireDate().isEmpty()) {
+			throw new CustomRestfullException("입사일을 입력하세요", HttpStatus.BAD_REQUEST);
+		}
+		if(signUpFormDto.getDepartment() == null || signUpFormDto.getDepartment().isEmpty()) {
+			throw new CustomRestfullException("부서를 입력하세요", HttpStatus.BAD_REQUEST);
+		}
+		if(signUpFormDto.getGrade() == null || signUpFormDto.getGrade().isEmpty()) {
+			throw new CustomRestfullException("직급을 입력하세요", HttpStatus.BAD_REQUEST);
+		}
+		employeesService.createEmployees(signUpFormDto);
+		return "redirect:/erp/main";
+	}
+	
+	
 }

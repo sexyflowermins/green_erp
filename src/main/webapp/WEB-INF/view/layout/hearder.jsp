@@ -59,11 +59,21 @@
 					<li class="sidebar-header">관리자</li>
 					
 					<li class="sidebar-item"><a class="sidebar-link"
-						href="notice/write"> <i class="align-middle"
+						href="/notice/write"> <i class="align-middle"
 							data-feather="check-square"></i> <span class="align-middle">공지사항</span>
 
 					</a></li>
-
+				
+						<li class="sidebar-item"><a class="sidebar-link" href="/erp/signUp"> 
+						<i class="align-middle" data-feather="user-plus"></i> 
+						<span class="align-middle">사원 등록</span>
+						</a></li>
+						<li class="sidebar-item active"><a class="sidebar-link" href="/erp/adminpage"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+								stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2 align-middle">
+								<line x1="18" y1="20" x2="18" y2="10"></line>
+								<line x1="12" y1="20" x2="12" y2="4"></line>
+								<line x1="6" y1="20" x2="6" y2="14"></line></svg> <span class="align-middle">Charts</span>
+						</a></li>
 					<div class="sidebar-cta">
 						<div class="sidebar-cta-content">
 							<strong class="d-inline-block mb-2">Upgrade to Pro</strong>

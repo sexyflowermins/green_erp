@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.green.erp.dto.SignInFormDto;
+import com.green.erp.dto.SignUpFormDto;
 import com.green.erp.handler.exception.CustomRestfullException;
 import com.green.erp.repository.EmployeesRepository;
 import com.green.erp.repository.model.Employees;
@@ -23,12 +24,26 @@ public class EmployeesService {
 		return employeesEntity;
 	}
 	
-	public Employees selectIdForName(SignInFormDto signInFormDto) {
-		Employees employeesEntity = employeesRepository.selectById(signInFormDto);
+	public String selectIdForName(int id) {
+		String employeesEntity = employeesRepository.selectById(id);
 		if(employeesEntity == null) {
 			throw new CustomRestfullException("사번을 잘못 입력 했습니다",HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return employeesEntity;
 	}
+	
+	public void createEmployees(SignUpFormDto signUpFormDto) {
+		int result = employeesRepository.insert(signUpFormDto);
+		if (result != 1) {
+			throw new CustomRestfullException("회원 가입 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	public void updateEmployees(SignUpFormDto signUpFormDto) {
+		
+	}
+	public void selectDepartment(SignUpFormDto signUpFormDto) {
+		int result = employeesRepository.selectByDepartment(signUpFormDto);
+	}
+	
 	
 }

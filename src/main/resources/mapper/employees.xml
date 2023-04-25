@@ -3,13 +3,30 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.green.erp.repository.EmployeesRepository">
 
-	<select id="findByUsernameAndPassword" resultType="com.green.erp.repository.model.Employees">
-		select * from employees where id = #{id} and password = #{password}
+	<select id="findByUsernameAndPassword"
+		resultType="com.green.erp.repository.model.Employees">
+		select * from employees where id = #{id} and password =
+		#{password}
 	</select>
 
-	<select id="selectById" resultType="com.green.erp.repository.model.Employees">
+	<select id="selectById"
+		resultType="com.green.erp.repository.model.Employees">
 		select name from employees where id = #{id};
 	</select>
-	
+
+	<insert id="insert">
+		insert into employees (id, name, email, age, address, hire_date, department,
+		grade)
+		values( #{id}, #{name}, #{email}, #{age}, #{address}, #{hireDate},
+		#{department}, #{grade});
+	</insert>
+	<update id="updateById">
+		update employees set department = #{department}, grade = #{grade}
+		where id = #{id}
+	</update>
+
+	<select id="seletByDepartment">
+		select distinct department from employees;
+	</select>
 	
 </mapper>
