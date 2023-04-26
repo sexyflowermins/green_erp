@@ -33,6 +33,15 @@ public class NoticeService {
 		return noticeList;
 	}
 	
+	public List<Notice> findWithName() {
+		List<Notice> noticeList = noticeRepository.findWithName();
+		if (noticeList == null) {
+			System.out.println("실패");
+		}
+
+		return noticeList;
+	}
+	
 	public List<Notice> findBySearch(String search) {
 		List<Notice> noticeList = noticeRepository.findBySearch(search);
 		if (noticeList == null) {
@@ -63,6 +72,7 @@ public class NoticeService {
 		return resultRowCount;
 	}
 
+	// 조회수 올리기 기능
 	public int updateViews(int id) {
 		int resultRowCount = noticeRepository.updateViews(id);
 

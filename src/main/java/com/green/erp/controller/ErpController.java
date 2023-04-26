@@ -21,7 +21,7 @@ public class ErpController {
 	@GetMapping("/main")
 	private String main(Model model){
 		
-		List<Notice> noticeList = noticeService.findAll();
+		List<Notice> noticeList = noticeService.findWithName();
 		model.addAttribute("noticeList",noticeList);
 		
 		return "main";

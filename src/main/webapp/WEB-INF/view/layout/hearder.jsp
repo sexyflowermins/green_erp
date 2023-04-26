@@ -114,9 +114,7 @@
 														</div>
 														<div class="col-10">
 															<div class="text-dark">${notice.title}</div>
-															<div class="text-muted small mt-1">${notice.content}</div>
-															<!-- 작성자 이름으로 변경 -->
-															<div class="text-muted small mt-1">${notice.empId}</div>
+															<div class="text-muted small mt-1">작성자:${notice.name}</div>
 															<input type="hidden" value="${notice.id}" name="noticeId">
 														</div>
 													</div>

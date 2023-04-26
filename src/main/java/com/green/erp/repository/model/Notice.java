@@ -10,4 +10,5 @@ public class Notice {
 	private String title;
 	private String content;
 	private String dateTime;
+	private String name;
 }

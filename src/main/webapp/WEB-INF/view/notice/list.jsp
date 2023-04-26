@@ -36,11 +36,11 @@
 							<c:choose>
 								<c:when test="${noticeList != null}">
 									<c:forEach var="notice" items="${noticeList}" varStatus="vs">
-										<tr onclick="location.href='/notice/update/${notice.id}'">
+										<tr onclick="location.href='/notice/post/${notice.id}'">
 											<td>${vs.index+1}</td>
 											<td>${notice.title}</td>
 											<td class="d-none d-xl-table-cell">${notice.dateTime}</td>
-											<td class="d-none d-md-table-cell">${nameList[vs.index]}</td>
+											<td class="d-none d-md-table-cell">${notice.name}</td>
 											<td class="d-none d-md-table-cell">${notice.views}</td>
 										</tr>
 									</c:forEach>

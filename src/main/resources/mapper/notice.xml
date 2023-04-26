@@ -1,32 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.green.erp.repository.NoticeRepository"> 
+<mapper namespace="com.green.erp.repository.NoticeRepository">
 	<insert id="insert">
 		insert into notice(emp_id,title,content)
 		values(#{empId},#{title},#{content});
 	</insert>
-	
-	<select id="findById" resultType="com.green.erp.repository.model.Notice">
-		select * from notice where id = #{id}
+
+	<select id="findById"
+		resultType="com.green.erp.repository.model.Notice">
+		select * from notice as a
+		left join employees as b
+		on a.emp_id = b.id
+		where a.id = #{id}
 	</select>
-	
-	<select id="findAll" resultType="com.green.erp.repository.model.Notice">
+
+	<select id="findAll"
+		resultType="com.green.erp.repository.model.Notice">
 		select * from notice
 	</select>
-	
-	<select id="findBySearch" resultType="com.green.erp.repository.model.Notice">
+
+	<select id="findWithName" resultType="com.green.erp.repository.model.Notice">
+		select a.id,a.emp_id,a.title,a.content,a.date_time,a.views,b.name
+		from notice as a
+		left join employees as b
+		on a.emp_id = b.id;
+	</select>
+
+	<select id="findBySearch"
+		resultType="com.green.erp.repository.model.Notice">
 		select * from notice where title like #{search}
 	</select>
-	
+
 	<update id="updateByForm">
-		update notice set title = #{title}, content = #{content} where id = #{id}
+		update notice set title = #{title}, content =
+		#{content} where id = #{id}
 	</update>
-	
+
 	<update id="updateViews">
 		update notice set views = views+1 where id = #{id}
 	</update>
-	
+
 	<delete id="deleteById">
 		delete from notice where id = #{id}
 	</delete>

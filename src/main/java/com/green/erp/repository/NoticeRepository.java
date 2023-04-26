@@ -16,6 +16,8 @@ public interface NoticeRepository {
 	public int updateViews(int id);
 	public int deleteById(int id);
 	public Notice findById(int id);
-	public List<Notice> findBySearch(String search);
 	public List<Notice> findAll();
+	public List<Notice> findWithName();
+	// 검색 기능 시 만들듯
+	public List<Notice> findBySearch(String search);
 }
