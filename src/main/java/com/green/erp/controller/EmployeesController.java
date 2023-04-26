@@ -60,12 +60,10 @@ public class EmployeesController {
 		return "redirect:/erp/main";
 	}
 	
-	 /* 
-	 * @param employesDto
+	/**
+	 * 
+	 * @param signUpFormDto
 	 * @return
-	 * todo
-	 * 리턴 정해야함
-	 * id 값에 현재 날자 비교하는거 만들어야 함
 	 */
 	@PostMapping("/employees-sign-up")
 	public String employeesSignUp(SignUpFormDto signUpFormDto) {
@@ -87,12 +85,6 @@ public class EmployeesController {
 		}
 		if(signUpFormDto.getHireDate() == null || signUpFormDto.getHireDate().isEmpty()) {
 			throw new CustomRestfullException("입사일을 입력하세요", HttpStatus.BAD_REQUEST);
-		}
-		if(signUpFormDto.getDepartment() == null || signUpFormDto.getDepartment().isEmpty()) {
-			throw new CustomRestfullException("부서를 입력하세요", HttpStatus.BAD_REQUEST);
-		}
-		if(signUpFormDto.getGrade() == null || signUpFormDto.getGrade().isEmpty()) {
-			throw new CustomRestfullException("직급을 입력하세요", HttpStatus.BAD_REQUEST);
 		}
 		employeesService.createEmployees(signUpFormDto);
 		return "redirect:/erp/main";

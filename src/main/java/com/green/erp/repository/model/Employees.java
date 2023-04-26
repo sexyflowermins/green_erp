@@ -14,5 +14,5 @@ public class Employees {
 	private String resignDate;
 	private String department;
 	private String grade;
-	
+	private String serchdepartment;
 }

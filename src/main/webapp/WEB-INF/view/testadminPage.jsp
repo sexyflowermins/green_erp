@@ -18,10 +18,9 @@
 							<div class="card flex-fill w-100">
 								<div class="card-header">
 									<!-- 여기에 부서 목록 조회 기능 만들어야함 -->
-									
-									<form action="/findBydepartment" method="get">
+									<form action="findBydepartment" method="get">
 									<div class="mb-3">
-											 <input class="form-control form-control-lg" type="text" name="department" placeholder="원하는 부서 검색" />
+											 <input class="form-control form-control-lg" type="text" name=department" placeholder="원하는 부서 검색" />
 										</div>
 										<div class="text-left mt-3">
 											 <a class="btn btn-lg btn-primary"href="http://localhost:8080/findAll">전체검색</a>
@@ -30,14 +29,14 @@
 									</form>
 									<br>
 									
-									<!-- 전체검색 리스트 -->
+									
 									<c:forEach var="list" items="${list}">
-										<p><a href="/selectdepartment">${list.department}</a></p>
+										<p><a></a>${list.department}</p>
 									</c:forEach>
 									
-									<!-- 선택검색 리스트 -->
-									<c:forEach var="selectdepartmentlist" items="${selectdepartmentlist}">
-										<p><a>${selectdepartmentlist.department}</a>
+									
+									<c:forEach var="list" items="${selectdepartmentlist}">
+										<p><a></a>${list.department}</p>
 									</c:forEach>
 								</div>
 								<div class="card-body">
@@ -51,10 +50,7 @@
 						<div class="col-12 col-lg-6">
 							<div class="card">
 								<div class="card-header">
-									<!-- 부서목록 클릭하면 사원 정보 나오는 기능 -->
-									<c:forEach var="selectdepartment" items="${selectdepartment}">
-										<p><a>${selectdepartment.department}</a>
-									</c:forEach>
+									<!-- 부서목록 클릭하면 사원 이름 나오는 기능 -->
 								</div>
 								<div class="card-body">
 									<div class="chart">
