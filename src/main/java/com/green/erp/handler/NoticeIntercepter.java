@@ -18,8 +18,8 @@ public class NoticeIntercepter implements HandlerInterceptor {
 			throws Exception {
 		HttpSession session = request.getSession();
 		Employees employees = (Employees) session.getAttribute(Define.PRINCIPAL);
-
-		if(employees==null||employees.getDepartment() != "인사") {
+		System.out.println(employees.getDepartment());
+		if((employees.getDepartment() == null || employees.getDepartment() != "인사관리") == false) {
 			
 			response.sendRedirect("/erp/main");
 			return false;
