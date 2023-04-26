@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.erp.repository.adminRepository">
+
+	 <select id="findAll"
+		resultType="com.green.erp.repository.model.Employees">
+		select distinct department from employees;
+	</select>
+
+	<select id="findByDepartment"
+		resultType="com.green.erp.repository.model.Employees">
+		select department from employees where department like #{department} group by department;
+	</select>
+	
+	<select id="selectemployees"
+	resultType="com.green.erp.repository.model.Employees">
+		select * from employees
+		where department = '%${department}%';
+	</select>
+</mapper>

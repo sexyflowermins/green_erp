@@ -25,9 +25,7 @@
 		where id = #{id}
 	</update>
 
-	<select id="seletByDepartment">
-		select distinct department from employees;
-	</select>
+	
 	
 	<update id="changeMyInfo">
 		update employees

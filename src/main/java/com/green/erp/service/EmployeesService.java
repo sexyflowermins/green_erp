@@ -42,9 +42,7 @@ public class EmployeesService {
 	public void updateEmployees(SignUpFormDto signUpFormDto) {
 		
 	}
-	public void selectDepartment(SignUpFormDto signUpFormDto) {
-		int result = employeesRepository.selectByDepartment(signUpFormDto);
-	}
+
 	
 	public void changeInfo(UpdateInformationDto updateInformationDto) {
 		

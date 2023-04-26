@@ -3,8 +3,8 @@ package com.green.erp.dto;
 import lombok.Data;
 
 @Data
-public class SignUpFormDto {
-	
+public class departmentSelectFormDto {
+
 	private Integer id;
 	private String name;
 	private String email;
@@ -13,7 +13,8 @@ public class SignUpFormDto {
 	// 입사일
 	private String hireDate;
 	// 부서명
-	private int department;
+	private String department;
 	// 직급
-	private int grade;
+	private String grade;
+	
 }
