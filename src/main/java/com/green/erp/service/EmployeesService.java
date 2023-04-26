@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.green.erp.dto.SignInFormDto;
 import com.green.erp.dto.SignUpFormDto;
+import com.green.erp.dto.UpdateInformationDto;
 import com.green.erp.handler.exception.CustomRestfullException;
 import com.green.erp.repository.EmployeesRepository;
 import com.green.erp.repository.model.Employees;
@@ -45,6 +46,13 @@ public class EmployeesService {
 		int result = employeesRepository.selectByDepartment(signUpFormDto);
 	}
 	
+	public void changeInfo(UpdateInformationDto updateInformationDto) {
+		
+		int resultRowCount = employeesRepository.changeMyInfo(updateInformationDto);
+		if(resultRowCount != 1) {
+			throw new CustomRestfullException("정보 변경 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 	
 	
 }

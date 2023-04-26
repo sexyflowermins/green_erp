@@ -1,9 +1,9 @@
-package com.green.erp.repository.model;
+package com.green.erp.dto;
 
 import lombok.Data;
 
 @Data
-public class Employees {
+public class UpdateInformationDto {
 	
 	private Integer id;
 	private String name;
@@ -11,8 +11,4 @@ public class Employees {
 	private String email;
 	private Integer age;
 	private String address;
-	private String hireDate;
-	private String resignDate;
-	private String department;
-	private String grade;
 }
