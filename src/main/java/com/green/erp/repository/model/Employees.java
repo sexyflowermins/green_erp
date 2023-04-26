@@ -6,6 +6,7 @@ import lombok.Data;
 public class Employees {
 	
 	private Integer id;
+	private String name;
 	private String password;
 	private String email;
 	private Integer age;

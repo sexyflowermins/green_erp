@@ -27,33 +27,60 @@
 						</div>
 					</div>
 					<hr class="my-0" />
-					<div class="card-body">
+<%-- 					<div class="card-body">
 						<h5 class="h6 card-title">Skills</h5>
 						<a href="#" class="badge bg-primary me-1 my-1">${principal.id}</a> <a href="#" class="badge bg-primary me-1 my-1">${principal.email}</a> <a href="#" class="badge bg-primary me-1 my-1">${principal.age}</a>
 						<a href="#" class="badge bg-primary me-1 my-1">${principal.address}</a> <a href="#" class="badge bg-primary me-1 my-1">${principal.hireDate}</a> <a href="#" class="badge bg-primary me-1 my-1">${principal.resignDate}</a>
 						<a href="#" class="badge bg-primary me-1 my-1">${principal.department}</a> <a href="#" class="badge bg-primary me-1 my-1">${principal.grade}</a> <a href="#" class="badge bg-primary me-1 my-1">UX</a>
-					</div>
+					</div> --%>
 					<hr class="my-0" />
 					<div class="card-body">
 						<h5 class="h6 card-title">About</h5>
 						<ul class="list-unstyled mb-0">
-							<li class="mb-1"><span data-feather="home" class="feather-sm me-1"></span> Lives in <a href="#">San Francisco, SA</a></li>
+							<li class="mb-1"><span data-feather="bookmark" class="feather-sm me-1"></span> 사번 <a href="#">${principal.id}</a></li>
+							<li class="mb-1"><span data-feather="briefcase" class="feather-sm me-1"></span> 부서 <a href="#">${principal.department}</a></li>
+							<li class="mb-1"><span data-feather="award" class="feather-sm me-1"></span> 직급 <a href="#">${principal.grade}</a></li>
 
-							<li class="mb-1"><span data-feather="briefcase" class="feather-sm me-1"></span> Works at <a href="#">GitHub</a></li>
-							<li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span> From <a href="#">Boston</a></li>
+							<li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span> 고향 <a href="#">${principal.address}</a></li>
 						</ul>
 					</div>
 					<hr class="my-0" />
-					<div class="card-body">
-						<h5 class="h6 card-title">Elsewhere</h5>
+		 			<div class="card-body">
+					<form action="/ec/updateInformation" method="post">
+									<div class="mb-3">
+											<label class="form-label">password</label>
+											 <input class="form-control form-control-lg" type="password" name="password" value="${principal.password}"/>
+										</div>
+										<div class="mb-3">
+											<label class="form-label">Name</label> 
+											<input class="form-control form-control-lg" type="text" name="name" value="${principal.name}" />
+										</div>
+										<div class="mb-3">
+											<label class="form-label">Email</label> 
+											<input class="form-control form-control-lg" type="email" name="email" value="${principal.email}"/>
+										</div>
+										<div class="mb-3">
+											<label class="form-label">Age</label> 
+											<input class="form-control form-control-lg" type="text" name="age" value="${principal.age}"/>
+										</div>
+										<div class="mb-3">
+											<label class="form-label">address</label> 
+											<input class="form-control form-control-lg" type="text" name="address" value="${principal.address}"/>
+										</div>
+								
+										<div class="text-center mt-3">
+											 <button type="submit" class="btn btn-lg btn-primary">수정</button>
+										</div>
+									</form>
+<!-- 						<h5 class="h6 card-title">Elsewhere</h5>
 						<ul class="list-unstyled mb-0">
 							<li class="mb-1"><a href="#">staciehall.co</a></li>
 							<li class="mb-1"><a href="#">Twitter</a></li>
 							<li class="mb-1"><a href="#">Facebook</a></li>
 							<li class="mb-1"><a href="#">Instagram</a></li>
 							<li class="mb-1"><a href="#">LinkedIn</a></li>
-						</ul>
-					</div>
+						</ul> -->
+					</div> 
 				</div>
 			</div>
 
@@ -67,10 +94,9 @@
 						<div class="d-flex align-items-start">
 							<form action="/ec/first-password" method="post">
 								<div class="flex-grow-1">
-									개인 정보 수정 하기
-									<br>
+				
 									<div class="mb-3">
-									<a type="submit" href="/ec/updateIn" class="btn btn-lg btn-primary">변경하기</a>
+									<!-- <a type="submit" href="/ec/updateIn" class="btn btn-lg btn-primary">개인 정보 수정 하기</a> -->
 									</div>
 								</div>
 							</form>
