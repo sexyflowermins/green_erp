@@ -12,6 +12,6 @@ public class WorkTime {
 	private Integer empId;
 	private Time startTime;
 	private Time endTime;
-	private Date day;
+	private Date today;
 	
 }

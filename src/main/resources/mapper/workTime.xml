@@ -8,5 +8,21 @@
 		values( #{empId}, now());
 	</insert>
 
-
+	<select id="selectByEmpIdAndToday" resultType="com.green.erp.repository.model.WorkTime">
+		select * 
+		from work_time
+		where emp_id = #{empId} and today = current_date();
+	</select>
+	
+	<update id="updateByEndTime">
+		update work_time set end_time = now()
+		where emp_id = #{empId} and today = current_date();
+	</update>
+	
+	<select id="findByWorkList" resultType="com.green.erp.repository.model.WorkTime">
+		select *
+		from work_time
+		where emp_id = #{empId}
+	</select>
+	
 </mapper>
