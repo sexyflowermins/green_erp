@@ -52,8 +52,8 @@
 						<h5 class="h6 card-title">About</h5>
 						<ul class="list-unstyled mb-0">
 							<li class="mb-1"><span data-feather="bookmark" class="feather-sm me-1"></span> 사번 <a href="#">${principal.id}</a></li>
-							<li class="mb-1"><span data-feather="briefcase" class="feather-sm me-1"></span> 부서 <a href="#">${principal.department}</a></li>
-							<li class="mb-1"><span data-feather="award" class="feather-sm me-1"></span> 직급 <a href="#">${principal.grade}</a></li>
+							<li class="mb-1"><span data-feather="briefcase" class="feather-sm me-1"></span> 부서 <a href="#"></a></li>
+							<li class="mb-1"><span data-feather="award" class="feather-sm me-1"></span> 직급 <a href="#"></a></li>
 
 							<li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span> 고향 <a href="#">${principal.address}</a></li>
 						</ul>

@@ -56,9 +56,7 @@ public class NoticeController {
 	public String postById(@PathVariable Integer id, Model model) {
 
 		noticeService.updateViews(id);
-
 		Notice notice = noticeService.findById(id);
-		System.out.println(notice.getContent());
 		model.addAttribute(notice);
 
 		return "notice/post";
