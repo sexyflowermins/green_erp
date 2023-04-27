@@ -26,6 +26,14 @@
 		left join employees as b
 		on a.emp_id = b.id;
 	</select>
+	
+	<select id="findWithNameOrderBy" resultType="com.green.erp.repository.model.Notice">
+		select a.id,a.emp_id,a.title,a.content,a.date_time,a.views,b.name
+		from notice as a
+		left join employees as b
+		on a.emp_id = b.id
+		order by id desc limit 4
+	</select>
 
 	<select id="findBySearch"
 		resultType="com.green.erp.repository.model.Notice">

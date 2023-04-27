@@ -67,11 +67,6 @@ public class NoticeController {
 	@GetMapping("/write")
 	public String createNotice() {
 		
-		Employees employees = (Employees) session.getAttribute(Define.PRINCIPAL);
-		if(employees.getGrade() == "인사" ) {
-			
-		}
-		
 		
 		return "notice/write";
 	}

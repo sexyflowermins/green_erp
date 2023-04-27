@@ -42,6 +42,15 @@ public class NoticeService {
 		return noticeList;
 	}
 	
+	public List<Notice> findWithNameOrderBy() {
+		List<Notice> noticeList = noticeRepository.findWithNameOrderBy();
+		if (noticeList == null) {
+			System.out.println("실패");
+		}
+
+		return noticeList;
+	}
+	
 	public List<Notice> findBySearch(String search) {
 		List<Notice> noticeList = noticeRepository.findBySearch(search);
 		if (noticeList == null) {
