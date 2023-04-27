@@ -97,8 +97,6 @@
 			</main>
 	<script src="js/app.js"></script>
 
-	
-	
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
 			// Doughnut chart
@@ -107,7 +105,7 @@
 				data: {
 					labels: ["Social", "Search Engines", "Direct", "Other"],
 					datasets: [{
-						data: [260, 125, 54, 146],
+						data: [1000, 125, 54, 146],
 						backgroundColor: [
 							window.theme.primary,
 							window.theme.success,
@@ -135,7 +133,7 @@
 				data: {
 					labels: ["Social", "Search Engines", "Direct", "Other"],
 					datasets: [{
-						data: [260, 125, 54, 146],
+						data: [${list[0].department}, 100, 54, 146],
 						backgroundColor: [
 							window.theme.primary,
 							window.theme.warning,

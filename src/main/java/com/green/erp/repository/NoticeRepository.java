@@ -20,4 +20,5 @@ public interface NoticeRepository {
 	public List<Notice> findWithName();
 	// 검색 기능 시 만들듯
 	public List<Notice> findBySearch(String search);
+	public List<Notice> findWithNameOrderBy();
 }
