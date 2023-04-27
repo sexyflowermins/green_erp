@@ -56,9 +56,7 @@ public class NoticeController {
 	public String postById(@PathVariable Integer id, Model model) {
 
 		noticeService.updateViews(id);
-
 		Notice notice = noticeService.findById(id);
-		System.out.println(notice.getContent());
 		model.addAttribute(notice);
 
 		return "notice/post";
@@ -66,11 +64,6 @@ public class NoticeController {
 
 	@GetMapping("/write")
 	public String createNotice() {
-		
-		Employees employees = (Employees) session.getAttribute(Define.PRINCIPAL);
-		if(employees.getGrade() == "인사" ) {
-			
-		}
 		
 		
 		return "notice/write";

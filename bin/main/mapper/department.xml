@@ -13,4 +13,9 @@
 		resultType="com.green.erp.repository.model.Department">
 		select name from department where name like #{name};
 	</select>
+	<select id="findById"
+		resultType="com.green.erp.repository.model.Department">
+		select * from department 
+		where id = #{id}
+	</select>
 </mapper>

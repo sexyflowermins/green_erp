@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.erp.repository.BoardRepository">
+	<insert id="insert">
+		insert into board(emp_id,title,content,category)
+		values(#{empId},#{title},#{content},#{category});
+	</insert>
+
+	<select id="findById"
+		resultType="com.green.erp.repository.model.Board">
+		select * from board as a
+		left join employees as b
+		on a.emp_id = b.id
+		where a.id = #{id}
+	</select>
+
+	<select id="findCategoryCount" resultType="com.green.erp.repository.model.CategoryCount">
+		select count(category) as count 
+		from board
+		group by category
+	</select>
+
+	<select id="findLimit"
+		resultType="com.green.erp.repository.model.Board">
+		select
+		a.id,a.emp_id,a.title,a.content,a.date_time,a.views,a.category,b.name
+		as employees_name,c.name as category_name
+		from board as a
+		left join employees as b
+		on a.emp_id = b.id
+		left join category as c
+		on a.category = c.id
+		order by date_time desc limit 8;
+	</select>
+
+	<select id="findAll"
+		resultType="com.green.erp.repository.model.Board">
+		select * from board
+	</select>
+
+	<update id="updateByForm">
+		update board set title = #{title}, content =
+		#{content} where id = #{id}
+	</update>
+
+	<update id="updateViews">
+		update board set views = views+1 where id = #{id}
+	</update>
+
+	<delete id="deleteById">
+		delete from board where id = #{id}
+	</delete>
+</mapper>
