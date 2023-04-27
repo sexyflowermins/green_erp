@@ -13,7 +13,7 @@ public class Employees {
 	private String address;
 	private String hireDate;
 	private String resignDate;
-	private String department;
-	private String grade;
+	private Integer department;
+	private Integer grade;
 
 }

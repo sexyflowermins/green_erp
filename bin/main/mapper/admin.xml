@@ -3,19 +3,27 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.green.erp.repository.adminRepository">
 
-	 <select id="findAll"
-		resultType="com.green.erp.repository.model.Employees">
-		select distinct department from employees;
-	</select>
 
-	<select id="findByDepartment"
+	<select id="findByEmployees"
 		resultType="com.green.erp.repository.model.Employees">
-		select department from employees where department like #{department} group by department;
+		select *
+		from employees as e
+		join department as d on d.id =
+		e.department
+		where d.name = #{name};
 	</select>
-	
-	<select id="selectemployees"
-	resultType="com.green.erp.repository.model.Employees">
-		select * from employees
-		where department = '%${department}%';
+	<select id="findById"
+		resultType="com.green.erp.repository.model.Employees">
+		select * from employees where id = #{id};
 	</select>
+	<update id="updateemployees">
+		update employees set
+		password=#{password},name=#{name},email=#{email},age=#{age},address=#{address},
+		hire_date=#{hireDate},resign_date=#{resignDate},department=#{department},grade=#{grade}
+		where id = #{id};
+	</update>
+	<delete id="deleteEmpoyees">
+	delete from employees where id = #{id};
+	</delete>
 </mapper>
+

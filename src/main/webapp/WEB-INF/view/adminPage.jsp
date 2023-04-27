@@ -8,7 +8,7 @@
 				<div class="container-fluid p-0">
 
 					<div class="mb-3">
-						<h1 class="h3 d-inline align-middle">Chart.js</h1>
+						<h1 class="h3 d-inline align-middle">부서검색</h1>
 						<a class="badge bg-dark text-white ms-2" href="upgrade-to-pro.html">
       Get more chart examples
   </a>
@@ -21,23 +21,23 @@
 									
 									<form action="/findBydepartment" method="get">
 									<div class="mb-3">
-											 <input class="form-control form-control-lg" type="text" name="department" placeholder="원하는 부서 검색" />
+											 <input class="form-control form-control-lg" type="text" name="name" placeholder="원하는 부서 검색" />
 										</div>
 										<div class="text-left mt-3">
-											 <a class="btn btn-lg btn-primary"href="http://localhost:8080/findAll">전체검색</a>
-											 <button type="submit" class="btn btn-lg btn-primary">선택검색</button>
+											 <a class="btn btn-md btn-primary"href="http://localhost:8080/findAll">전체검색</a>
+											 <button type="submit" class="btn btn-md btn-primary">선택검색</button>
 										</div>
 									</form>
 									<br>
 									
 									<!-- 전체검색 리스트 -->
 									<c:forEach var="list" items="${list}">
-										<p><a href="/selectdepartment">${list.department}</a></p>
+										<p><a href="/selectdepartment?name=${list.name}">${list.name}</a></p>
 									</c:forEach>
 									
 									<!-- 선택검색 리스트 -->
 									<c:forEach var="selectdepartmentlist" items="${selectdepartmentlist}">
-										<p><a>${selectdepartmentlist.department}</a>
+										<p><a href="/selectdepartment?name=${selectdepartmentlist.name}">${selectdepartmentlist.name}</a>
 									</c:forEach>
 								</div>
 								<div class="card-body">
@@ -51,9 +51,16 @@
 						<div class="col-12 col-lg-6">
 							<div class="card">
 								<div class="card-header">
+								
 									<!-- 부서목록 클릭하면 사원 정보 나오는 기능 -->
-									<c:forEach var="selectdepartment" items="${selectdepartment}">
-										<p><a>${selectdepartment.department}</a>
+									<c:forEach var="employeeslist" items="${employeeslist}">
+										<a href="/privacy?id=${employeeslist.id}">${employeeslist.id}</a>
+										<a>${employeeslist.name}</a>
+										<a>${employeeslist.address}</a>
+										<a>${employeeslist.email}</a>
+										<div>
+										<a href="deleteByEmployees?id=${employeeslist.id}">사원삭제</a>
+										</div>
 									</c:forEach>
 								</div>
 								<div class="card-body">
@@ -98,7 +105,7 @@
 	<script src="js/app.js"></script>
 
 	
-	
+	<!-- 차트 코드 -->
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
 			// Doughnut chart
@@ -107,7 +114,7 @@
 				data: {
 					labels: ["Social", "Search Engines", "Direct", "Other"],
 					datasets: [{
-						data: [260, 125, 54, 146],
+						data: [12, 125, 54, 146],
 						backgroundColor: [
 							window.theme.primary,
 							window.theme.success,
