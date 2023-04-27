@@ -11,8 +11,8 @@ import com.green.erp.service.BoardService;
 @RequestMapping("/board")
 public class BoardController {
 	
-	@Autowired
-	private BoardService boardService;
+//	@Autowired
+//	private BoardService boardService;
 	
 	@GetMapping("/list")
 	public String boardList() {

@@ -9,4 +9,8 @@ import com.green.erp.repository.model.Department;
 @Mapper
 public interface DepartmentRepository {
 	public Department findById(int id);
+
+	public List<Department> findAll();
+
+	public List<Department> findByDepartment(String name);
 }
