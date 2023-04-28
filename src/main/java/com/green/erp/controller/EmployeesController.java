@@ -19,6 +19,7 @@ import com.green.erp.dto.StartTimeFormDto;
 import com.green.erp.dto.UpdateInformationDto;
 import com.green.erp.handler.exception.CustomRestfullException;
 import com.green.erp.repository.model.Employees;
+import com.green.erp.repository.model.MySalary;
 import com.green.erp.repository.model.WorkTime;
 import com.green.erp.service.EmployeesService;
 import com.green.erp.utile.Define;
@@ -61,7 +62,6 @@ public class EmployeesController {
 	@GetMapping("/profile")
 	public String profile(Model model) {
 		Employees principal = (Employees)session.getAttribute("principal");
-//		WorkTime workTime = (WorkTime)model.getAttribute("workTime");
 		if(principal == null) {
 			throw new CustomRestfullException("인증된 사용자가 아닙니다.", 
 							HttpStatus.UNAUTHORIZED);
@@ -74,8 +74,14 @@ public class EmployeesController {
 		}else {
 			model.addAttribute("workList",workList);						
 		}
-		//model.addAttribute("workTime", workTime);
+		List<MySalary> mySalaries = employeesService.mySalaryList(principal.getId());
+		if(mySalaries.isEmpty()) {
+			model.addAttribute("mySalaryList", mySalaries);
+		}else {
+			model.addAttribute("mySalaryList", mySalaries);
+		}
 		
+		System.out.println(mySalaries.toString());
 		return "profile";
 	}
 	
@@ -189,14 +195,5 @@ public class EmployeesController {
 		return "redirect:/erp/main";
 	}
 	
-//	@GetMapping({"/profile", "/"})
-//	public String WorkList(Model model){
-//		Employees principal = (Employees)session.getAttribute("principal");
-//		if(principal == null) {
-//			throw new CustomRestfullException("인증된 사용자가 아닙니다.", 
-//							HttpStatus.UNAUTHORIZED);
-//		}
-//		
-//		return "/ec/profile";
-//	}
+		
 }

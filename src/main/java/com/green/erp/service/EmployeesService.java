@@ -13,8 +13,10 @@ import com.green.erp.dto.StartTimeFormDto;
 import com.green.erp.dto.UpdateInformationDto;
 import com.green.erp.handler.exception.CustomRestfullException;
 import com.green.erp.repository.EmployeesRepository;
+import com.green.erp.repository.MySalaryRepository;
 import com.green.erp.repository.WorkTimeRepository;
 import com.green.erp.repository.model.Employees;
+import com.green.erp.repository.model.MySalary;
 import com.green.erp.repository.model.WorkTime;
 
 @Service
@@ -24,6 +26,9 @@ public class EmployeesService {
 	private EmployeesRepository employeesRepository; 
 	@Autowired
 	private WorkTimeRepository workTimeRepository;
+	@Autowired
+	private MySalaryRepository mySalaryRepository;
+	
 	
 	public Employees signIn(SignInFormDto signInFormDto) {
 		Employees employeesEntity = employeesRepository.findByUsernameAndPassword(signInFormDto);
@@ -88,5 +93,10 @@ public class EmployeesService {
 		List<WorkTime> WorkList = workTimeRepository.findByWorkList(id);
 		
 		return WorkList;
+	}
+	
+	public List<MySalary> mySalaryList(Integer id){  
+		List<MySalary> resultSalary = mySalaryRepository.findByMySalary(id);
+		return resultSalary;
 	}
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.erp.repository.MySalaryRepository">
+
+	<select id="findByMySalary" resultType="com.green.erp.repository.model.MySalary">
+		select e.id, e.name,sh.to_year as toyear1, r.name as evaluation, r.rate as rate,
+				s.salary as lastYearSalary, ((r.rate * 0.01 * s.salary)) as bonus,
+				(
+					select salary
+				    from salary
+				    where id = s.id + 1
+				) as thisYearSalary
+				from salary_history as sh
+				left join rating as r
+				on sh.rating_id  = r.id
+				left join salary as s
+				on sh.salary_id = s.id
+				left join employees as e
+				on sh.employees_id = e.id
+				where e.id = #{id};
+	</select>
+	
+	
+
+</mapper>

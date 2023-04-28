@@ -31,7 +31,7 @@
 								</c:when>
 								<c:when test="${workTime.startTime != null && workTime.endTime == null}">
 									<form action="/ec/end-work" method="post">
-										<button type="submit" class="btn btn-lg btn-primary">퇴근</button>
+										<button type="submit" class="btn btn-lg btn-danger">퇴근</button>
 									</form>
 								</c:when>
 								<c:when test="${workTime.startTime != null && workTime.endTime != null}">
@@ -52,8 +52,8 @@
 						<h5 class="h6 card-title">About</h5>
 						<ul class="list-unstyled mb-0">
 							<li class="mb-1"><span data-feather="bookmark" class="feather-sm me-1"></span> 사번 <a href="#">${principal.id}</a></li>
-							<li class="mb-1"><span data-feather="briefcase" class="feather-sm me-1"></span> 부서 <a href="#"></a></li>
-							<li class="mb-1"><span data-feather="award" class="feather-sm me-1"></span> 직급 <a href="#"></a></li>
+							<li class="mb-1"><span data-feather="briefcase" class="feather-sm me-1"></span> 부서 <a href="#">${principal.dname}</a></li>
+							<li class="mb-1"><span data-feather="award" class="feather-sm me-1"></span> 직급 <a href="#">${principal.gname}</a></li>
 
 							<li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span> 고향 <a href="#">${principal.address}</a></li>
 						</ul>
@@ -105,16 +105,16 @@
 								<div class="flex-grow-1">
 
 									<div class="mb-3">
-										
+
 										<c:choose>
 											<c:when test="${workList != null}">
 												<table class="table">
 													<thead>
-														<tr class="col-md-5">
-															<th class="col-md-5">출근 시간</th>
-															<th class="col-md-5">퇴근 시간</th>
-															<th class="col-md-5">출근 날짜</th>
-															<th class="col-md-5">근무 시간</th>
+														<tr>
+															<th scope="col">출근 시간</th>
+															<th scope="col">퇴근 시간</th>
+															<th scope="col">출근 날짜</th>
+															<th scope="col">근무 시간</th>
 														</tr>
 													</thead>
 													<tbody>
@@ -123,7 +123,7 @@
 																<td>${workList.startTime}</td>
 																<td>${workList.endTime}</td>
 																<td>${workList.today}</td>
-															<%-- 	<td>${(workList.endTime - workList.startTime)}</td> --%>
+																<%-- 	<td>${(workList.endTime - workList.startTime)}</td> --%>
 															</tr>
 														</c:forEach>
 													</tbody>
@@ -140,15 +140,44 @@
 						</div>
 						<hr />
 						<div class="d-flex align-items-start">
-							<img src="img/avatars/avatar.jpg" width="36" height="36" class="rounded-circle me-2" alt="Charles Hall">
 							<div class="flex-grow-1">
-								<small class="float-end text-navy">30m ago</small> <strong>Charles Hall</strong> posted something on <strong>Christina Mason</strong>'s timeline<br /> <small class="text-muted">Today
-									7:21 pm</small>
-
-								<div class="border text-sm text-muted p-2 mt-1">Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam
-									nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante.</div>
-
-								<a href="#" class="btn btn-sm btn-danger mt-1"><i class="feather-sm" data-feather="heart"></i> Like</a>
+								
+								<c:choose>
+									<c:when test="${mySalaryList != null}">
+										<table class="table">
+											<thead>
+												<tr>
+													<th scope="col">사번</th>
+													<th scope="col">이름</th>
+													<th scope="col">년도</th>
+													<th scope="col">직무 평가 등급</th>
+													<th scope="col">예상 성과급(%)</th>
+													<th scope="col">연봉</th>
+													<th scope="col">성과급</th>
+													<th scope="col">인상 연봉</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach var="mySalaryList" items="${mySalaryList}">
+													<tr>
+														<td>${mySalaryList.id}</td>
+														<td>${mySalaryList.name}</td>
+														<td>${mySalaryList.toyear1}</td>
+														<td>${mySalaryList.evaluation}</td>
+														<td>${mySalaryList.rate}</td>
+														<td>${mySalaryList.lastYearSalary}</td>
+														<td>${mySalaryList.bonus}</td>
+														<td>${mySalaryList.thisYearSalary}</td>
+														<%-- 	<td>${(workList.endTime - workList.startTime)}</td> --%>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+									</c:when>
+									<c:otherwise>
+										<p>받은 연봉 기록이 없습니다</p>
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</div>
 
