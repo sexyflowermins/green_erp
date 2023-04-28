@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.green.erp.repository.model.Board;
-import com.green.erp.repository.model.CategoryCount;
+import com.green.erp.repository.model.Category;
 import com.green.erp.repository.model.Employees;
 import com.green.erp.repository.model.Notice;
 import com.green.erp.service.BoardService;
@@ -29,7 +29,7 @@ public class ErpController {
 		
 		List<Board> boardList = boardService.findLimit();
 		List<Notice> noticeList = noticeService.findWithNameOrderBy();
-		List<CategoryCount> countList = boardService.findCategoryCount();
+		List<Category> countList = boardService.findCategoryCount();
 		model.addAttribute("noticeList",noticeList);
 		model.addAttribute("boardList",boardList);
 		model.addAttribute("countList",countList);
