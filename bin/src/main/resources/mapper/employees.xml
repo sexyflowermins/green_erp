@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.erp.repository.EmployeesRepository">
+
+	<select id="findByUsernameAndPassword"
+		resultType="com.green.erp.repository.model.Employees">
+		select e.id,e.name,e.password,e.email,e.age,e.address,e.hire_date,e.resign_date,e.grade,e.department,g.name as gName,d.name as dName
+		from employees as e
+		left join grade as g
+		on e.grade = g.id
+		left join department as d
+		on e.department = d.id
+		where e.id = #{id} and password = #{password};
+	</select>
+
+	<select id="selectById"
+		resultType="com.green.erp.repository.model.Employees">
+		select * from employees where id = #{id};
+	</select>
+
+	<insert id="insert">
+		insert into employees (id, name, email, age, address, hire_date, department,
+		grade)
+		values( #{id}, #{name}, #{email}, #{age}, #{address}, #{hireDate},
+		#{department}, #{grade});
+	</insert>
+	<update id="updateById">
+		update employees set department = #{department}, grade = #{grade}
+		where id = #{id}
+	</update>
+
+	<update id="changeMyInfo">
+		update employees
+		set password = #{password} , name = #{name} , email = #{email} , age = #{age} , address = #{address}
+		where id = #{id};
+	</update>
+	
+</mapper>

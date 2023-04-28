@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,18 +81,20 @@
 									</div>
 									<select name="department" class="form-select form-select-lg mb-3"
 										aria-label=".form-select-lg example">
-										<option selected value="1">인사관리</option>
-										<option value="2">생산</option>
-										<option value="3">영업</option>
+										
+										<c:forEach var="list" items="${list}">
+										<option value="${list.id}">${list.name}</option>
+										</c:forEach>
 									</select>
 									<div class="mb-1">
 										<label class="form-label">grade</label> 
 									</div>
 									<select name="grade" class="form-select form-select-lg mb-3"
 										aria-label=".form-select-lg example">
-										<option selected value="1">사원</option>
-										<option value="2">과장</option>
-										<option value="3">부장</option>
+										<c:forEach var="listgrade" items="${listgrade}">
+										<option value="${listgrade.id}">${listgrade.name}</option>
+										</c:forEach>
+										
 									</select>
 
 									<div class="text-center mt-3">

@@ -18,8 +18,10 @@ import com.green.erp.dto.SignUpFormDto;
 import com.green.erp.dto.StartTimeFormDto;
 import com.green.erp.dto.UpdateInformationDto;
 import com.green.erp.handler.exception.CustomRestfullException;
+import com.green.erp.repository.model.Department;
 import com.green.erp.repository.model.Employees;
 import com.green.erp.repository.model.WorkTime;
+import com.green.erp.service.DepartmentService;
 import com.green.erp.service.EmployeesService;
 import com.green.erp.utile.Define;
 
@@ -32,7 +34,6 @@ public class EmployeesController {
 	
 	@Autowired
 	HttpSession session;
-
 	
 	@GetMapping("/signIn")
 	public String signIn() {
@@ -92,7 +93,7 @@ public class EmployeesController {
 	 * @return
 	 */
 	@PostMapping("/employees-sign-up")
-	public String employeesSignUp(SignUpFormDto signUpFormDto) {
+	public String employeesSignUp(SignUpFormDto signUpFormDto, Model model) {
 		if(signUpFormDto.getId() == null) {
 			// 현재 시간이랑 비교해서 만들기
 			throw new CustomRestfullException("사번을 입력하세요", HttpStatus.BAD_REQUEST);
@@ -112,6 +113,7 @@ public class EmployeesController {
 		if(signUpFormDto.getHireDate() == null || signUpFormDto.getHireDate().isEmpty()) {
 			throw new CustomRestfullException("입사일을 입력하세요", HttpStatus.BAD_REQUEST);
 		}
+		
 		employeesService.createEmployees(signUpFormDto);
 		return "redirect:/erp/main";
 	}

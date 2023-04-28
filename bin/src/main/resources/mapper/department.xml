@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.erp.repository.DepartmentRepository">
+
+
+<select id="findAll"
+		resultType="com.green.erp.repository.model.Department">
+		select name from department
+	</select>
+	<select id="findByDepartment"
+		resultType="com.green.erp.repository.model.Department">
+		select name from department where name like #{name};
+	</select>
+
+
+	<select id="findById"
+		resultType="com.green.erp.repository.model.Department">
+		select * from department
+		where id = #{id}
+	</select>
+</mapper>

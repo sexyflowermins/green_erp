@@ -12,8 +12,10 @@
 		e.department
 		where d.name = #{name};
 	</select>
+
 	<select id="findById"
 		resultType="com.green.erp.repository.model.Employees">
+
 		select * from employees where id = #{id};
 	</select>
 	<update id="updateemployees">
@@ -22,8 +24,52 @@
 		hire_date=#{hireDate},resign_date=#{resignDate},department=#{department},grade=#{grade}
 		where id = #{id};
 	</update>
+
+
 	<delete id="deleteEmpoyees">
-	delete from employees where id = #{id};
+		delete from employees where id = #{id};
 	</delete>
+	<delete id="deleteworkTime">
+		delete from work_time where id = #{id};
+	</delete>
+	<delete id="deleteNotice">
+		delete from notice where id = #{id};
+	</delete>
+	<delete id="deleteSchedule">
+		delete from schedule where id = #{id};
+	</delete>
+	<delete id="deleteBoard">
+		delete from board where id = #{id};
+	</delete>
+	<delete id="deletesalaryHistory">
+		delete from salary_history where id = #{id};
+	</delete>
+
+
+
+
+	<select id="departmentList">
+		select department, count(department)
+		from employees
+		group by department;
+	</select>
+
+	<!--직급조회 회원가입시 사용 -->
+	<select id="selectGradeAll">
+		select * from grade;
+	</select>
+	<!--부서 조회 회원가입시 사용 -->
+	<select id="selectDepartmentAll">
+		select * from department;
+	</select>
+	<!-- 직급 전체 조회 -->
+	<select id="serchGrade"
+		resultType="com.green.erp.repository.model.Grade">
+		select * from grade;
+	</select>
+
+<select id="selectWorkTime" resultType="com.green.erp.repository.model.WorkTime">
+        select * from work_time where emp_id = #{empId}
+    </select>
 </mapper>
 

@@ -54,69 +54,88 @@
 		<div class="col-md-8 col-xl-9">
 			<div class="card">
 				<div class="card-header">
-
 					<h5 class="card-title mb-0">Activities</h5>
 				</div>
 				<div class="card-body h-100">
-					<div class="d-flex align-items-start ">
+					<div class="d-flex align-items-start">
 						<form action="updatefromadmin" method="post">
-						<div class="mb-3">
-							<label class="form-label">password</label> <input
-								class="form-control form-control-lg" type="text" name="password"
-								value="${employees.password}" />
-						</div>
-						<div class="mb-3">
-							<label class="form-label">Name</label> <input
-								class="form-control form-control-lg" type="text" name="name"
-								value="${employees.name}" />
-						</div>
-						<div class="mb-3">
-							<label class="form-label">Email</label> <input
-								class="form-control form-control-lg" type="email" name="email"
-								value="${employees.email}" />
-						</div>
-						<div class="mb-3">
-							<label class="form-label">Age</label> <input
-								class="form-control form-control-lg" type="text" name="age"
-								value="${employees.age}" />
-						</div>
-						<div class="mb-3">
-							<label class="form-label">address</label> <input
-								class="form-control form-control-lg" type="text" name="address"
-								value="${employees.address}" />
-						</div>
-						<div class="mb-3">
-							<label class="form-label">hire_data</label> <input
-								class="form-control form-control-lg" type="text" name="hireDate"
-								value="${employees.hireDate}" />
-						</div>
-						<div class="mb-3">
-							<label class="form-label">resign_date</label> <input
-								class="form-control form-control-lg" type="text"
-								name="resignDate" value="${employees.resignDate}" />
-						</div>
-						<div class="mb-3">
-							<label class="form-label">department</label> <input
-								class="form-control form-control-lg" type="text"
-								name="department" value="${employees.department}" />
-						</div>
-						<div class="mb-3">
-							<label class="form-label">grade</label> <input
-								class="form-control form-control-lg" type="text" name="grade"
-								value="${employees.grade}" />
-						</div>
-						<div class="mb-3">
-							<input class="form-control form-control-lg" type="text" name="id"
-								value="${employees.id}" />
-						</div>
-						<div class="text-center mt-3">
-							<button type="submit" class="btn btn-lg btn-primary">수정</button>
-						</div>
-					</form>
+							<div class="mb-3">
+								<label class="form-label">password</label> <input
+									class="form-control form-control-lg" type="text"
+									name="password" value="${employees.password}" />
+							</div>
+							<div class="mb-3">
+								<label class="form-label">Name</label> <input
+									class="form-control form-control-lg" type="text" name="name"
+									value="${employees.name}" />
+							</div>
+							<div class="mb-3">
+								<label class="form-label">Email</label> <input
+									class="form-control form-control-lg" type="email" name="email"
+									value="${employees.email}" />
+							</div>
+							<div class="mb-3">
+								<label class="form-label">Age</label> <input
+									class="form-control form-control-lg" type="text" name="age"
+									value="${employees.age}" />
+							</div>
+							<div class="mb-3">
+								<label class="form-label">address</label> <input
+									class="form-control form-control-lg" type="text" name="address"
+									value="${employees.address}" />
+							</div>
+							<div class="mb-3">
+								<label class="form-label">hire_data</label> <input
+									class="form-control form-control-lg" type="text"
+									name="hireDate" value="${employees.hireDate}" />
+							</div>
+							<div class="mb-3">
+								<label class="form-label">resign_date</label> <input
+									class="form-control form-control-lg" type="text"
+									name="resignDate" value="${employees.resignDate}" />
+							</div>
+							<div class="mb-3">
+								<label class="form-label">department</label> 
+									<select name="department" class="form-select form-select-lg mb-3"
+										aria-label=".form-select-lg example">
+										<option selected value="1">인사관리</option>
+										<option value="2">영업</option>
+										<option value="3">생산</option>
+										<option value="4">경영관리</option>
+									</select>
+							</div>
+							<div class="mb-3">
+								 <label class="form-label">grade</label> 
+									<select name="grade" class="form-select form-select-lg mb-3"
+										aria-label=".form-select-lg example">
+										<option selected value="1">사원</option>
+										<option value="2">대리</option>
+										<option value="3">과장</option>
+										<option value="4">부장</option>
+									</select>
+							</div>
+							<div class="mb-3">
+								<label class="form-label">salary</label> <input
+									class="form-control form-control-lg" type="text"
+									name="hireDate" value="${employees.hireDate}" />
+							</div>
+							
+							<!-- 현재 연봉 까지 수정 만들어야함  -->
+							
+							
+							
+							<div class="mb-3">
+								<input class="form-control form-control-lg" type="hidden"
+									name="id" value="${employees.id}" />
+							</div>
+							<div class="text-center mt-3">
+								<button type="submit" class="btn btn-lg btn-primary">수정</button>
+							</div>
+						</form>
 					</div>
-					
-					
-					
+
+
+
 				</div>
 			</div>
 		</div>

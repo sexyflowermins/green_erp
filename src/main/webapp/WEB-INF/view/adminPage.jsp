@@ -63,6 +63,8 @@
 						<a>${employeeslist.name}</a>
 						<a>${employeeslist.address}</a>
 						<a>${employeeslist.email}</a>
+						<button type="submit" class="btn btn-md btn-primary" onclick="location.href='/workTimeDetail/${employeeslist.id}'">근태 조회</button>
+						<button type="submit" class="btn btn-md btn-primary" onclick="location.href='/salaryHistoryDetail/${employeeslist.id}'">연봉 조회</button>
 						<div>
 							<a href="deleteByEmployees?id=${employeeslist.id}">사원삭제</a>
 						</div>
@@ -70,6 +72,12 @@
 				</div>
 				<div class="card-body">
 					<div class="chart">
+					<!-- todo 예외처리 -->
+					<c:if test="${not empty empId}">
+						${workTimeDetail.startTime}
+						${workTimeDetail.endTime}
+						${workTimeDetail.today}
+					</c:if>
 						<canvas id="chartjs-bar"></canvas>
 					</div>
 				</div>
