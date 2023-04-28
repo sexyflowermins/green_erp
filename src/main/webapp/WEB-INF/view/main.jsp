@@ -13,7 +13,6 @@
 			<div class="col-12 col-md-6 col-xxl-3 d-flex order-2 order-xxl-3">
 				<div class="card flex-fill w-100">
 					<div class="card-header">
-
 						<h5 class="card-title mb-0">카테고리 비율</h5>
 					</div>
 					<div class="card-body d-flex">
@@ -137,8 +136,7 @@
 			<div class="col-12 col-lg-8 col-xxl-9 d-flex">
 				<div class="card flex-fill">
 					<div class="card-header">
-
-						<h5 class="card-title mb-0">자유 게시판</h5>
+						<h5 class="card-title mb-0" onclick="location.href='/board/list'">자유 게시판</h5>
 					</div>
 					<table class="table table-hover my-0">
 						<thead>
@@ -168,7 +166,7 @@
 									<c:otherwise></c:otherwise>
 								</c:choose>
 
-								<tr>
+								<tr onclick="location.href='/board/post/${board.id}'">
 									<td>${board.employeesName}</td>
 									<td class="d-none d-xl-table-cell">${board.dateTime}</td>
 									<td class="d-none d-xl-table-cell">${board.title}</td>

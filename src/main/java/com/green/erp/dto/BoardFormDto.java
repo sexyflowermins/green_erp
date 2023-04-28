@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class BoardFormDto {
+	private Integer id;
 	private Integer empId; 
 	private Integer category;
 	private String title;

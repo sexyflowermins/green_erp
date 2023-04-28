@@ -39,8 +39,8 @@
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="/erp/main"> <span
-					class="align-middle">Green 컴퍼니</span>
+				<a class="sidebar-brand text-decoration-none" href="/erp/main">
+					<span class="align-middle">Green 컴퍼니</span>
 				</a>
 
 				<ul class="sidebar-nav">
@@ -95,7 +95,7 @@
 								<line x1="18" y1="20" x2="18" y2="10"></line>
 								<line x1="12" y1="20" x2="12" y2="4"></line>
 								<line x1="6" y1="20" x2="6" y2="14"></line></svg> <span
-							class="align-middle">Charts</span>
+							class="align-middle">사원 관리</span>
 					</a></li>
 					<div class="sidebar-cta">
 						<div class="sidebar-cta-content">
@@ -141,14 +141,15 @@
 										<c:when test="${principal != null}">
 											<c:choose>
 												<c:when test="${noticeList != null}">
-													<c:forEach var="notice" items="${noticeList}">
+													<c:forEach var="notice" items="${noticeList}" varStatus="vs">
 														<a href="#" class="list-group-item">
-															<div class="row g-0 align-items-center">
+															<div class="row g-0 align-items-center"
+																data-bs-toggle="modal"
+																data-bs-target="#exampleModal${vs.index+1}">
 																<div class="col-2">
 																	<i class="text-warning" data-feather="bell"></i>
 																</div>
-																<div class="col-10"
-																	onclick="location.href='/notice/post/${notice.id}'">
+																<div class="col-10">
 																	<div class="text-dark">${notice.title}</div>
 																	<div class="text-muted small mt-1">작성자:${notice.name}</div>
 																	<input type="hidden" value="${notice.id}"
@@ -283,3 +284,24 @@
 					</ul>
 				</div>
 			</nav>
+
+			<!-- Modal -->
+			<c:forEach var="notice" items="${noticeList}" varStatus="vs">
+				<div class="modal fade" id="exampleModal${vs.index+1}" tabindex="-1"
+					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">${notice.title}</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"
+									aria-label="Close"></button>
+							</div>
+							<div class="modal-body">${notice.content}</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-bs-dismiss="modal">닫기</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</c:forEach>

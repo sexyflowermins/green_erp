@@ -7,14 +7,17 @@ import org.springframework.stereotype.Service;
 
 import com.green.erp.dto.BoardFormDto;
 import com.green.erp.repository.BoardRepository;
+import com.green.erp.repository.CategoryRepository;
 import com.green.erp.repository.model.Board;
-import com.green.erp.repository.model.CategoryCount;
+import com.green.erp.repository.model.Category;
 
 @Service
 public class BoardService {
 	
 	@Autowired
 	private BoardRepository boardRepository;
+	@Autowired
+	private CategoryRepository categoryRepository;
 
 	public void createBoard(BoardFormDto boardFormDto) {
 
@@ -33,14 +36,24 @@ public class BoardService {
 		return boardList;
 	}
 	
-	public List<CategoryCount> findCategoryCount(){
+	public List<Category> findCategoryCount(){
 		
-		List<CategoryCount> countList = boardRepository.findCategoryCount();
+		List<Category> countList = categoryRepository.findCategoryCount();
 		if (countList == null) {
 			System.out.println("실패");
 		}
 
 		return countList;
+	}
+	
+	public List<Category> findCategoryAll() {
+		List<Category> categoryList = categoryRepository.findCategoryAll();
+		
+		if (categoryList == null) {
+			System.out.println("실패");
+		}
+
+		return categoryList;
 	}
 	
 	public List<Board> findLimit() {
@@ -62,7 +75,7 @@ public class BoardService {
 		return board;
 	}
 
-	public int updateNotice(BoardFormDto boardFormDto) {
+	public int updateBoard(BoardFormDto boardFormDto) {
 
 		int resultRowCount = boardRepository.updateByForm(boardFormDto);
 
@@ -84,7 +97,7 @@ public class BoardService {
 		return resultRowCount;
 	}
 
-	public int deleteNotice(int id) {
+	public int deleteBoard(int id) {
 		int resultRowCount = boardRepository.deleteById(id);
 
 		if (resultRowCount != 1) {
