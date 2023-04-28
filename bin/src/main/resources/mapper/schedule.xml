@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<<<<<<< HEAD
 <mapper namespace="com.example.erp.repository.interfaces.ScheduleRepository">
    
    <insert id="insert">
@@ -9,4 +10,29 @@
    </insert>
    
    
+=======
+<mapper namespace="com.green.erp.repository.ScheduleRepository">
+
+    <insert id="addSchedule">
+        insert into schedule(emp_id, title, start_date, end_date, content)
+        values(#{empId}, #{title}, #{startDate}, #{endDate}, #{content})
+    </insert>
+
+    <select id="selectSchedule" resultType="com.green.erp.repository.model.Schedule">
+        select * from schedule
+    </select>
+
+    <select id="selectScheduleDetail" resultType="com.green.erp.repository.model.Schedule">
+        select * from schedule where id = #{id}
+    </select>
+
+    <delete id="deleteSchedule">
+        delete from schedule where id = #{id}
+    </delete>
+
+    <update id="updateSchedule" parameterType="com.green.erp.dto.ScheduleDto">
+        update schedule set title = #{dto.title}, start_date = #{dto.startDate}, end_date = #{dto.endDate}, content = #{dto.content}
+        where id = #{id}
+    </update>
+>>>>>>> adminpage
 </mapper>

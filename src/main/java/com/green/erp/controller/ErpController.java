@@ -9,11 +9,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.green.erp.repository.model.Board;
+
 import com.green.erp.repository.model.Category;
+
+import com.green.erp.repository.model.Department;
+
 import com.green.erp.repository.model.Employees;
+import com.green.erp.repository.model.Grade;
 import com.green.erp.repository.model.Notice;
 import com.green.erp.service.BoardService;
 import com.green.erp.service.NoticeService;
+import com.green.erp.service.adminService;
 
 @Controller
 @RequestMapping("/erp")
@@ -23,6 +29,8 @@ public class ErpController {
 	private NoticeService noticeService;
 	@Autowired
 	private BoardService boardService;
+	@Autowired
+	private adminService adminservice;
 	
 	@GetMapping("/main")
 	private String main(Model model){
@@ -44,7 +52,14 @@ public class ErpController {
 	}
 	
 	@GetMapping("/signUp")
-	public String signUp() {
+	public String signUp(Model model) {
+		List<Department> list = adminservice.findAllDepartment();
+		model.addAttribute("list", list);
+		// 회원가입 직급 조회
+		List<Grade> listgrade = adminservice.serchGrade();
+		model.addAttribute("listgrade", listgrade);
 		return "signUp";
 	}
+	
+	
 }
