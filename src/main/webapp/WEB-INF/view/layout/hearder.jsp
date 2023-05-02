@@ -124,7 +124,9 @@
 										<c:when test="${principal != null}">
 											<c:choose>
 												<c:when test="${headerNoticeList.size() < 4}">
-													<span class="indicator">${headerNoticeList.size()}</span>
+													<c:if test="${headerNoticeList.size() != 0}">														
+														<span class="indicator">${headerNoticeList.size()}</span>
+													</c:if>
 												</c:when>
 												<c:otherwise>
 													<span class="indicator">4</span>
