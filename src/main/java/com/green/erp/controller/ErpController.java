@@ -60,9 +60,10 @@ public class ErpController {
 		
 		model.addAttribute("gradeCountDto", gradeCountDto);
 		model.addAttribute("departmentList", departmentList);
-		model.addAttribute("noticeList", noticeList);
 
-		return "adminPage";
+		model.addAttribute("noticeList",noticeList);
+		return "/admin/adminPage";
+
 	}
 
 	@GetMapping("/signUp")
@@ -73,6 +74,10 @@ public class ErpController {
 		List<Grade> listgrade = adminservice.serchGrade();
 		model.addAttribute("listgrade", listgrade);
 
-		return "signUp";
+		
+		
+		
+		return "/admin/signUp";
+
 	}
 }

@@ -133,17 +133,17 @@ public class EmployeesController {
 			throw new CustomRestfullException("나이를 입력하세요", HttpStatus.BAD_REQUEST);
 		}
 		if (signUpFormDto.getAddress() == null || signUpFormDto.getAddress().isEmpty()) {
-			throw new CustomRestfullException("지역을 입력하세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfullException("주소를 입력하세요", HttpStatus.BAD_REQUEST);
 		}
 		if (signUpFormDto.getHireDate() == null || signUpFormDto.getHireDate().isEmpty()) {
 			throw new CustomRestfullException("입사일을 입력하세요", HttpStatus.BAD_REQUEST);
 		}
-		// -------------------
+		if (signUpFormDto.getUploadFileName() == null || signUpFormDto.getHireDate().isEmpty()) {
+			throw new CustomRestfullException("사진을 넣으세요", HttpStatus.BAD_REQUEST);
+		}
+		
 		// 파일 업로드 처리
 				Part filePart = request.getPart("file"); // form name - file
-				System.out.println("파일 확인 : " + filePart.getContentType());
-				System.out.println("파일 확인(바이트기반0) : " + filePart.getSize());
-				System.out.println("파일 확인(파일 이름) : " + filePart.getSubmittedFileName());
 				
 				// 스트림 준비
 				InputStream fileContent = filePart.getInputStream();
@@ -154,7 +154,6 @@ public class EmployeesController {
 					// 랜덤한 문자열을 여기서 생성 
 					UUID uuid = UUID.randomUUID();
 					System.out.println("uuid : " + uuid);
-					// 8377eace-2b4c-4ead-81c0-d134c43bbd14
 					
 					String fileName = uuid + "_" + filePart.getSubmittedFileName();
 					
@@ -173,7 +172,6 @@ public class EmployeesController {
 					while( (length = fileContent.read(buffer)) != -1 ) {
 						outputStream.write(buffer, 0, length);
 					}
-						System.out.println("File upload 성공");
 				} catch (Exception e) {
 					e.printStackTrace();
 				} finally {
@@ -184,7 +182,7 @@ public class EmployeesController {
 					}
 				}
 		employeesService.createEmployees(signUpFormDto);
-		return "redirect:/erp/main";
+		return "redirect:/erp/signUp";
 	}
 
 	@GetMapping("/updateIn")
