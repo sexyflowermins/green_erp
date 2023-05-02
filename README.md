@@ -1,5 +1,6 @@
 ## 🖥️ 프로젝트 소개
 - ERP 기반 인사관리 사이트
+- 데이터베이스 - <a href="https://github.com/sexyflowermins/green_erp/wiki/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4" >상세보기 - WIKI 이동</a>
 <br>
 
 ## 🕰️ 개발 기간
