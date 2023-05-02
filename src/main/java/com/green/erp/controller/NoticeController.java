@@ -35,22 +35,24 @@ public class NoticeController {
 	@ModelAttribute("noticeList")
 	public List<Notice> getNoticeList() {
 		List<Notice> noticeList = noticeService.findWithName();
+		
 		return noticeList;
 	}
-	
+
 	@ModelAttribute("headerNoticeList")
 	public List<Notice> getheaderNoticeList() {
+	
 		List<Notice> headerNoticeList = noticeService.findWithNameOrderBy();
+		
 		return headerNoticeList;
 	}
 
 	@GetMapping("/list")
 	public String noticeList(Model model) {
-		
+
 		Employees principal = (Employees) session.getAttribute(Define.PRINCIPAL);
-		if(principal == null) {
-			throw new CustomRestfullException("로그인 하세요", 
-							HttpStatus.UNAUTHORIZED);
+		if (principal == null) {
+			throw new CustomRestfullException("로그인 하세요", HttpStatus.UNAUTHORIZED);
 		}
 
 		return "notice/list";
@@ -67,15 +69,15 @@ public class NoticeController {
 
 	@GetMapping("/write")
 	public String createNotice() {
-		
+
 		return "notice/write";
 	}
 
 	@PostMapping("/write")
 	public String createNoticeProc(NoticeFormDto noticeFormDto) {
 
-		Employees employees = (Employees) session.getAttribute(Define.PRINCIPAL);
-		noticeFormDto.setEmpId(employees.getId());
+		Employees principal = (Employees) session.getAttribute(Define.PRINCIPAL);
+		noticeFormDto.setEmpId(principal.getId());
 		String content = noticeFormDto.getContent().replaceAll("\r\n", "<BR>");
 		noticeFormDto.setContent(content);
 		noticeService.createNotice(noticeFormDto);
@@ -87,7 +89,7 @@ public class NoticeController {
 	public String updateNotice(@PathVariable Integer id, Model model) {
 
 		Notice notice = noticeService.findById(id);
-		notice.setContent(notice.getContent().replaceAll("<BR>","\r\n"));
+		notice.setContent(notice.getContent().replaceAll("<BR>", "\r\n"));
 		model.addAttribute(notice);
 
 		return "notice/update";

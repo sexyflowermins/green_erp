@@ -10,22 +10,6 @@
 		<nav class="navbar bg-secondary rounded-2 mb-4">
 			<div class="container-fluid">
 				<a class="navbar-brand">자유게시판</a>
-				<%-- <form class="d-flex">
-					<select name="boardViewCount" class="form-select form-select-lg"
-						aria-label=".form-select-lg example">
-						<c:choose>
-							<c:when test="${boardViewCount == 5}">
-								<option value="5" selected>5개</option>
-								<option value="10">10개</option>
-							</c:when>
-							<c:when test="${boardViewCount == 10}">
-								<option value="5">5개</option>
-								<option value="10" selected>10개</option>
-							</c:when>
-						</c:choose>
-					</select>
-					<button class="btn btn-outline-info ms-3" type="submit">Search</button>
-				</form> --%>
 				<div class="dropdown">
 					<button class="btn btn-light dropdown-toggle" type="button"
 						data-bs-toggle="dropdown" aria-expanded="false">${boardViewCount}개</button>
@@ -93,19 +77,28 @@
 				<nav aria-label="Page navigation example"
 					class="d-flex justify-content-center flex-grow-1 bd-highlight">
 					<ul class="pagination">
-
 						<li class="page-item"><a class="page-link"
 							href="/board/list?boardViewCount=${boardViewCount}"
 							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 						</a></li>
+						<c:if test="${pageCount - boardViewCount*2 >= 0}">
+							<li class="page-item"><a class="page-link"
+								href="/board/list?curPage=${pageCount -boardViewCount*2}&page=${pageNumber -2}&boardViewCount=${boardViewCount}">${pageNumber -2}</a></li>
+						</c:if>
 						<c:if test="${pageCount - boardViewCount >= 0}">
 							<li class="page-item"><a class="page-link"
 								href="/board/list?curPage=${pageCount -boardViewCount}&page=${pageNumber -1}&boardViewCount=${boardViewCount}">${pageNumber -1}</a></li>
 						</c:if>
+						
 						<li class="page-item"><a class="page-link" href="#">${pageNumber}</a></li>
+						
 						<c:if test="${boardCountAll/boardViewCount + 1 > pageNumber + 1}">
 							<li class="page-item"><a class="page-link"
 								href="/board/list?curPage=${pageCount +boardViewCount}&page=${pageNumber +1}&boardViewCount=${boardViewCount}">${pageNumber +1}</a></li>
+						</c:if>
+						<c:if test="${boardCountAll/boardViewCount + 1 > pageNumber + 2}">
+							<li class="page-item"><a class="page-link"
+								href="/board/list?curPage=${pageCount +boardViewCount*2}&page=${pageNumber +2}&boardViewCount=${boardViewCount}">${pageNumber +2}</a></li>
 						</c:if>
 						<li class="page-item"><a class="page-link"
 							href="/board/list/?curPage=${lastPageCount}&page=${lastPageNumber}&boardViewCount=${boardViewCount}"

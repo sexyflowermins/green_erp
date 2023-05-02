@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@include file="/WEB-INF/view/layout/hearder.jsp"%>
 <main class="content">
@@ -41,49 +42,68 @@
 					<div class="card-header">
 						<h5 class="card-title mb-0">최근 공지사항</h5>
 					</div>
-					<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+					<div id="carouselExampleCaptions" class="carousel slide"
+						data-bs-ride="carousel">
 						<div class="carousel-indicators">
-							<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-							<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-							<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-							<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+							<button type="button" data-bs-target="#carouselExampleCaptions"
+								data-bs-slide-to="0" class="active" aria-current="true"
+								aria-label="Slide 1"></button>
+							<button type="button" data-bs-target="#carouselExampleCaptions"
+								data-bs-slide-to="1" aria-label="Slide 2"></button>
+							<button type="button" data-bs-target="#carouselExampleCaptions"
+								data-bs-slide-to="2" aria-label="Slide 3"></button>
+							<button type="button" data-bs-target="#carouselExampleCaptions"
+								data-bs-slide-to="3" aria-label="Slide 4"></button>
 						</div>
 						<div class="carousel-inner">
-							<div class="carousel-item active">
-								<img src="/static/img/photos/bg-image1.jpg" class="d-block w-100" alt="...">
-								<div class="carousel-caption d-none d-md-block">
-									<h5>${noticeList[0].title}</h5>
-									<p>${noticeList[0].content}</p>
+							<c:if test="${headerNoticeList[0] != null}">
+								<div class="carousel-item active">
+									<img src="/static/img/photos/bg-image1.jpg"
+										class="d-block w-100" alt="...">
+									<div
+										class="carousel-caption d-none d-md-block bg-light opacity-50 rounded-1">
+										<h5 class="fw-bolder fs-1 text-truncate opacity-100 mb-3">${headerNoticeList[0].title}</h5>
+										<p class="fw-bold text-dark text-truncate opacity-100">${headerNoticeList[0].content}</p>
+									</div>
 								</div>
-							</div>
-							<div class="carousel-item">
-								<img src="/static/img/photos/bg-image2.jpg" class="d-block w-100" alt="...">
-								<div class="carousel-caption d-none d-md-block">
-									<h5>${noticeList[1].title}</h5>
-									<p>${noticeList[1].content}</p>
+								<div class="carousel-item">
+									<img src="/static/img/photos/bg-image2.jpg"
+										class="d-block w-100" alt="...">
+									<div
+										class="carousel-caption d-none d-md-block bg-light opacity-50 rounded-1">
+										<h5 class="fw-bolder fs-1 text-truncate opacity-100 mb-3">${headerNoticeList[1].title}</h5>
+										<p class="fw-bold text-dark text-truncate">${headerNoticeList[1].content}</p>
+									</div>
 								</div>
-							</div>
-							<div class="carousel-item">
-								<img src="/static/img/photos/bg-image3.jpg" class="d-block w-100" alt="...">
-								<div class="carousel-caption d-none d-md-block">
-									<h5>${noticeList[2].title}</h5>
-									<p>${noticeList[2].content}</p>
+								<div class="carousel-item">
+									<img src="/static/img/photos/bg-image3.jpg"
+										class="d-block w-100" alt="...">
+									<div
+										class="carousel-caption d-none d-md-block bg-light opacity-50 rounded-1">
+										<h5 class="fw-bolder fs-1 text-truncate opacity-100 mb-3">${headerNoticeList[2].title}</h5>
+										<p class="fw-bold text-dark text-truncate opacity-100">${headerNoticeList[2].content}</p>
+									</div>
 								</div>
-							</div>
-							<div class="carousel-item">
-								<img src="/static/img/photos/bg-image4.jpg" class="d-block w-100" alt="...">
-								<div class="carousel-caption d-none d-md-block">
-									<h5>${noticeList[3].title}</h5>
-									<p>${noticeList[3].content}</p>
+								<div class="carousel-item">
+									<img src="/static/img/photos/bg-image4.jpg"
+										class="d-block w-100" alt="...">
+									<div
+										class="carousel-caption d-none d-md-block bg-light opacity-50 rounded-1">
+										<h5 class="fw-bolder fs-1 text-truncate opacity-100 mb-3">${headerNoticeList[3].title}</h5>
+										<p class="fw-bold text-dark text-truncate opacity-100">${headerNoticeList[3].content}</p>
+									</div>
 								</div>
-							</div>
-
+							</c:if>
 						</div>
-						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="visually-hidden">Previous</span>
+						<button class="carousel-control-prev" type="button"
+							data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
 						</button>
-						<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="visually-hidden">Next</span>
+						<button class="carousel-control-next" type="button"
+							data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
 						</button>
 					</div>
 				</div>
@@ -156,31 +176,31 @@
 				</div>
 			</div>
 			<div class="col-12 col-lg-4 col-xxl-3 d-flex">
-				<div class="card flex-fill w-100 justify-content-center align-items-center">
-				<!-- 	<div class="card-header">
-						<h5 class="card-title mb-0">날씨</h5>
-					</div> -->
-						<div style="padding: 40px; color: #fff; height: 220px">
-							<div style="float: right; margin: -5px 0px 0px 60px; font-size: 11pt">
-								<div class="temp_min" style="color: black;"></div>
-								<div class="temp_max" style="color: black;"></div>
-								<div class="humidity" style="color: black;"></div>
-								<div class="wind" style="color: black;"></div>
-								<div class="cloud" style="color: black;"></div>
-							</div>
-							<div style="float: right; margin-top: -45px;">
-								<div class="current_temp" style="font-size: 50pt; color: black;"></div>
-								<div class="weather_description" style="font-size: 20pt; color: black;"></div>
-								<div class="city" style="font-size: 13pt; color: black;"></div>
-							</div>
-							<div style="float: left;">
-								<div class="weather_icon"></div>
-							</div>
+				<div
+					class="card flex-fill w-100 justify-content-center align-items-center">
+					<div style="padding: 40px; color: #fff; height: 220px">
+						<div
+							style="float: right; margin: -5px 0px 0px 60px; font-size: 11pt">
+							<div class="temp_min" style="color: black;"></div>
+							<div class="temp_max" style="color: black;"></div>
+							<div class="humidity" style="color: black;"></div>
+							<div class="wind" style="color: black;"></div>
+							<div class="cloud" style="color: black;"></div>
+						</div>
+						<div style="float: right; margin-top: -45px;">
+							<div class="current_temp" style="font-size: 50pt; color: black;"></div>
+							<div class="weather_description"
+								style="font-size: 20pt; color: black;"></div>
+							<div class="city" style="font-size: 13pt; color: black;"></div>
+						</div>
+						<div style="float: left;">
+							<div class="weather_icon"></div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 
 </main>
 
