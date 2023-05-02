@@ -8,6 +8,7 @@ public class Board {
 	private Integer empId;
 	private Integer views;
 	private Integer category;
+	private Integer count;
 	private String title;
 	private String content;
 	private String dateTime;

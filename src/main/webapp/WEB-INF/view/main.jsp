@@ -5,15 +5,15 @@
 <main class="content">
 	<div class="container-fluid p-0">
 
-		<h1 class="h3 mb-3">
-			<strong>Analytics</strong> Dashboard
+		<h1 class="h3 mb-3 animate__animated animate__zoomIn animate__fast">
+			<strong>Green</strong> Company
 		</h1>
 
-		<div class="row">
+		<div class="row animate__animated animate__zoomIn animate__slow">
 			<div class="col-12 col-md-6 col-xxl-3 d-flex order-2 order-xxl-3">
 				<div class="card flex-fill w-100">
 					<div class="card-header">
-						<h5 class="card-title mb-0">카테고리 비율</h5>
+						<h5 class="card-title mb-0 ">전체 카테고리 비율</h5>
 					</div>
 					<div class="card-body d-flex">
 						<div class="align-self-center w-100">
@@ -25,22 +25,12 @@
 
 							<table class="table mb-0">
 								<tbody>
-									<tr>
-										<td>${boardList[0].categoryName}</td>
-										<td class="text-end">${countList[0].count}</td>
-									</tr>
-									<tr>
-										<td>${boardList[1].categoryName}</td>
-										<td class="text-end">${countList[1].count}</td>
-									</tr>
-									<tr>
-										<td>${boardList[2].categoryName}</td>
-										<td class="text-end">${countList[2].count}</td>
-									</tr>
-									<tr>
-										<td>${boardList[3].categoryName}</td>
-										<td class="text-end">${countList[3].count}</td>
-									</tr>
+									<c:forEach var="list" items="${countList}">
+										<tr>
+											<td>${list.categoryName}</td>
+											<td class="text-end">${list.count}</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>
@@ -132,11 +122,12 @@
 			</div>
 		</div>
 
-		<div class="row">
+		<div class="row animate__animated animate__zoomIn animate__slow">
 			<div class="col-12 col-lg-8 col-xxl-9 d-flex">
 				<div class="card flex-fill">
-					<div class="card-header">
-						<h5 class="card-title mb-0" onclick="location.href='/board/list'">자유 게시판</h5>
+					<div class="card-header ">
+						<h5 class="card-title mb-0" onclick="location.href='/board/list'">자유
+							게시판</h5>
 					</div>
 					<table class="table table-hover my-0">
 						<thead>

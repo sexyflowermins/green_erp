@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.erp.repository.BoardReplyRepository">
+	<insert id="insert">
+		insert into board_reply(emp_id,board_id,content)
+		values(#{empId},#{boardId},#{content});
+	</insert>
+
+	<select id="findListByBoardId"
+		resultType="com.green.erp.repository.model.BoardReply">
+		select
+		b.id,b.emp_id,b.content,b.board_id,b.date_time,e.name as employees_name
+		from board_reply as b
+		left join employees as e
+		on b.emp_id = e.id
+		where b.board_id = #{boardId};
+	</select>
+	
+	<delete id="deleteById">
+		delete from board_reply where id = #{id}
+	</delete>
+</mapper>

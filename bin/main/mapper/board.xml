@@ -30,7 +30,11 @@
 		on a.emp_id = b.id
 		left join category as c
 		on a.category = c.id
-		order by date_time desc limit 8;
+		order by id desc limit 8;
+	</select>
+	
+	<select id="findBoardCount" resultType="com.green.erp.repository.model.Board">
+		select count(*) as count from board;
 	</select>
 
 	<select id="findAll"
@@ -57,4 +61,23 @@
 	<delete id="deleteById">
 		delete from board where id = #{id}
 	</delete>
+	
+	<select id="findListByPage" resultType="com.green.erp.repository.model.Board">
+		select
+		a.id,a.emp_id,a.title,a.content,a.date_time,a.views,a.category,b.name
+		as employees_name,c.name as category_name
+		from board as a
+		left join employees as b
+		on a.emp_id = b.id
+		left join category as c
+		on a.category = c.id
+		order by a.id desc limit #{boardViewCount} offset #{page}	
+	</select>
+	
+	<select id="findByCategory" resultType="com.green.erp.repository.model.Board">
+		select a.category,count(a.id) as count, b.name as category_name
+		from board as a 
+		left join category as b 
+		on a.category = b.id group by a.category
+	</select>
 </mapper>

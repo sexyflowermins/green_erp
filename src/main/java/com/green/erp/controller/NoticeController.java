@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.green.erp.dto.NoticeFormDto;
 import com.green.erp.dto.NoticeUpdateFormDto;
+import com.green.erp.handler.exception.CustomRestfullException;
 import com.green.erp.repository.model.Employees;
 import com.green.erp.repository.model.Notice;
 import com.green.erp.service.EmployeesService;
@@ -35,22 +37,24 @@ public class NoticeController {
 		List<Notice> noticeList = noticeService.findWithName();
 		return noticeList;
 	}
+	
+	@ModelAttribute("headerNoticeList")
+	public List<Notice> getheaderNoticeList() {
+		List<Notice> headerNoticeList = noticeService.findWithNameOrderBy();
+		return headerNoticeList;
+	}
 
 	@GetMapping("/list")
 	public String noticeList(Model model) {
+		
+		Employees principal = (Employees) session.getAttribute(Define.PRINCIPAL);
+		if(principal == null) {
+			throw new CustomRestfullException("인증된 사용자가 아닙니다.", 
+							HttpStatus.UNAUTHORIZED);
+		}
 
 		return "notice/list";
 	}
-
-	/*
-	 * @GetMapping("/list/{search}") public String noticeListBySearch(@PathVariable
-	 * String search, @ModelAttribute("noticeList") List<Notice> noticeList, Model
-	 * model) {
-	 * 
-	 * for(int i=0;i<noticeList.size();i++) { noticeList.get(i).getTitle() }
-	 * 
-	 * return "notice/list"; }
-	 */
 
 	@GetMapping("/post/{id}")
 	public String postById(@PathVariable Integer id, Model model) {
@@ -60,6 +64,11 @@ public class NoticeController {
 		model.addAttribute(notice);
 
 		return "notice/post";
+	}
+	
+	@GetMapping("/updateViews/{id}")
+	public void updateView(@PathVariable Integer id) {
+		noticeService.updateViews(id);
 	}
 
 	@GetMapping("/write")
@@ -74,9 +83,11 @@ public class NoticeController {
 
 		Employees employees = (Employees) session.getAttribute(Define.PRINCIPAL);
 		noticeFormDto.setEmpId(employees.getId());
+		String content = noticeFormDto.getContent().replaceAll("\r\n", "<BR>");
+		noticeFormDto.setContent(content);
 		noticeService.createNotice(noticeFormDto);
 
-		return "redirect:/erp/main";
+		return "redirect:/notice/list";
 	}
 
 	@GetMapping("/update/{id}")
@@ -91,6 +102,8 @@ public class NoticeController {
 	@PostMapping("/updateProc")
 	public String updateNoticeProc(NoticeUpdateFormDto updateFormDto) {
 
+		String content = updateFormDto.getContent().replaceAll("\r\n", "<BR>");
+		updateFormDto.setContent(content);
 		noticeService.updateNotice(updateFormDto);
 
 		return "redirect:/erp/main";

@@ -32,7 +32,7 @@ public class NoticeIntercepter implements HandlerInterceptor {
 			throw new CustomRestfullException("로그인 하세요", 
 							HttpStatus.UNAUTHORIZED);
 		}
-		if(departmentService.findById(employees.getDepartment()).getName().equals("인사관리")==false){
+		if(departmentService.findById(employees.getDepartment()).getName().equals(Define.PERSONNELMANAGEMENT)==false){
 			
 		throw new CustomRestfullException("인증된 사용자가 아닙니다.", 
 					HttpStatus.UNAUTHORIZED);
