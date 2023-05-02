@@ -156,25 +156,19 @@
 				</div>
 			</div>
 			<div class="col-12 col-lg-4 col-xxl-3 d-flex">
-				<div class="card flex-fill w-100 justify-content-center align-items-center">
-				<!-- 	<div class="card-header">
-						<h5 class="card-title mb-0">날씨</h5>
-					</div> -->
-						<div style="padding: 40px; color: #fff; height: 220px">
-							<div style="float: right; margin: -5px 0px 0px 60px; font-size: 11pt">
-								<div class="temp_min" style="color: black;"></div>
-								<div class="temp_max" style="color: black;"></div>
-								<div class="humidity" style="color: black;"></div>
-								<div class="wind" style="color: black;"></div>
-								<div class="cloud" style="color: black;"></div>
+				<div class="card flex-fill w-100 d-flex justify-content-center">
+						<div class="p-5" >
+							<div class="float-end fs-6">
+								<div class="temp_min text-dark m-1" ></div>
+								<div class="temp_max text-dark m-1" ></div>
+								<div class="humidity text-dark m-1" ></div>
+								<div class="wind text-dark m-1" ></div>
+								<div class="cloud text-dark m-1" ></div>
 							</div>
-							<div style="float: right; margin-top: -45px;">
-								<div class="current_temp" style="font-size: 50pt; color: black;"></div>
-								<div class="weather_description" style="font-size: 20pt; color: black;"></div>
-								<div class="city" style="font-size: 13pt; color: black;"></div>
-							</div>
-							<div style="float: left;">
-								<div class="weather_icon"></div>
+							<div>
+								<div class="current_temp text-dark fs-1"></div>
+								<div class="weather_description text-dark fs-4" ></div>
+								<div class="city text-dark fs-5"></div>
 							</div>
 						</div>
 					</div>

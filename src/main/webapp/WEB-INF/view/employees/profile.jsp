@@ -18,6 +18,18 @@
 					<div class="card-header">
 						<h5 class="card-title mb-0">Profile Details</h5>
 					</div>
+					<div>
+					<c:choose>
+					<c:when test="${principal != null}">
+					<div class="d-flex justify-content-center align-item-center mt-3">
+						<img alt="" src="<c:url value="${principal.setUploadFileName()}"/>" >
+					</div>
+					</c:when>
+					<c:otherwise>
+						<div class="m-profile"></div>
+					</c:otherwise>
+					</c:choose>
+					</div>
 					<div class="card-body text-center">
 						<div class="text-muted mb-2"><h3>${principal.dname}부 - ${principal.name}</h3></div>
 
@@ -119,8 +131,8 @@
 														<th scope="col">출근 시간</th>
 														<th scope="col">퇴근 시간</th>
 														<th scope="col">근무 날짜</th>
-														<th scope="col">근무 시간</th>
-													</tr>
+<!-- 														<th scope="col">근무 시간</th>
+ -->													</tr>
 												</thead>
 												<tbody>
 													<c:forEach var="workList" items="${workList}">

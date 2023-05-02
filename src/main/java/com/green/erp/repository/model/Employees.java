@@ -19,4 +19,8 @@ public class Employees {
 	private String gname;
 	private String dname;
 	
+	public String setUploadFileName() {
+		return uploadFileName == null ? "https://picsum.photos/id/1/150" : "/images/uploads/" + uploadFileName;
+	}
+	
 }
