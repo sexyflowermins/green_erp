@@ -21,7 +21,8 @@
 <link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
 <title>Green 컴퍼니</title>
-
+<script src="https://code.jquery.com/jquery-1.12.4.min.js%22%3E"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link href="/static/css/app.css" rel="stylesheet">
 
 
@@ -33,8 +34,8 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+	
 </head>
-
 <body>
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
