@@ -36,18 +36,18 @@ public class ScheduleService {
         return list;
     }
 
-    public Schedule selectScheduleDetail(int id) {
+    public Schedule selectScheduleDetail(Integer id) {
         Schedule scheduleEntity = scheduleRepository.selectScheduleDetail(id);
         return scheduleEntity;
     }
 
-    public int deleteSchedule(int id) {
+    public int deleteSchedule(Integer id) {
         int resultRowCount = scheduleRepository.deleteSchedule(id);
         return resultRowCount;
     }
 
     @Transactional
-    public int updateSchedule(ScheduleDto dto, int id) {
+    public int updateSchedule(ScheduleDto dto, Integer id) {
         int scheduleEntity = scheduleRepository.updateSchedule(dto, id);
         return scheduleEntity;
     }

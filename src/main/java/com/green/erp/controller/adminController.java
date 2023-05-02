@@ -25,6 +25,7 @@ import com.green.erp.repository.model.Department;
 import com.green.erp.repository.model.Employees;
 import com.green.erp.repository.model.Grade;
 import com.green.erp.repository.model.Notice;
+import com.green.erp.repository.model.SalaryHistory;
 import com.green.erp.repository.model.WorkTime;
 import com.green.erp.service.NoticeService;
 import com.green.erp.service.adminService;
@@ -121,10 +122,17 @@ public class adminController {
 	}
 	@GetMapping("/workTimeDetail/{empId}")
     public String workTimeDetail(@PathVariable Integer empId, Model model) {
-        WorkTime workTimeDetail = adminservice.selectWorkTime(empId);
+		List<WorkTime> workTimeDetail = adminservice.selectWorkTime(empId);
         model.addAttribute("workTimeDetail", workTimeDetail);
         return "/adminPage";
     }
+	
+	@GetMapping("/salaryHistoryDetail/{id}")
+	public String salaryHistoryDetail(@PathVariable Integer id, Model model) {
+		List<SalaryHistory> salaryHistoryDetail = adminservice.selectSalaryHistory(id);
+		model.addAttribute("salaryHistoryDetail", salaryHistoryDetail);
+		return "/salaryHistoryView";
+	}
 	
 	
 }

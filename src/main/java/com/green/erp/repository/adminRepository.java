@@ -12,6 +12,8 @@ import com.green.erp.dto.SalaryHistoryDto;
 import com.green.erp.repository.model.Department;
 import com.green.erp.repository.model.Employees;
 import com.green.erp.repository.model.Grade;
+import com.green.erp.repository.model.MySalary;
+import com.green.erp.repository.model.SalaryHistory;
 import com.green.erp.repository.model.WorkTime;
 
 @Mapper
@@ -32,9 +34,10 @@ public interface adminRepository {
 	public int deleteSchedule(Integer id);
 	public int deleteBoard(Integer id);
 	public int deleteEmpoyees(Integer id);
-	public WorkTime selectWorkTime(Integer empId);
 	public List<SalaryDto> selectSalary();
 	public List<RatingDto> selectRating();
 	public List<DepartmentCountDto> departmentList();
 	public List<GradeCountDto> gradeCount();
+	public List<WorkTime> selectWorkTime(Integer empId);
+	public List<SalaryHistory> selectSalaryHistory(Integer id);
 }

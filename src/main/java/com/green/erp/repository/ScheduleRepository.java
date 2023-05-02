@@ -13,9 +13,9 @@ public interface ScheduleRepository {
 
     public int addSchedule(ScheduleDto dto);
     public List<Schedule> selectSchedule();
-    public Schedule selectScheduleDetail(int id);
+    public Schedule selectScheduleDetail(Integer id);
     // 파리미터 갯수가 2 개 이상이면 @Param
-    public int updateSchedule(@Param("dto")ScheduleDto dto, @Param("id") int id);
-    public int deleteSchedule(int id);
+    public int updateSchedule(@Param("dto")ScheduleDto dto, @Param("id") Integer id);
+    public int deleteSchedule(Integer id);
 
 }

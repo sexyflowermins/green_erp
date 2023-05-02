@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class Schedule {
-    private int id;
-    private int emp_id;
+    private Integer id;
+    private Integer emp_id;
     private String title;
     private String content;
     private String startDate;

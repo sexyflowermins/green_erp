@@ -46,20 +46,20 @@ public class ScheduleApiController {
 	}
 	
 	@GetMapping("/api/scheduleDetail/{id}")
-	public Schedule scheduleDetail(@PathVariable int id) {
+	public Schedule scheduleDetail(@PathVariable Integer id) {
 		Schedule scheduleDetail = scheduleService.selectScheduleDetail(id);
 		return scheduleDetail;
 	}
 	
 	@DeleteMapping("/api/deleteSchedule/{id}")
-	public String deleteSchedule(@PathVariable int id) {
+	public String deleteSchedule(@PathVariable Integer id) {
 		Employees employees = (Employees)session.getAttribute(Define.PRINCIPAL);
 		int resultRow = scheduleService.deleteSchedule(id);
 		return resultRow + "";
 	}
 	
 	@PostMapping("/api/updateSchedule/{id}")
-	public String updateSchedule(@RequestBody ScheduleDto dto ,@PathVariable int id) {
+	public String updateSchedule(@RequestBody ScheduleDto dto ,@PathVariable Integer id) {
 		Employees employees = (Employees)session.getAttribute(Define.PRINCIPAL);
 		int result = scheduleService.updateSchedule(dto, id);
 		return result + "";

@@ -16,6 +16,7 @@ import com.green.erp.repository.adminRepository;
 import com.green.erp.repository.model.Department;
 import com.green.erp.repository.model.Employees;
 import com.green.erp.repository.model.Grade;
+import com.green.erp.repository.model.SalaryHistory;
 import com.green.erp.repository.model.WorkTime;
 
 @Service
@@ -80,10 +81,18 @@ public int insertSalaryHistory(SalaryHistoryDto salaryHistoryDto) {
 		int resultRowcount = adminRepository.deleteEmpoyees(id);
 		return resultRowcount;
 	}
-	public WorkTime selectWorkTime(Integer empId) {
-        WorkTime workTimeEntity = adminRepository.selectWorkTime(empId);
+	
+	@Transactional
+	public List<WorkTime> selectWorkTime(Integer empId) {
+		List<WorkTime> workTimeEntity = adminRepository.selectWorkTime(empId);
         return workTimeEntity;
     }
+	
+	@Transactional
+	public List<SalaryHistory> selectSalaryHistory(Integer id) {
+		List<SalaryHistory> salaryHistoryEntity = adminRepository.selectSalaryHistory(id);
+		return salaryHistoryEntity;
+	}
 
 	@Transactional
 	public List<SalaryDto> selectSalary( ) {
