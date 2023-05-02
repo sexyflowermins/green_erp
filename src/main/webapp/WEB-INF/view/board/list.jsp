@@ -106,10 +106,9 @@
 						</a></li>
 					</ul>
 				</nav>
-				<c:if test="${isPersonnel}">
+				
 					<button onclick="location.href='/board/write'" type="button"
 						class="btn  btn-primary">게시글 작성</button>
-				</c:if>
 			</div>
 
 		</div>

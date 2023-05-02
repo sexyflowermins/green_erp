@@ -48,30 +48,16 @@
 
 			<div class="col-12 col-lg-6">
 				<div class="card">
-					<%-- <div class="card-header">
-
-						<!-- 부서목록 클릭하면 사원 정보 나오는 기능 -->
-						<c:forEach var="employeeslist" items="${employeeslist}">
-							<a href="/admin/privacy?id=${employeeslist.id}" class="text-decoration-none">${employeeslist.id}</a>
-							<a>${employeeslist.name}</a>
-							<a>${employeeslist.address}</a>
-							<a>${employeeslist.email}</a>
-							<button type="submit" class="btn btn-md btn-primary" onclick="location.href='/admin/workTimeDetail/${employeeslist.id}'">근태 조회</button>
-							<button type="submit" class="btn btn-md btn-primary" onclick="location.href='/admin/salaryHistoryDetail/${employeeslist.id}'">연봉 조회</button>
-							<div>
-								<a href="deleteByEmployees?id=${employeeslist.id}" class="text-decoration-none">사원삭제</a>
-							</div>
-						</c:forEach>
-					</div> --%>
+		
 					<div class="card-body">
-						<div class="chart">
+						<div class="chart p-1 ">
 							<c:forEach var="employeeslist" items="${employeeslist}">
 								<a href="/admin/privacy?id=${employeeslist.id}" class="text-decoration-none">${employeeslist.id}</a>
 								<a>${employeeslist.name}</a>
 								<a>${employeeslist.address}</a>
 								<a>${employeeslist.email}</a>
-								<button type="submit" class="btn btn-md btn-primary" onclick="location.href='/admin/workTimeDetail/${employeeslist.id}'">근태 조회</button>
-								<button type="submit" class="btn btn-md btn-primary" onclick="location.href='/admin/salaryHistoryDetail/${employeeslist.id}'">연봉 조회</button>
+								<button type="submit" class="btn btn-md btn-primary float-end m-1" onclick="location.href='/admin/workTimeDetail/${employeeslist.id}'">근태 조회</button>
+								<button type="submit" class="btn btn-md btn-primary float-end m-1" onclick="location.href='/admin/salaryHistoryDetail/${employeeslist.id}'">연봉 조회</button>
 								<div>
 									<a href="deleteByEmployees?id=${employeeslist.id}" class="text-decoration-none">사원삭제</a>
 								</div>

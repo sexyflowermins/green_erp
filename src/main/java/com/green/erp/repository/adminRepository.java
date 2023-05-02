@@ -40,4 +40,5 @@ public interface adminRepository {
 	public List<GradeCountDto> gradeCount();
 	public List<WorkTime> selectWorkTime(Integer empId);
 	public List<SalaryHistory> selectSalaryHistory(Integer id);
+	public int updateImage(Employees employees);
 }

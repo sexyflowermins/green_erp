@@ -138,9 +138,7 @@ public class EmployeesController {
 		if (signUpFormDto.getHireDate() == null || signUpFormDto.getHireDate().isEmpty()) {
 			throw new CustomRestfullException("입사일을 입력하세요", HttpStatus.BAD_REQUEST);
 		}
-		if (signUpFormDto.getUploadFileName() == null || signUpFormDto.getHireDate().isEmpty()) {
-			throw new CustomRestfullException("사진을 넣으세요", HttpStatus.BAD_REQUEST);
-		}
+		
 		
 		// 파일 업로드 처리
 				Part filePart = request.getPart("file"); // form name - file
@@ -157,14 +155,11 @@ public class EmployeesController {
 					
 					String fileName = uuid + "_" + filePart.getSubmittedFileName();
 					
-					// 1단계 : 파일을 저장할 폴더를 미리 만들어 두기 
-					// C 드라이버에 jsp_upload 폴더 만들기 (직접 만들어 주세요)
+					
 					
 					File file = new File("C:\\Users\\GGG\\Desktop\\새 폴더",fileName);
 					
-					// 파일 출력 스트림 생성 
 					outputStream = new FileOutputStream(file);
-					// 입력 스트림에서 바이트 단위로 읽어 오면서 출력 스트림에 쓰기 
 					byte[] buffer = new byte[1024];
 					int length;
 					signUpFormDto.setUploadFileName(fileName);
@@ -182,7 +177,7 @@ public class EmployeesController {
 					}
 				}
 		employeesService.createEmployees(signUpFormDto);
-		return "redirect:/erp/signUp";
+		return "redirect:/erp/main";
 	}
 
 	@GetMapping("/updateIn")
@@ -250,6 +245,7 @@ public class EmployeesController {
 		endTimeFormDto.setEmpId(principal.getId());
 		employeesService.end(endTimeFormDto);
 
+		
 		return "redirect:/erp/main";
 	}
 

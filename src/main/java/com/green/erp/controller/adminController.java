@@ -1,8 +1,18 @@
 package com.green.erp.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
+import java.util.UUID;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,6 +40,7 @@ import com.green.erp.repository.model.WorkTime;
 import com.green.erp.service.NoticeService;
 import com.green.erp.service.adminService;
 @Controller
+@MultipartConfig
 @RequestMapping("/admin")
 public class adminController {
 
@@ -148,7 +159,7 @@ public class adminController {
 		model.addAttribute("departmentList", departmentList);
 		
         model.addAttribute("workTimeDetail", workTimeDetail);
-        return "/admin/adminPage";
+        return "admin/adminPage";
     }
 	
 	@GetMapping("/salaryHistoryDetail/{id}")
@@ -158,5 +169,47 @@ public class adminController {
 		return "/salaryHistoryView";
 	}
 	
-	
+	@PostMapping("/updateImage")
+	public String updateImage(Employees employees, Model model, HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+		// 파일 업로드 처리
+		Part filePart = request.getPart("updateimage"); // form name - file
+		
+		// 스트림 준비
+		InputStream fileContent = filePart.getInputStream();
+		// 출력 스트림 준비 --> 내 서버 컴퓨터에 FIle 객체 만들어서 저장 할 계획
+		OutputStream outputStream = null;
+		
+		try {
+			// 랜덤한 문자열을 여기서 생성 
+			UUID uuid = UUID.randomUUID();
+			System.out.println("uuid : " + uuid);
+			
+			String fileName = uuid + "_" + filePart.getSubmittedFileName();
+			
+			
+			File file = new File("C:\\Users\\GGG\\Desktop\\새 폴더",fileName);
+			
+			// 파일 출력 스트림 생성 
+			outputStream = new FileOutputStream(file);
+			// 입력 스트림에서 바이트 단위로 읽어 오면서 출력 스트림에 쓰기 
+			byte[] buffer = new byte[1024];
+			int length;
+			employees.setUploadFileName(fileName);
+			
+			while( (length = fileContent.read(buffer)) != -1 ) {
+				outputStream.write(buffer, 0, length);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			fileContent.close();
+			if(outputStream != null) {
+				outputStream.flush();
+				outputStream.close();
+			}
+		}
+		adminservice.updateImage(employees);
+		System.out.println(employees.toString());
+		return "admin/adminPage";
+	}
 }

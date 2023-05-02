@@ -116,7 +116,12 @@ public int insertSalaryHistory(SalaryHistoryDto salaryHistoryDto) {
 		List<GradeCountDto> gradecount = adminRepository.gradeCount();
 		return gradecount;
 	}
-		
+	// 사진 수정
+	@Transactional 
+	public int updateImage(Employees employees) {
+		int result = adminRepository.updateImage(employees);
+		return result;
+	}
 	}
 	
 

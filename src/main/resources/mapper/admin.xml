@@ -109,5 +109,10 @@
 		on e.grade = g.id
 		where e.id = #{id};
    	</select>
+   	
+   	<update id="updateImage">
+   	update employees set upload_file_name = #{uploadFileName} where id = #{id};
+   	</update>
+   	
 </mapper>
 

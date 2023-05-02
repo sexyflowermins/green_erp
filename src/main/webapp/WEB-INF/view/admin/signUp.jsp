@@ -48,6 +48,7 @@
 							<div class="m-sm-4">
 								<form action="/ec/employees-sign-up" method="post" enctype="multipart/form-data">
 									<div class="mb-3">
+									
 										<label class="form-label">Id</label> <input
 											class="form-control form-control-lg" type="text" name="id"
 											placeholder="Enter your id" />

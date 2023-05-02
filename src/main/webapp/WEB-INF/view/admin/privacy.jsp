@@ -21,20 +21,26 @@
 					</div>
 					<div class="card-body text-center">
 						<!-- 사원 이미지 -->
-						<img src="/admin/privacy/${employees.uploadFileName}" alt="Christina Mason" class="img-fluid rounded-circle mb-2" width="128" height="128" />
+						<a data-bs-toggle="modal" data-bs-target="#imagemodal"><img src="/admin/privacy/${employees.uploadFileName}" alt="Christina Mason" class="img-fluid rounded-circle mb-2" width="128"
+							height="128" /></a>
 						<h5 class="card-title mb-0">${employees.name}</h5>
 						<!-- Modal -->
-						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal fade" id="imagemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+									
+									
+										<h5 class="modal-title" id="exampleModalLabel">사진 변경</h5>
 										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
 									<div class="modal-body">
-										<!--  연봉 -->
-										<form action="/admin/insertSalary" method="post">
-											
+
+										<form action="/admin/updateImage" method="post" enctype="multipart/form-data">
+										
+											<div class="mb-3">
+												<input class="form-control" type="file" id="updateimage" name="updateimage">
+											</div>
 											<div class="mb-3">
 												<input class="form-control form-control-lg" type="hidden" name="id" value="${employees.id}" />
 											</div>
@@ -134,7 +140,7 @@
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+										<h5 class="modal-title" id="exampleModalLabel">연봉 입력</h5>
 										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
 									<div class="modal-body">

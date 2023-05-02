@@ -92,7 +92,7 @@
 							data-feather="user-plus"></i> <span class="align-middle">사원
 								등록</span>
 					</a></li>
-					<li class="sidebar-item active"><a class="sidebar-link"
+					<li class="sidebar-item "><a class="sidebar-link"
 						href="/erp/adminpage"> <svg xmlns="http://www.w3.org/2000/svg"
 								width="24" height="24" viewBox="0 0 24 24" fill="none"
 								stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -203,15 +203,9 @@
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile"><i
 									class="align-middle me-1" data-feather="user"></i> Profile</a> <a
-									class="dropdown-item" href="#"><i class="align-middle me-1"
-									data-feather="pie-chart"></i> Analytics</a>
+									class="dropdown-item" href="#"> </a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="index.jsp"><i
-									class="align-middle me-1" data-feather="settings"></i> Settings
-									& Privacy</a> <a class="dropdown-item" href="#"><i
-									class="align-middle me-1" data-feather="help-circle"></i> Help
-									Center</a>
-								<div class="dropdown-divider"></div>
+								
 								<a class="dropdown-item" href="/ec/logout">Log out</a>
 							</div></li>
 					</ul>
