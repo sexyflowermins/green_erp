@@ -2,6 +2,7 @@ package com.green.erp.repository.model;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 
 import lombok.Data;
 
@@ -14,4 +15,5 @@ public class WorkTime {
 	private Time endTime;
 	private Date today;
 	
+
 }

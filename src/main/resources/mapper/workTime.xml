@@ -23,6 +23,7 @@
 		select *
 		from work_time
 		where emp_id = #{empId}
+		order by today DESC limit 2;
 	</select>
 	
 </mapper>

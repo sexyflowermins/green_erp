@@ -18,7 +18,8 @@
 				on sh.salary_id = s.id
 				left join employees as e
 				on sh.employees_id = e.id
-				where e.id = #{id};
+				where e.id = #{id}
+				order by sh.to_year limit 3;
 	</select>
 	
 	
