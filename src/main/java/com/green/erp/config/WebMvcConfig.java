@@ -19,7 +19,9 @@ public class WebMvcConfig implements WebMvcConfigurer{
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(noticeIntercepter)
-				.addPathPatterns("/notice/**");  // 1. path 더 추가 하능 방법
+				.addPathPatterns("/notice/post")
+				.addPathPatterns("/notice/update")
+				.addPathPatterns("/notice/write");
 		// 인터 셉터 등록 
 		//registry.addInterceptor(new AdminInterceptor()) // 2. 인터셉터 등록 방법 
 		registry.addInterceptor(boardIntercepter)

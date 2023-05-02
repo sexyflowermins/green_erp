@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.green.erp.repository.model.Board;
@@ -20,11 +21,12 @@ import com.green.erp.repository.model.Notice;
 import com.green.erp.service.BoardService;
 import com.green.erp.service.NoticeService;
 import com.green.erp.service.adminService;
+import com.green.erp.utile.Define;
 
 @Controller
 @RequestMapping("/erp")
 public class ErpController {
-
+	
 	@Autowired
 	private NoticeService noticeService;
 	@Autowired
@@ -32,13 +34,18 @@ public class ErpController {
 	@Autowired
 	private adminService adminservice;
 	
+	@ModelAttribute("headerNoticeList")
+	public List<Notice> getheaderNoticeList() {
+		List<Notice> headerNoticeList = noticeService.findWithNameOrderBy();
+		return headerNoticeList;
+	}
+	
 	@GetMapping("/main")
 	private String main(Model model){
 		
 		List<Board> boardList = boardService.findLimit();
-		List<Notice> noticeList = noticeService.findWithNameOrderBy();
-		List<Category> countList = boardService.findCategoryCount();
-		model.addAttribute("noticeList",noticeList);
+		List<Board> countList = boardService.findBoardCountByCategory();
+		
 		model.addAttribute("boardList",boardList);
 		model.addAttribute("countList",countList);
 		

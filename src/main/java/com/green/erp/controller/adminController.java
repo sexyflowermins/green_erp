@@ -6,13 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.green.erp.repository.model.Department;
 import com.green.erp.repository.model.Employees;
+import com.green.erp.repository.model.Notice;
 import com.green.erp.repository.model.WorkTime;
+import com.green.erp.service.NoticeService;
 import com.green.erp.service.adminService;
 
 @Controller
@@ -20,6 +23,15 @@ public class adminController {
 
 	@Autowired
 	private adminService adminservice;
+	
+	@Autowired
+	private NoticeService noticeService;
+	
+	@ModelAttribute("headerNoticeList")
+	public List<Notice> getheaderNoticeList() {
+		List<Notice> noticeList = noticeService.findWithNameOrderBy();
+		return noticeList;
+	}
 
 	// 전체조회
 	@GetMapping("/findAll")

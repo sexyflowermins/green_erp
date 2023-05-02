@@ -34,17 +34,22 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
-	
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+
 </head>
 <body>
-	<div class="wrapper">
-		<nav id="sidebar" class="sidebar js-sidebar">
-			<div class="sidebar-content js-simplebar">
+	<div class="wrapper ">
+		<nav id="sidebar" class="sidebar js-sidebar ">
+			<div class="sidebar-content js-simplebar animate__animated animate__fadeInLeft animate__faster">
 				<a class="sidebar-brand text-decoration-none" href="/erp/main">
 					<span class="align-middle">Green 컴퍼니</span>
 				</a>
 
-				<ul class="sidebar-nav">
+				<ul class="sidebar-nav ">
 					<li class="sidebar-header">Pages</li>
 
 					<li class="sidebar-item"><a class="sidebar-link"
@@ -98,17 +103,7 @@
 								<line x1="6" y1="20" x2="6" y2="14"></line></svg> <span
 							class="align-middle">사원 관리</span>
 					</a></li>
-					<div class="sidebar-cta">
-						<div class="sidebar-cta-content">
-							<strong class="d-inline-block mb-2">Upgrade to Pro</strong>
-							<div class="mb-3 text-sm">Are you looking for more
-								components? Check out our premium version.</div>
-							<div class="d-grid">
-								<a href="upgrade-to-pro" class="btn btn-primary">Upgrade to
-									Pro</a>
-							</div>
-						</div>
-					</div>
+					
 			</div>
 		</nav>
 
@@ -127,7 +122,15 @@
 									<i class="align-middle" data-feather="bell"></i>
 									<c:choose>
 										<c:when test="${principal != null}">
-											<span class="indicator"> ${noticeList.size()}</span>
+											<c:choose>
+												<c:when test="${noticeList.size() < 3}">
+													<span class="indicator">${noticeList.size()}</span>
+												</c:when>
+												<c:otherwise>
+													<span class="indicator">4</span>
+												</c:otherwise>
+											</c:choose>
+											
 										</c:when>
 										<c:otherwise></c:otherwise>
 									</c:choose>
@@ -136,23 +139,24 @@
 							<div
 								class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
 								aria-labelledby="alertsDropdown">
-								<div class="dropdown-menu-header">공지사항</div>
+								<div class="dropdown-menu-header">최신 공지사항</div>
 								<div class="list-group">
 									<c:choose>
 										<c:when test="${principal != null}">
 											<c:choose>
-												<c:when test="${noticeList != null}">
-													<c:forEach var="notice" items="${noticeList}" varStatus="vs">
+												<c:when test="${headerNoticeList != null}">
+													<c:forEach var="notice" items="${headerNoticeList}" begin="0" end="3" step="1"
+														varStatus="vs">
 														<a href="#" class="list-group-item">
-															<div class="row g-0 align-items-center"
+															<div class="row g-0 align-items-center" onclick=""
 																data-bs-toggle="modal"
 																data-bs-target="#exampleModal${vs.index+1}">
 																<div class="col-2">
 																	<i class="text-warning" data-feather="bell"></i>
 																</div>
 																<div class="col-10">
-																	<div class="text-dark">${notice.title}</div>
-																	<div class="text-muted small mt-1">작성자:${notice.name}</div>
+																	<div class="text-dark text-truncate">${notice.title}</div>
+																	<div class="text-muted small mt-1 text-truncate">작성자:${notice.name}</div>
 																	<input type="hidden" value="${notice.id}"
 																		name="noticeId">
 																</div>
@@ -171,87 +175,13 @@
 									</c:choose>
 
 								</div>
-								<div class="dropdown-menu-footer">
-									<a href="#" class="text-muted">Show all notifications</a>
-								</div>
+								<c:if test="${principal != null}">
+									<div class="dropdown-menu-footer">
+										<a href="/notice/list" class="text-muted">공지사항 리스트</a>
+									</div>
+								</c:if>
 							</div></li>
-						<li class="nav-item dropdown"><a
-							class="nav-icon dropdown-toggle" href="#" id="messagesDropdown"
-							data-bs-toggle="dropdown">
-								<div class="position-relative">
-									<i class="align-middle" data-feather="message-square"></i>
-								</div>
-						</a>
-							<div
-								class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
-								aria-labelledby="messagesDropdown">
-								<div class="dropdown-menu-header">
-									<div class="position-relative">4 New Messages</div>
-
-								</div>
-								<div class="list-group">
-									<a href="#" class="list-group-item">
-										<div class="row g-0 align-items-center">
-											<div class="col-2">
-												<img src="/static/img/avatars/avatar-5.jpg"
-													class="avatar img-fluid rounded-circle"
-													alt="Vanessa Tucker">
-											</div>
-											<div class="col-10 ps-2">
-												<div class="text-dark">Vanessa Tucker</div>
-												<div class="text-muted small mt-1">Nam pretium turpis
-													et arcu. Duis arcu tortor.</div>
-												<div class="text-muted small mt-1">15m ago</div>
-											</div>
-										</div>
-									</a> <a href="#" class="list-group-item">
-										<div class="row g-0 align-items-center">
-											<div class="col-2">
-												<img src="/img/avatars/avatar-2.jpg"
-													class="avatar img-fluid rounded-circle"
-													alt="William Harris">
-											</div>
-											<div class="col-10 ps-2">
-												<div class="text-dark">William Harris</div>
-												<div class="text-muted small mt-1">Curabitur ligula
-													sapien euismod vitae.</div>
-												<div class="text-muted small mt-1">2h ago</div>
-											</div>
-										</div>
-									</a> <a href="#" class="list-group-item">
-										<div class="row g-0 align-items-center">
-											<div class="col-2">
-												<img src="img/avatars/avatar-4.jpg"
-													class="avatar img-fluid rounded-circle"
-													alt="Christina Mason">
-											</div>
-											<div class="col-10 ps-2">
-												<div class="text-dark">Christina Mason</div>
-												<div class="text-muted small mt-1">Pellentesque auctor
-													neque nec urna.</div>
-												<div class="text-muted small mt-1">4h ago</div>
-											</div>
-										</div>
-									</a> <a href="#" class="list-group-item">
-										<div class="row g-0 align-items-center">
-											<div class="col-2">
-												<img src="/static/img/avatars/avatar-3.jpg"
-													class="avatar img-fluid rounded-circle"
-													alt="Sharon Lessman">
-											</div>
-											<div class="col-10 ps-2">
-												<div class="text-dark">Sharon Lessman</div>
-												<div class="text-muted small mt-1">Aenean tellus
-													metus, bibendum sed, posuere ac, mattis non.</div>
-												<div class="text-muted small mt-1">5h ago</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<div class="dropdown-menu-footer">
-									<a href="#" class="text-muted">Show all messages</a>
-								</div>
-							</div></li>
+						
 						<li class="nav-item dropdown"><a
 							class="nav-icon dropdown-toggle d-inline-block d-sm-none"
 							href="#" data-bs-toggle="dropdown"> <i class="align-middle"
@@ -287,18 +217,22 @@
 			</nav>
 
 			<!-- Modal -->
-			<c:forEach var="notice" items="${noticeList}" varStatus="vs">
+			<c:forEach var="notice" items="${headerNoticeList}" begin="0" end="3" step="1" varStatus="vs">
 				<div class="modal fade" id="exampleModal${vs.index+1}" tabindex="-1"
 					aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
-							<div class="modal-header">
+							<div class="modal-header text-break">
 								<h5 class="modal-title" id="exampleModalLabel">${notice.title}</h5>
 								<button type="button" class="btn-close" data-bs-dismiss="modal"
 									aria-label="Close"></button>
 							</div>
-							<div class="modal-body">${notice.content}</div>
+							<div class="modal-body text-break">${notice.content}</div>
 							<div class="modal-footer">
+								<c:if test="${isPersonnel}">
+									<button onclick="location.href='/notice/update/${notice.id}'"
+										type="button" class="btn btn-primary m-1">수정</button>
+								</c:if>
 								<button type="button" class="btn btn-secondary"
 									data-bs-dismiss="modal">닫기</button>
 							</div>

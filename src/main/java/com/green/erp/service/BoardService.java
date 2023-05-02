@@ -2,6 +2,7 @@ package com.green.erp.service;
 
 import java.util.List;
 
+import org.h2.mvstore.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -105,5 +106,31 @@ public class BoardService {
 		}
 
 		return resultRowCount;
+	}
+	
+	public int findBoardCount() {
+		int boardCount = boardRepository.findBoardCount().getCount();
+
+		return boardCount;
+	}
+	
+	public List<Board> findBoardListByPage(int page,int boardViewCount){
+		
+		List<Board> boardList = boardRepository.findListByPage(page,boardViewCount);
+		if (boardList == null) {
+			System.out.println("실패");
+		}
+
+		return boardList;
+	}
+	
+	public List<Board> findBoardCountByCategory(){
+		List<Board> categoryList = boardRepository.findByCategory();
+		
+		if (categoryList == null) {
+			System.out.println("실패");
+		}
+
+		return categoryList;
 	}
 }

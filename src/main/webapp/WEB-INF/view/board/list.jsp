@@ -7,9 +7,29 @@
 
 	<div class="container-fluid p-0">
 
-		<div class="row mb-4">
-			<p class="h1 col-6">자유게시판</p>
-		</div>
+		<nav class="navbar navbar-light bg-primary rounded-2 mb-4">
+			<div class="container-fluid">
+				<a class="navbar-brand">자유게시판</a>
+				<form class="d-flex">
+					<select name="boardViewCount"
+						class="form-select form-select-lg"
+						aria-label=".form-select-lg example">
+						<c:choose>
+							<c:when test="${boardViewCount == 5}">
+								<option value="5" selected>5개</option>
+								<option value="10">10개</option>
+							</c:when>
+							<c:when test="${boardViewCount == 10}">
+								<option value="5">5개</option>
+								<option value="10" selected>10개</option>
+							</c:when>
+						</c:choose>
+					</select>
+					<button class="btn btn-outline-info ms-3" type="submit">Search</button>
+				</form>
+			</div>
+
+		</nav>
 
 		<div class="row">
 			<div class="d-flex">
@@ -47,10 +67,10 @@
 								</c:choose>
 
 								<tr onclick="location.href='/board/post/${board.id}'">
-									<td>${vs.index+1}</td>
-									<td>${board.employeesName}</td>
-									<td class="d-none d-xl-table-cell">${board.dateTime}</td>
+									<td>${pageCount + vs.index + 1}</td>
 									<td class="d-none d-xl-table-cell">${board.title}</td>
+									<td class="d-none d-xl-table-cell">${board.dateTime}</td>
+									<td>${board.employeesName}</td>
 									<td><span class="badge bg-${button} ms-2">${board.categoryName}</span></td>
 									<td class="d-none d-md-table-cell">${board.views}</td>
 								</tr>
@@ -60,11 +80,38 @@
 				</div>
 
 			</div>
-			<div class="d-md-flex justify-content-md-end">
-				<!-- class="d-md-flex justify-content-md-end" -->
-				<button onclick="location.href='/board/write'" type="button"
-					class="btn  btn-success">게시글 작성</button>
+		</div>
+		<div class="row">
+			<div class="d-md-flex bd-highlight">
+				<nav aria-label="Page navigation example"
+					class="d-flex justify-content-center flex-grow-1 bd-highlight">
+					<ul class="pagination">
+
+						<li class="page-item"><a class="page-link"
+							href="/board/list?boardViewCount=${boardViewCount}"
+							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+						</a></li>
+						<c:if test="${pageCount - boardViewCount >= 0}">
+							<li class="page-item"><a class="page-link"
+								href="/board/list?curPage=${pageCount -boardViewCount}&page=${pageNumber -1}&boardViewCount=${boardViewCount}">${pageNumber -1}</a></li>
+						</c:if>
+						<li class="page-item"><a class="page-link" href="#">${pageNumber}</a></li>
+						<c:if test="${boardCountAll/boardViewCount + 1 > pageNumber + 1}">
+							<li class="page-item"><a class="page-link"
+								href="/board/list?curPage=${pageCount +boardViewCount}&page=${pageNumber +1}&boardViewCount=${boardViewCount}">${pageNumber +1}</a></li>
+						</c:if>
+						<li class="page-item"><a class="page-link"
+							href="/board/list/?curPage=${lastPageCount}&page=${lastPageNumber}&boardViewCount=${boardViewCount}"
+							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+						</a></li>
+					</ul>
+				</nav>
+				<c:if test="${isPersonnel}">
+					<button onclick="location.href='/board/write'" type="button"
+						class="btn  btn-success">게시글 작성</button>
+				</c:if>
 			</div>
+
 		</div>
 	</div>
 </main>
