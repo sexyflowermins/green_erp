@@ -13,6 +13,7 @@ import com.green.erp.repository.adminRepository;
 import com.green.erp.repository.model.Department;
 import com.green.erp.repository.model.Employees;
 import com.green.erp.repository.model.Grade;
+import com.green.erp.repository.model.SalaryHistory;
 import com.green.erp.repository.model.WorkTime;
 
 @Service
@@ -78,9 +79,17 @@ public class adminService {
 			throw new CustomRestfullException("정상 처리 되지 않았습니다", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	public WorkTime selectWorkTime(Integer empId) {
-        WorkTime workTimeEntity = adminRepository.selectWorkTime(empId);
+	
+	@Transactional
+	public List<WorkTime> selectWorkTime(Integer empId) {
+		List<WorkTime> workTimeEntity = adminRepository.selectWorkTime(empId);
         return workTimeEntity;
     }
+	
+	@Transactional
+	public List<SalaryHistory> selectSalaryHistory(Integer id) {
+		List<SalaryHistory> salaryHistoryEntity = adminRepository.selectSalaryHistory(id);
+		return salaryHistoryEntity;
+	}
 
 }

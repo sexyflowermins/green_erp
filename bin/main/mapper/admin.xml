@@ -71,5 +71,25 @@
 <select id="selectWorkTime" resultType="com.green.erp.repository.model.WorkTime">
         select * from work_time where emp_id = #{empId}
     </select>
+    
+   	<select id="selectSalaryHistory" resultType="com.green.erp.repository.model.SalaryHistory">
+   		select e.id, e.name, g.name as grade, sh.to_year as toyear, s.salary_step as salaryId, 
+		r.name as evaluation, r.rate as performancePay, s.salary as lastYearSalary, ((r.rate * 0.01 * s.salary)) as thisYearPfPay, 
+		(
+			select salary
+    		from salary
+    		where id = s.id + 1
+		) as thisYearSalary
+		from salary_history as sh
+		left join rating as r
+		on sh.rating_id = r.id
+		left join salary as s
+		on sh.salary_id = s.id
+		left join employees as e
+		on sh.employees_id = e.id
+		left join grade as g
+		on e.grade = g.id
+		where e.id = #{id};
+   	</select>
 </mapper>
 

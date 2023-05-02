@@ -1,12 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html lang='en'>
-<head>
-<meta charset='utf-8' />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<%@include file="/WEB-INF/view/layout/hearder.jsp"%>
+<!-- <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 <link href="/static/css/schedulePopup.css" rel='stylesheet' />
 <!-- 팝업창 날짜 선택 부분 -->
 <link rel="stylesheet"
@@ -22,7 +19,8 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 	crossorigin="anonymous"></script>
-<script src="
+<script
+	src="
 https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.js
 "></script>
 <script type="text/javascript">
@@ -284,7 +282,8 @@ $(document).ready(function() {
 	                                        	id: '${schedule.id}',
 	                                        	title: '${schedule.title}',
 	                                        	start: '${schedule.startDate}',
-	                                        	end: '${schedule.endDate}'
+	                                        	end: '${schedule.endDate}',
+	                                        	color : '#' + Math.round(Math.random() * 0xffffff).toString(16)
 	                                        },
 	                                        
 	                                    </c:forEach>
@@ -305,12 +304,11 @@ $(document).ready(function() {
 						                		dataType : 'json',
 						                		success : function(event) {
 						                			console.log(event)
-						                			// input 태그 id 값.class 값
 						                			$("#id").val(event.id)
-						                			$("#title.title").val(event.title);
-						                			$("#startDate.date").datepicker().datepicker("setDate", event.startDate);
-						                			$("#endDate.date").datepicker().datepicker("setDate", event.endDate);
-						                			$("#content.content").val(event.content);
+						                			$("#title.s--title").val(event.title);
+						                			$('#startDate1.s-date').datepicker().val(event.startDate);
+						                			$('#endDate1.e-date').datepicker().val(event.endDate);
+						                			$(".c-content").val(event.content);
 						                			$("#exampleModalDetail").modal("show");
 						                		}
 						                	});
@@ -327,123 +325,120 @@ $(document).ready(function() {
 						            calendar.render();
 					});
 </script>
-</head>
-<body>
-	<div id='calendar' style="position: relative;">
-		<button type="button" class="btn btn-primary" id="add-button"
-			data-bs-toggle="modal" data-bs-target="#exampleModal">일정추가</button>
-	</div>
+<div id='calendar' style="position: relative;">
+	<button type="button" class="btn btn-primary" id="add-button"
+		data-bs-toggle="modal" data-bs-target="#exampleModal">일정추가</button>
+</div>
 
 
-	<!-- 일정추가 Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-body">
-					<div class="schedule">
-						<div class="schedule-head">
-							<h1 class="h1-css">일정 추가</h1>
-						</div>
-						<div class="schedule-body">
-							<form id="scheduleData">
-								<input type="hidden" name="id" id="id">
-								<div class="top">
-									<input class="title" id="title" type="text" name="title">
-								</div>
-								<div class="domain">
-									<h3 class="h3-css">시작</h3>
-								</div>
-								<div class="domain">
-									<input class="date" id="startDate" type="text" name="startDate"
-										id="startDate">
-								</div>
-								<div class="domain">
-									<h3 class="h3-css">종료</h3>
-								</div>
-								<div class="domain">
-									<input class="date" id="endDate" type="text" name="endDate"
-										id="endDate">
-								</div>
-								<div class="domain">
-									<h3 class="h3-css">메모</h3>
-								</div>
-								<div class="domain">
-									<input class="empId" id="empId" type="hidden" name="empId"
-										id="empId" value="${principal.id}" readonly="readonly">
-								</div>
-								<div class="domain">
-									<textarea class="content" id="content" name="content" rows="5"
-										cols="30" placeholder="내용을 입력해주세요"></textarea>
-								</div>
-							</form>
-						</div>
+<!-- 일정추가 Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="schedule">
+					<div class="schedule-head">
+						<h1 class="h1-css">일정 추가</h1>
+					</div>
+					<div class="schedule-body">
+						<form id="scheduleData">
+							<input type="hidden" name="id" id="id">
+							<div class="top">
+								<input class="title" id="title" type="text" name="title">
+							</div>
+							<div class="domain">
+								<h3 class="h3-css">시작</h3>
+							</div>
+							<div class="domain">
+								<input class="date" id="startDate" type="text" name="startDate">
+							</div>
+							<div class="domain">
+								<h3 class="h3-css">종료</h3>
+							</div>
+							<div class="domain">
+								<input class="date" id="endDate" type="text" name="endDate">
+							</div>
+							<div class="domain">
+								<h3 class="h3-css">메모</h3>
+							</div>
+							<div class="domain">
+								<input class="empId" id="empId" type="hidden" name="empId"
+									id="empId" value="${principal.id}" readonly="readonly">
+							</div>
+							<div class="domain">
+								<textarea class="content" id="content" name="content" rows="5"
+									cols="30" placeholder="내용을 입력해주세요"></textarea>
+							</div>
+						</form>
 					</div>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" id="ok-button">등
-						록</button>
-				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="ok-button">등
+					록</button>
 			</div>
 		</div>
 	</div>
+</div>
 
-	<!--  -->
-	
-		<!-- 일정 디테일 Modal -->
-	<div class="modal fade" id="exampleModalDetail" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-body">
-					<div class="schedule">
-						<div class="schedule-head">
-							<h1 class="h1-css">일정</h1>
-						</div>
-						<div class="schedule-body">
-							<form id="scheduleData">
-								<input type="hidden" id="id" name="id" >
-								<div class="top">
-									<input class="title s--title" id="title" type="text" name="title"
-										>
-								</div>
-								<div class="domain">
-									<h3 class="h3-css">시작</h3>
-								</div>
-								<div class="domain">
-									<input class="date s-date" id="startDate" type="text" name="startDate"
-										id="startDate">
-								</div>
-								<div class="domain">
-									<h3 class="h3-css">종료</h3>
-								</div>
-								<div class="domain">
-									<input class="date e-date" id="endDate" type="text" name="endDate"
-										id="endDate">
-								</div>
-								<div class="domain">
-									<h3 class="h3-css">메모</h3>
-								</div>
-								<div class="domain">
-									<input class="empId" id="empId" type="hidden" name="empId"
-										id="empId" value="${principal.id}" readonly="readonly">
-								</div>
-								<div class="domain">
-									<textarea class="content c-content" id="content" name="content" rows="5"
-										cols="30"></textarea>
-								</div>
-							</form>
-						</div>
+<!--  -->
+
+<!-- 일정 디테일 Modal -->
+<div class="modal fade" id="exampleModalDetail" tabindex="-1"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="schedule">
+					<div class="schedule-head">
+						<h1 class="h1-css">일정</h1>
+					</div>
+					<div class="schedule-body">
+						<form id="scheduleData">
+							<input type="hidden" id="id" name="id">
+							<div class="top">
+								<input class="title s--title" id="title" type="text"
+									name="title">
+							</div>
+							<div class="domain">
+								<h3 class="h3-css">시작</h3>
+							</div>
+							<div class="domain">
+								<input class="date s-date" id="startDate1" type="text"
+									name="startDate">
+							</div>
+							<div class="domain">
+								<h3 class="h3-css">종료</h3>
+							</div>
+							<div class="domain">
+								<input class="date e-date" id="endDate1" type="text"
+									name="endDate">
+							</div>
+							<div class="domain">
+								<h3 class="h3-css">메모</h3>
+							</div>
+							<div class="domain">
+								<input class="empId" id="empId" type="hidden" name="empId"
+									id="empId" value="${principal.id}" readonly="readonly">
+							</div>
+							<div class="domain">
+								<textarea class="content c-content" id="content" name="content"
+									rows="5" cols="30"></textarea>
+							</div>
+						</form>
 					</div>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="delete-button">삭 제</button>
-					<button type="button" class="btn btn-primary" id="update-button">수 정</button>
-				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary"
+					data-bs-dismiss="modal" id="delete-button">삭 제</button>
+				<button type="button" class="btn btn-primary" id="update-button">수
+					정</button>
 			</div>
 		</div>
 	</div>
+</div>
 
-	<!--  -->
-</body>
-</html>
+<!--  -->
+<%@include file="/WEB-INF/view/layout/footer.jsp"%>

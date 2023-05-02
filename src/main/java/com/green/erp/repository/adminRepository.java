@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 import com.green.erp.repository.model.Department;
 import com.green.erp.repository.model.Employees;
 import com.green.erp.repository.model.Grade;
+import com.green.erp.repository.model.MySalary;
+import com.green.erp.repository.model.SalaryHistory;
 import com.green.erp.repository.model.WorkTime;
 
 @Mapper
@@ -27,5 +29,6 @@ public interface adminRepository {
 	public int deleteSchedule(Integer id);
 	public int deleteBoard(Integer id);
 	public int deleteEmpoyees(Integer id);
-	public WorkTime selectWorkTime(Integer empId);
+	public List<WorkTime> selectWorkTime(Integer empId);
+	public List<SalaryHistory> selectSalaryHistory(Integer id);
 }
