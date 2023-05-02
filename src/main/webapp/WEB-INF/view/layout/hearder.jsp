@@ -165,7 +165,7 @@
 													</c:forEach>
 												</c:when>
 												<c:otherwise>
-												1
+												
 												</c:otherwise>
 											</c:choose>
 										</c:when>

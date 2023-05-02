@@ -161,7 +161,7 @@ public class EmployeesController {
 					// 1단계 : 파일을 저장할 폴더를 미리 만들어 두기 
 					// C 드라이버에 jsp_upload 폴더 만들기 (직접 만들어 주세요)
 					
-					File file = new File("/Users/minjoo/Desktop/images/",fileName);
+					File file = new File("C:\\Users\\GGG\\Desktop\\새 폴더",fileName);
 					
 					// 파일 출력 스트림 생성 
 					outputStream = new FileOutputStream(file);
