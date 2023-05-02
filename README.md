@@ -19,7 +19,7 @@
 - **Database** : Mysql
 
 ## 📌 주요 기능
-#### 로그인 - <a href="https://github.com/sexyflowermins/green_erp/wiki/%EB%A1%9C%EA%B7%B8%EC%9D%B8(Main-Frame)" >상세보기 - WIKI 이동</a>
+#### 로그인 - <a href="https://github.com/sexyflowermins/green_erp/wiki/%EB%A1%9C%EA%B7%B8%EC%9D%B8(signIn)" >상세보기 - WIKI 이동</a>
 - DB값 검증(인증처라)
 - 로그인 시 쿠키(Cookie) 및 세션(Session) 생성
 - 등록 개인 입사사진 가져오기
