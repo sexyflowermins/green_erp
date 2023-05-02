@@ -42,8 +42,7 @@
 - 출퇴근 기능 구현
 - 개인 정보 및 연봉 조회 
 - 개인정보 수정 기능
-- 연도별 호봉에 따른 연봉 알고리즘
-- 내 질문 확인하기
+- 연도별 호봉에 따른 연봉 조회 기능
 
 #### 일정 관리 페이지 - <a href="https://github.com/sexyflowermins/green_erp/wiki/%EC%9D%BC%EC%A0%95%EA%B4%80%EB%A6%AC" >상세보기 - WIKI 이동</a>
 - fullcalendar
