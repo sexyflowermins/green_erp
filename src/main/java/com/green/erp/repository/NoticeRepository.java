@@ -13,7 +13,6 @@ public interface NoticeRepository {
 
 	public int insert(NoticeFormDto noticeFormDto);
 	public int updateByForm(NoticeUpdateFormDto noticeUpdateFormDto);
-	public int updateViews(int id);
 	public int deleteById(int id);
 	public Notice findById(int id);
 	public List<Notice> findAll();

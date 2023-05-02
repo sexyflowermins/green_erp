@@ -7,12 +7,11 @@
 
 	<div class="container-fluid p-0">
 
-		<nav class="navbar navbar-light bg-primary rounded-2 mb-4">
+		<nav class="navbar bg-secondary rounded-2 mb-4">
 			<div class="container-fluid">
 				<a class="navbar-brand">자유게시판</a>
-				<form class="d-flex">
-					<select name="boardViewCount"
-						class="form-select form-select-lg"
+				<%-- <form class="d-flex">
+					<select name="boardViewCount" class="form-select form-select-lg"
 						aria-label=".form-select-lg example">
 						<c:choose>
 							<c:when test="${boardViewCount == 5}">
@@ -26,7 +25,15 @@
 						</c:choose>
 					</select>
 					<button class="btn btn-outline-info ms-3" type="submit">Search</button>
-				</form>
+				</form> --%>
+				<div class="dropdown">
+					<button class="btn btn-light dropdown-toggle" type="button"
+						data-bs-toggle="dropdown" aria-expanded="false">${boardViewCount}개</button>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="/board/list?boardViewCount=5">5개</a></li>
+						<li><a class="dropdown-item" href="/board/list?boardViewCount=10">10개</a></li>
+					</ul>
+				</div>
 			</div>
 
 		</nav>
@@ -108,7 +115,7 @@
 				</nav>
 				<c:if test="${isPersonnel}">
 					<button onclick="location.href='/board/write'" type="button"
-						class="btn  btn-success">게시글 작성</button>
+						class="btn  btn-primary">게시글 작성</button>
 				</c:if>
 			</div>
 
