@@ -17,7 +17,7 @@ import com.green.erp.service.DepartmentService;
 import com.green.erp.utile.Define;
 
 @Component
-public class NoticeIntercepter implements HandlerInterceptor {
+public class AdminIntercepter implements HandlerInterceptor {
 	
 	@Autowired
 	DepartmentService departmentService;

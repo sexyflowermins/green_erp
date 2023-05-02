@@ -7,19 +7,19 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.green.erp.handler.BoardIntercepter;
-import com.green.erp.handler.NoticeIntercepter;
+import com.green.erp.handler.AdminIntercepter;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer{
 	
 	@Autowired
-	private NoticeIntercepter noticeIntercepter;
+	private AdminIntercepter adminIntercepter;
 	@Autowired
 	private BoardIntercepter boardIntercepter;
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(noticeIntercepter)
+		registry.addInterceptor(adminIntercepter)
 				.addPathPatterns("/notice/post")
 				.addPathPatterns("/notice/update")
 				.addPathPatterns("/notice/write");
@@ -28,13 +28,14 @@ public class WebMvcConfig implements WebMvcConfigurer{
 		registry.addInterceptor(boardIntercepter)
 				.addPathPatterns("/board/**");
 		// 인터셉터 내용이 같아서 noticeIntercepter 사용
-		registry.addInterceptor(noticeIntercepter)
-				.addPathPatterns("/adminPage/**");
+		registry.addInterceptor(adminIntercepter)
+				.addPathPatterns("/erp/adminpage/**")
+				.addPathPatterns("/erp/signUp/**");
 	}
 	
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/privacy/**")
-                .addResourceLocations("file:/Users/minjoo/Desktop/images/");
+        registry.addResourceHandler("/admin/privacy/**")
+                .addResourceLocations("file:///C:\\Users\\GGG\\Desktop\\새 폴더/");
     }
 }

@@ -16,7 +16,14 @@
 	<select id="findById"
 		resultType="com.green.erp.repository.model.Employees">
 
-		select * from employees where id = #{id};
+		select e.id,e.name,e.password,e.email,e.age,e.address,e.hire_date,e.resign_date,e.upload_file_name,
+		e.grade,e.department,g.name as gName,d.name as dName
+		from employees as e
+		left join grade as g
+		on e.grade = g.id
+		left join department as d
+		on e.department = d.id
+        where e.id = #{id}; 
 	</select>
 	<!-- 사원정보 수정 -->
 	<update id="updateemployees">

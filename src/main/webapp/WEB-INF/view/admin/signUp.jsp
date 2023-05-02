@@ -1,3 +1,5 @@
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -21,7 +23,7 @@
 <link rel="canonical"
 	href="https://demo-basic.adminkit.io/pages-sign-up.html" />
 
-<title>Sign Up | AdminKit Demo</title>
+<title>Green 컴퍼니</title>
 
 <link href="/static/css/app.css" rel="stylesheet">
 <link
@@ -37,9 +39,8 @@
 				<div class="d-table-cell align-middle">
 
 					<div class="text-center mt-4">
-						<h1 class="h2">Get started</h1>
-						<p class="lead">Start creating the best possible user
-							experience for you customers.</p>
+						<h1 class="h2">사원등록</h1>
+						
 					</div>
 
 					<div class="card">
@@ -49,7 +50,7 @@
 									<div class="mb-3">
 										<label class="form-label">Id</label> <input
 											class="form-control form-control-lg" type="text" name="id"
-											placeholder="Enter your name" />
+											placeholder="Enter your id" />
 									</div>
 									<div class="mb-3">
 										<label class="form-label">Name</label> <input
@@ -64,17 +65,17 @@
 									<div class="mb-3">
 										<label class="form-label">Age</label> <input
 											class="form-control form-control-lg" type="text" name="age"
-											placeholder="Enter password" />
+											placeholder="Enter age" />
 									</div>
 									<div class="mb-3">
 										<label class="form-label">Address</label> <input
 											class="form-control form-control-lg" type="text"
-											name="address" placeholder="Enter password" />
+											name="address" placeholder="Enter address" />
 									</div>
 									<div class="mb-3">
 										<label class="form-label">Hire_date</label> <input
 											class="form-control form-control-lg" type="text"
-											name="hireDate" placeholder="Enter password" />
+											name="hireDate" placeholder="Enter hirw_date" />
 									</div>
 									<div class="mb-1">
 										<label class="form-label">Department</label>
@@ -103,7 +104,7 @@
 									</div>
 
 									<div class="text-center mt-3">
-										<button type="submit" class="btn btn-lg btn-primary">Sign</button>
+										<button type="submit" class="btn btn-lg btn-primary">등록</button>
 									</div>
 								</form>
 							</div>
@@ -121,3 +122,4 @@
 </body>
 
 </html>
+

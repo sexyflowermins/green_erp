@@ -62,7 +62,7 @@ public class ErpController {
 		model.addAttribute("gradeCountDto",gradeCountDto);
 		model.addAttribute("departmentList", departmentList);
 		model.addAttribute("noticeList",noticeList);
-		return "adminPage";
+		return "/admin/adminPage";
 	}
 	
 	
@@ -76,7 +76,7 @@ public class ErpController {
 		
 		
 		
-		return "signUp";
+		return "/admin/signUp";
 	}
 }
 

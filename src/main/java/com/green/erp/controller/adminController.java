@@ -2,10 +2,10 @@ package com.green.erp.controller;
 
 import java.util.List;
 
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.green.erp.dto.DepartmentCountDto;
 import com.green.erp.dto.GradeCountDto;
 import com.green.erp.dto.RatingDto;
 import com.green.erp.dto.SalaryDto;
 import com.green.erp.dto.SalaryHistoryDto;
+import com.green.erp.handler.exception.CustomRestfullException;
 import com.green.erp.repository.model.Department;
 import com.green.erp.repository.model.Employees;
 import com.green.erp.repository.model.Grade;
@@ -52,7 +52,7 @@ public class adminController {
 
 		List<Department> list = adminservice.findAllDepartment();
 		model.addAttribute("list", list);
-		return "/adminPage";
+		return "/admin/adminPage";
 
 	}
 	// 선택조회
@@ -64,7 +64,7 @@ public class adminController {
 		model.addAttribute("gradeCountDto",gradeCountDto);
 		model.addAttribute("departmentList", departmentList);
 		model.addAttribute("selectdepartmentlist", selectdepartmentlist);
-		return "/adminPage";
+		return "/admin/adminPage";
 	}
 	//부서에 포함된 사원 찾기
 	@GetMapping("/selectdepartment")
@@ -77,7 +77,7 @@ public class adminController {
 		model.addAttribute("selectdepartmentlist", selectdepartmentlist);
 		model.addAttribute("departmentList", departmentList);
 		model.addAttribute("employeeslist", employeeslist);
-		return "/adminPage";
+		return "/admin/adminPage";
 
 	}
 	// 사원정보 상세 페이지 이동
@@ -94,16 +94,35 @@ public class adminController {
 		model.addAttribute("salaryList", salaryList);
 		model.addAttribute("ratingList",ratingList);
 		
-		return "/privacy";
+		return "/admin/privacy";
 
 	}
 	// 사원정보 상세 페이지 수정
+	//,@RequestParam("file")MultipartFile file 사진 수정 할려면 써야함 추후 예정
 	@PostMapping("/updatefromadmin")
-	public String updatefromadmin(Employees employees, SalaryHistoryDto salaryHistoryDto,HttpServletRequest request,@RequestParam("file")MultipartFile file) {
+	public String updatefromadmin(Employees employees, SalaryHistoryDto salaryHistoryDto,HttpServletRequest request) {
 		
+		if(employees.getId() == null) {
+			// 현재 시간이랑 비교해서 만들기
+			throw new CustomRestfullException("사번을 입력하세요", HttpStatus.BAD_REQUEST);
+		}
+		if (employees.getName() == null || employees.getName().isEmpty()) {
+			throw new CustomRestfullException("이름을 입력하세요", HttpStatus.BAD_REQUEST);
+		}
+		if (employees.getEmail() == null || employees.getEmail().isEmpty()) {
+			throw new CustomRestfullException("e-mail을 입력하세요", HttpStatus.BAD_REQUEST);
+		}
+		if (employees.getAge() == null) {
+			throw new CustomRestfullException("나이를 입력하세요", HttpStatus.BAD_REQUEST);
+		}
+		if (employees.getAddress() == null || employees.getAddress().isEmpty()) {
+			throw new CustomRestfullException("주소를 입력하세요", HttpStatus.BAD_REQUEST);
+		}
+		if (employees.getHireDate() == null || employees.getHireDate().isEmpty()) {
+			throw new CustomRestfullException("입사일을 입력하세요", HttpStatus.BAD_REQUEST);
+		}
 		adminservice.updateemployees(employees);
-		adminservice.insertSalaryHistory(salaryHistoryDto);
-		return "/adminPage";
+		return "/admin/adminPage";
 	}
 	//상세 페이지 모달 form
 	
@@ -111,20 +130,25 @@ public class adminController {
 	@GetMapping("/deleteByEmployees")
 	public String deleteEmployees(Integer id) {
 		adminservice.deleteEmpoyees(id);
-		return "/adminPage";
+		return "/admin/adminPage";
 	}
 	@PostMapping("/insertSalary")
 	public String insertSalary(SalaryHistoryDto salaryHistoryDto) {
 		adminservice.insertSalaryHistory(salaryHistoryDto);
-		String message = "";
 		
-		return "/adminPage";
+		return "/admin/adminPage";
 	}
 	@GetMapping("/workTimeDetail/{empId}")
     public String workTimeDetail(@PathVariable Integer empId, Model model) {
 		List<WorkTime> workTimeDetail = adminservice.selectWorkTime(empId);
+		
+		List<DepartmentCountDto> departmentList = adminservice.findByDepartment1();
+		List<GradeCountDto> gradeCountDto = adminservice.gradeCount();
+		model.addAttribute("gradeCountDto",gradeCountDto);
+		model.addAttribute("departmentList", departmentList);
+		
         model.addAttribute("workTimeDetail", workTimeDetail);
-        return "/adminPage";
+        return "/admin/adminPage";
     }
 	
 	@GetMapping("/salaryHistoryDetail/{id}")
