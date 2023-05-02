@@ -9,11 +9,6 @@
 
 		<div class="row mb-4">
 			<p class="h1 col-6">공지사항 리스트</p>
-			<!-- <form class="col-6 d-flex">
-				<input class="form-control me-2" type="search" placeholder="Search"
-					aria-label="Search">
-				<button class="btn btn-outline-success" type="submit">Search</button>
-			</form> -->
 		</div>
 
 		<div class="row">
@@ -28,8 +23,8 @@
 								<th>번호</th>
 								<th>제목</th>
 								<th class="d-none d-xl-table-cell">작성일</th>
+								<th class="d-none d-md-table-cell"></th>
 								<th class="d-none d-md-table-cell">작성자</th>
-								<th class="d-none d-md-table-cell">조회수</th>
 								<th class="d-none d-md-table-cell"></th>
 							</tr>
 						</thead>
@@ -41,18 +36,19 @@
 											<td>${vs.index+1}</td>
 											<td>${notice.title}</td>
 											<td class="d-none d-xl-table-cell">${notice.dateTime}</td>
+											<td class="d-none d-md-table-cell"></td>
 											<td class="d-none d-md-table-cell">${notice.name}</td>
-											<td class="d-none d-md-table-cell">${notice.views}</td>
 											<td class="d-none d-md-table-cell">
 												<button type="button" class="btn btn-primary" onclick=""
 													data-bs-toggle="modal"
-													data-bs-target="#Modal${vs.index+1}">보기</button> <c:if
-													test="${isPersonnel}">
+													data-bs-target="#Modal${vs.index+1}">보기</button> 
+													<c:if test="${isPersonnel}">
 													<button
 														onclick="location.href='/notice/delete/${notice.id}'"
 														type="button" class="btn btn-danger m-1">삭제</button>
 												</c:if>
 											</td>
+											
 										</tr>
 									</c:forEach>
 								</c:when>
@@ -66,20 +62,7 @@
 
 		</div>
 		<div class="row">
-				<div class="d-md-flex bd-highlight">
-					<nav aria-label="Page navigation example" class="d-flex justify-content-center flex-grow-1 bd-highlight">
-						<ul class="pagination">
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-							</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-							</a></li>
-						</ul>
-					</nav>
+				<div class="d-md-flex justify-content-end bd-highlight">
 					<c:if test="${isPersonnel}">
 						<button onclick="location.href='/notice/write'" type="button"
 							class="btn  btn-success">공지 작성</button>

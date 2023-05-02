@@ -49,7 +49,7 @@ public class NoticeController {
 		
 		Employees principal = (Employees) session.getAttribute(Define.PRINCIPAL);
 		if(principal == null) {
-			throw new CustomRestfullException("인증된 사용자가 아닙니다.", 
+			throw new CustomRestfullException("로그인 하세요", 
 							HttpStatus.UNAUTHORIZED);
 		}
 
@@ -59,21 +59,14 @@ public class NoticeController {
 	@GetMapping("/post/{id}")
 	public String postById(@PathVariable Integer id, Model model) {
 
-		noticeService.updateViews(id);
 		Notice notice = noticeService.findById(id);
 		model.addAttribute(notice);
 
 		return "notice/post";
 	}
-	
-	@GetMapping("/updateViews/{id}")
-	public void updateView(@PathVariable Integer id) {
-		noticeService.updateViews(id);
-	}
 
 	@GetMapping("/write")
 	public String createNotice() {
-		
 		
 		return "notice/write";
 	}
@@ -94,6 +87,7 @@ public class NoticeController {
 	public String updateNotice(@PathVariable Integer id, Model model) {
 
 		Notice notice = noticeService.findById(id);
+		notice.setContent(notice.getContent().replaceAll("<BR>","\r\n"));
 		model.addAttribute(notice);
 
 		return "notice/update";
@@ -106,7 +100,7 @@ public class NoticeController {
 		updateFormDto.setContent(content);
 		noticeService.updateNotice(updateFormDto);
 
-		return "redirect:/erp/main";
+		return "redirect:/notice/list";
 	}
 
 	@GetMapping("/delete/{id}")

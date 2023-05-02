@@ -81,17 +81,6 @@ public class NoticeService {
 		return resultRowCount;
 	}
 
-	// 조회수 올리기 기능
-	public int updateViews(int id) {
-		int resultRowCount = noticeRepository.updateViews(id);
-
-		if (resultRowCount != 1) {
-			System.out.println("실패");
-		}
-
-		return resultRowCount;
-	}
-
 	public int deleteNotice(int id) {
 		int resultRowCount = noticeRepository.deleteById(id);
 

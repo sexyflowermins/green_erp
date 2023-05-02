@@ -123,8 +123,8 @@
 									<c:choose>
 										<c:when test="${principal != null}">
 											<c:choose>
-												<c:when test="${noticeList.size() < 3}">
-													<span class="indicator">${noticeList.size()}</span>
+												<c:when test="${headerNoticeList.size() < 4}">
+													<span class="indicator">${headerNoticeList.size()}</span>
 												</c:when>
 												<c:otherwise>
 													<span class="indicator">4</span>
