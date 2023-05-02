@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,9 +45,9 @@
 					<div class="card">
 						<div class="card-body">
 							<div class="m-sm-4">
-								<form action="/ec/employees-sign-up" method="post">
+								<form action="/ec/employees-sign-up" method="post" enctype="multipart/form-data">
 									<div class="mb-3">
-										<label class="form-label">id</label> <input
+										<label class="form-label">Id</label> <input
 											class="form-control form-control-lg" type="text" name="id"
 											placeholder="Enter your name" />
 									</div>
@@ -67,35 +67,40 @@
 											placeholder="Enter password" />
 									</div>
 									<div class="mb-3">
-										<label class="form-label">address</label> <input
+										<label class="form-label">Address</label> <input
 											class="form-control form-control-lg" type="text"
 											name="address" placeholder="Enter password" />
 									</div>
 									<div class="mb-3">
-										<label class="form-label">hire_date</label> <input
+										<label class="form-label">Hire_date</label> <input
 											class="form-control form-control-lg" type="text"
 											name="hireDate" placeholder="Enter password" />
 									</div>
 									<div class="mb-1">
-										<label class="form-label">department</label>
+										<label class="form-label">Department</label>
 									</div>
-									<select name="department" class="form-select form-select-lg mb-3"
+									<select name="department"
+										class="form-select form-select-lg mb-3"
 										aria-label=".form-select-lg example">
-										
+
 										<c:forEach var="list" items="${list}">
-										<option value="${list.id}">${list.name}</option>
+											<option value="${list.id}">${list.id}. ${list.name}</option>
 										</c:forEach>
 									</select>
 									<div class="mb-1">
-										<label class="form-label">grade</label> 
+										<label class="form-label">Grade</label>
 									</div>
 									<select name="grade" class="form-select form-select-lg mb-3"
 										aria-label=".form-select-lg example">
 										<c:forEach var="listgrade" items="${listgrade}">
-										<option value="${listgrade.id}">${listgrade.name}</option>
+											<option value="${listgrade.id}">${listgrade.id}. ${listgrade.name}</option>
 										</c:forEach>
-										
+
 									</select>
+									<div class="mb-3">
+										<label for="file" class="form-label">Image</label> <input
+											class="form-control" type="file" id="file" name="file">
+									</div>
 
 									<div class="text-center mt-3">
 										<button type="submit" class="btn btn-lg btn-primary">Sign</button>

@@ -1,8 +1,19 @@
 package com.green.erp.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
+import java.util.UUID;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,15 +29,14 @@ import com.green.erp.dto.SignUpFormDto;
 import com.green.erp.dto.StartTimeFormDto;
 import com.green.erp.dto.UpdateInformationDto;
 import com.green.erp.handler.exception.CustomRestfullException;
-import com.green.erp.repository.model.Department;
 import com.green.erp.repository.model.Employees;
 import com.green.erp.repository.model.MySalary;
 import com.green.erp.repository.model.WorkTime;
-import com.green.erp.service.DepartmentService;
 import com.green.erp.service.EmployeesService;
 import com.green.erp.utile.Define;
 
 @Controller
+@MultipartConfig
 @RequestMapping("/ec")
 public class EmployeesController {
 	
@@ -99,7 +109,7 @@ public class EmployeesController {
 	 * @return
 	 */
 	@PostMapping("/employees-sign-up")
-	public String employeesSignUp(SignUpFormDto signUpFormDto, Model model) {
+	public String employeesSignUp(SignUpFormDto signUpFormDto, Model model,HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		if(signUpFormDto.getId() == null) {
 			// 현재 시간이랑 비교해서 만들기
 			throw new CustomRestfullException("사번을 입력하세요", HttpStatus.BAD_REQUEST);
@@ -119,7 +129,51 @@ public class EmployeesController {
 		if(signUpFormDto.getHireDate() == null || signUpFormDto.getHireDate().isEmpty()) {
 			throw new CustomRestfullException("입사일을 입력하세요", HttpStatus.BAD_REQUEST);
 		}
-		
+		// -------------------
+		// 파일 업로드 처리
+				Part filePart = request.getPart("file"); // form name - file
+				System.out.println("파일 확인 : " + filePart.getContentType());
+				System.out.println("파일 확인(바이트기반0) : " + filePart.getSize());
+				System.out.println("파일 확인(파일 이름) : " + filePart.getSubmittedFileName());
+				
+				// 스트림 준비
+				InputStream fileContent = filePart.getInputStream();
+				// 출력 스트림 준비 --> 내 서버 컴퓨터에 FIle 객체 만들어서 저장 할 계획
+				OutputStream outputStream = null;
+				
+				try {
+					// 랜덤한 문자열을 여기서 생성 
+					UUID uuid = UUID.randomUUID();
+					System.out.println("uuid : " + uuid);
+					// 8377eace-2b4c-4ead-81c0-d134c43bbd14
+					
+					String fileName = uuid + "_" + filePart.getSubmittedFileName();
+					
+					// 1단계 : 파일을 저장할 폴더를 미리 만들어 두기 
+					// C 드라이버에 jsp_upload 폴더 만들기 (직접 만들어 주세요)
+					
+					File file = new File("/Users/minjoo/Desktop/images/",fileName);
+					
+					// 파일 출력 스트림 생성 
+					outputStream = new FileOutputStream(file);
+					// 입력 스트림에서 바이트 단위로 읽어 오면서 출력 스트림에 쓰기 
+					byte[] buffer = new byte[1024];
+					int length;
+					signUpFormDto.setUploadFileName(fileName);
+					
+					while( (length = fileContent.read(buffer)) != -1 ) {
+						outputStream.write(buffer, 0, length);
+					}
+						System.out.println("File upload 성공");
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					fileContent.close();
+					if(outputStream != null) {
+						outputStream.flush();
+						outputStream.close();
+					}
+				}
 		employeesService.createEmployees(signUpFormDto);
 		return "redirect:/erp/main";
 	}

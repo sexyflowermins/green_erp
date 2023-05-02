@@ -18,14 +18,14 @@
 				<div class="card-header">
 					<!-- 여기에 부서 목록 조회 기능 만들어야함 -->
 
-					<form action="/findBydepartment" method="get">
+					<form action="/admin/findBydepartment" method="get">
 						<div class="mb-3">
 							<input class="form-control form-control-lg" type="text"
 								name="name" placeholder="원하는 부서 검색" />
 						</div>
 						<div class="text-left mt-3">
 							<a class="btn btn-md btn-primary"
-								href="http://localhost:8080/findAll">전체검색</a>
+								href="http://localhost:8080/admin/findAll">전체검색</a>
 							<button type="submit" class="btn btn-md btn-primary">선택검색</button>
 						</div>
 					</form>
@@ -34,20 +34,20 @@
 					<!-- 전체검색 리스트 -->
 					<c:forEach var="list" items="${list}">
 						<p>
-							<!-- <a href="/selectdepartment?name=${list.name}">${list.name}</a> -->
+							 <a href="/admin/selectdepartment?name=${list.name}">${list.name}</a>
 						</p>
 					</c:forEach>
 
-					<!-- 선택검색 리스트 -->
-					<c:forEach var="selectdepartmentlist"
-						items="${selectdepartmentlist}">
-						<p>
-							<a href="/selectdepartment?name=${selectdepartmentlist.name}">${selectdepartmentlist.name}</a>
-					</c:forEach>
+					
 				</div>
 				<div class="card-body">
 					<div class="chart">
-						<canvas id="chartjs-line"></canvas>
+					<!--  -->
+					<c:forEach var="selectdepartmentlist"
+						items="${selectdepartmentlist}">
+						<p>
+							<a href="/admin/selectdepartment?name=${selectdepartmentlist.name}">${selectdepartmentlist.name}</a>
+					</c:forEach>
 					</div>
 				</div>
 			</div>
@@ -59,7 +59,7 @@
 
 					<!-- 부서목록 클릭하면 사원 정보 나오는 기능 -->
 					<c:forEach var="employeeslist" items="${employeeslist}">
-						<a href="/privacy?id=${employeeslist.id}">${employeeslist.id}</a>
+						<a href="/admin/privacy?id=${employeeslist.id}">${employeeslist.id}</a>
 						<a>${employeeslist.name}</a>
 						<a>${employeeslist.address}</a>
 						<a>${employeeslist.email}</a>
@@ -72,7 +72,7 @@
 				</div>
 				<div class="card-body">
 					<div class="chart">
-					<!-- todo 예외처리 -->
+					
 					<c:if test="${not empty empId}">
 						${workTimeDetail.startTime}
 						${workTimeDetail.endTime}
@@ -87,9 +87,8 @@
 		<div class="col-12 col-lg-6">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Doughnut Chart</h5>
-					<h6 class="card-subtitle text-muted">Doughnut charts are
-						excellent at showing the relational proportions between data.</h6>
+					<h5 class="card-title"> 부서별 인원</h5>
+					<h6 class="card-subtitle text-muted"></h6>
 				</div>
 				<div class="card-body">
 					<div class="chart chart-sm">
@@ -102,13 +101,14 @@
 		<div class="col-12 col-lg-6">
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Pie Chart</h5>
-					<h6 class="card-subtitle text-muted">Pie charts are excellent
-						at showing the relational proportions between data.</h6>
+					<h5 class="card-title">직급별 인원</h5>
+					<h6 class="card-subtitle text-muted"></h6>
 				</div>
 				<div class="card-body">
 					<div class="chart chart-sm">
+					
 						<canvas id="chartjs-pie"></canvas>
+						
 					</div>
 				</div>
 			</div>
@@ -129,10 +129,10 @@
 			new Chart(document.getElementById("chartjs-doughnut"), {
 				type: "doughnut",
 				data: {
-					labels: ["Social", "Search Engines", "Direct", "Other"],
+					labels: ["인사관리", "영업", "생산", "경영관리"],
 					datasets: [{
 
-						data: [1000, 125, 54, 146],
+						data: [${departmentList[0].count}, ${departmentList[1].count}, ${departmentList[2].count}, ${departmentList[3].count}],
 
 						backgroundColor: [
 							window.theme.primary,
@@ -159,9 +159,9 @@
 			new Chart(document.getElementById("chartjs-pie"), {
 				type: "pie",
 				data: {
-					labels: ["Social", "Search Engines", "Direct", "Other"],
+					labels: ["사원", "대리", "과장", "부장"],
 					datasets: [{
-						data: [${list[0].department}, 100, 54, 146],
+						data: [${gradeCountDto[0].count}, ${gradeCountDto[1].count}, ${gradeCountDto[2].count}, ${gradeCountDto[3].count},${gradeCountDto[4].count}],
 						backgroundColor: [
 							window.theme.primary,
 							window.theme.warning,

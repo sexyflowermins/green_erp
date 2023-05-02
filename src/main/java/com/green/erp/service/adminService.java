@@ -3,11 +3,14 @@ package com.green.erp.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.green.erp.handler.exception.CustomRestfullException;
+import com.green.erp.dto.DepartmentCountDto;
+import com.green.erp.dto.GradeCountDto;
+import com.green.erp.dto.RatingDto;
+import com.green.erp.dto.SalaryDto;
+import com.green.erp.dto.SalaryHistoryDto;
 import com.green.erp.repository.DepartmentRepository;
 import com.green.erp.repository.adminRepository;
 import com.green.erp.repository.model.Department;
@@ -64,23 +67,47 @@ public class adminService {
 		int result = adminRepository.updateemployees(employees);
 		return result;
 	}
-
+@Transactional
+public int insertSalaryHistory(SalaryHistoryDto salaryHistoryDto) {
+	int result = adminRepository.insertSalaryHistory(salaryHistoryDto);
+	return result;
+}
 	// 사원 모든 정보 삭제
 	// 
 	@Transactional
-	public void deleteEmpoyees(Integer id) {
-		adminRepository.deleteworkTime(id);
-		adminRepository.deleteNotice(id);
-		adminRepository.deleteSchedule(id);
-		adminRepository.deleteBoard(id);
+	public int deleteEmpoyees(Integer id) {
+		
 		int resultRowcount = adminRepository.deleteEmpoyees(id);
-		if (resultRowcount != 1) {
-			throw new CustomRestfullException("정상 처리 되지 않았습니다", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+		return resultRowcount;
 	}
 	public WorkTime selectWorkTime(Integer empId) {
         WorkTime workTimeEntity = adminRepository.selectWorkTime(empId);
         return workTimeEntity;
     }
 
-}
+	@Transactional
+	public List<SalaryDto> selectSalary( ) {
+		List<SalaryDto> list = adminRepository.selectSalary();
+		return list;		
+	}
+	@Transactional
+	public List<RatingDto> selectRating(){
+		List<RatingDto> list  = adminRepository.selectRating();
+		return list;
+	}
+	
+	@Transactional
+	public List<DepartmentCountDto>  findByDepartment1(){
+		
+		List<DepartmentCountDto> departmentList = adminRepository.departmentList();
+		return departmentList;
+	}
+	@Transactional 
+	public List<GradeCountDto> gradeCount(){
+		List<GradeCountDto> gradecount = adminRepository.gradeCount();
+		return gradecount;
+	}
+		
+	}
+	
+
