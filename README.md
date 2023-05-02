@@ -18,6 +18,7 @@
 - `JDK 11.0.17`
 - **IDE** : sts 4.18(Spring Tool Suite 4)
 - **Database** : Mysql
+- **Framework** : bootstrap@5.0.2, Spring Boot '2.7.11', animate.css '4.1.1'
 
 ## 📌 주요 기능
 #### 로그인 - <a href="https://github.com/sexyflowermins/green_erp/wiki/%EB%A1%9C%EA%B7%B8%EC%9D%B8" >상세보기 - WIKI 이동</a>
