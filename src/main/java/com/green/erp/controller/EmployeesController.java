@@ -48,7 +48,7 @@ public class EmployeesController {
 
 	@GetMapping("/signIn")
 	public String signIn() {
-		return "signIn";
+		return "/employees/signIn";
 	}
 
 	@PostMapping("/signInProc")
@@ -101,7 +101,7 @@ public class EmployeesController {
 		}
 
 		System.out.println(mySalaries.toString());
-		return "profile";
+		return "/employees/profile";
 	}
 
 	@GetMapping("/logout")

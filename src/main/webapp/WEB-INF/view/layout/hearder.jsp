@@ -191,7 +191,7 @@
 						</a> <a class="nav-link dropdown-toggle d-none d-sm-inline-block"
 							href="#" data-bs-toggle="dropdown"> <c:choose>
 									<c:when test="${principal != null}">
-										<img src="/static/img/avatars/avatar.jpg"
+										<img src="<c:url value="${principal.setUploadFileName()}"/>"
 											class="avatar img-fluid rounded me-1" alt="Charles Hall" />
 										<span class="text-dark">${principal.id}</span>
 									</c:when>
