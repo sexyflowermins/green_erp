@@ -165,7 +165,7 @@
 													</c:forEach>
 												</c:when>
 												<c:otherwise>
-
+												1
 												</c:otherwise>
 											</c:choose>
 										</c:when>
@@ -185,7 +185,7 @@
 						<li class="nav-item dropdown"><a
 							class="nav-icon dropdown-toggle d-inline-block d-sm-none"
 							href="#" data-bs-toggle="dropdown"> <i class="align-middle"
-								data-feather="settings"></i>
+								data-feather="bell"></i>
 						</a> <a class="nav-link dropdown-toggle d-none d-sm-inline-block"
 							href="#" data-bs-toggle="dropdown"> <c:choose>
 									<c:when test="${principal != null}">

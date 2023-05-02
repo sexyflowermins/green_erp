@@ -22,9 +22,9 @@
 
 	<insert id="insert">
 		insert into employees (id, name, email, age, address, hire_date, department,
-		grade)
+		grade,upload_file_name)
 		values( #{id}, #{name}, #{email}, #{age}, #{address}, #{hireDate},
-		#{department}, #{grade});
+		#{department}, #{grade},#{uploadFileName});
 	</insert>
 	<update id="updateById">
 		update employees set department = #{department}, grade = #{grade}

@@ -15,6 +15,7 @@ public class Employees {
 	private String resignDate;
 	private Integer department;
 	private Integer grade;
+	private String uploadFileName;
 	private String gname;
 	private String dname;
 	

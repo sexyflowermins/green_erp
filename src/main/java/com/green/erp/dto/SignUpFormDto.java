@@ -1,5 +1,7 @@
 package com.green.erp.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -16,4 +18,8 @@ public class SignUpFormDto {
 	private int department;
 	// 직급
 	private int grade;
+	private MultipartFile file;
+	private String uploadFileName;
+	
+	
 }

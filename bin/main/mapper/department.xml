@@ -6,7 +6,7 @@
 
 <select id="findAll"
 		resultType="com.green.erp.repository.model.Department">
-		select name from department
+		select * from department
 	</select>
 	<select id="findByDepartment"
 		resultType="com.green.erp.repository.model.Department">
@@ -19,4 +19,5 @@
 		select * from department
 		where id = #{id}
 	</select>
+	
 </mapper>

@@ -18,6 +18,7 @@
 
 		select * from employees where id = #{id};
 	</select>
+	<!-- 사원정보 수정 -->
 	<update id="updateemployees">
 		update employees set
 		password=#{password},name=#{name},email=#{email},age=#{age},address=#{address},
@@ -25,35 +26,45 @@
 		where id = #{id};
 	</update>
 
-
+	<!--사원 정보 삭제 -->
 	<delete id="deleteEmpoyees">
 		delete from employees where id = #{id};
 	</delete>
-	<delete id="deleteworkTime">
-		delete from work_time where id = #{id};
-	</delete>
-	<delete id="deleteNotice">
-		delete from notice where id = #{id};
-	</delete>
-	<delete id="deleteSchedule">
-		delete from schedule where id = #{id};
-	</delete>
-	<delete id="deleteBoard">
-		delete from board where id = #{id};
-	</delete>
-	<delete id="deletesalaryHistory">
-		delete from salary_history where id = #{id};
-	</delete>
+
+	<!--호봉 정보 불러오 -->
+	<select id="selectSalary"
+		resultType="com.green.erp.dto.SalaryDto">
+		select * from salary;
+
+	</select>
+	<insert id="insertSalaryHistory">
+		insert into
+		salary_history(to_year,salary_id,rating_id,employees_id)
+		values(#{toYear},#{salaryId},#{ratingId},#{id});
+	</insert>
+
+	<select id="selectRating"
+		resultType="com.green.erp.dto.RatingDto">
+		select * from rating
+	</select>
 
 
-
-
-	<select id="departmentList">
-		select department, count(department)
+	<!-- 차트용 조회 -->
+	<!-- 부서별 인원 -->
+	<select id="departmentList"
+		resultType="com.green.erp.dto.DepartmentCountDto">
+		select department, count(department) as count
 		from employees
 		group by department;
 	</select>
 
+
+	<!-- 직급별 인원 -->
+	<select id="gradeCount" resultType="com.green.erp.dto.GradeCountDto">
+		select grade, count(grade) as count
+		from employees
+		group by grade;
+	</select>
 	<!--직급조회 회원가입시 사용 -->
 	<select id="selectGradeAll">
 		select * from grade;
@@ -68,8 +79,11 @@
 		select * from grade;
 	</select>
 
-<select id="selectWorkTime" resultType="com.green.erp.repository.model.WorkTime">
-        select * from work_time where emp_id = #{empId}
-    </select>
+	<select id="selectWorkTime"
+		resultType="com.green.erp.repository.model.WorkTime">
+		select * from work_time where emp_id = #{empId}
+	</select>
+
+
 </mapper>
 
