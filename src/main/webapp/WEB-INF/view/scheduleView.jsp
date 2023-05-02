@@ -23,6 +23,7 @@
 	src="
 https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.js
 "></script>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#ok-button").on("click", function() {
@@ -33,6 +34,17 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.js
 				startDate : $("#startDate").val(),
 				endDate : $("#endDate").val(),
 				content : $("#content").val(),
+			}
+			// 유효성 검사 
+			if(data.title == null || data.title == "") {
+				alert('제목을 입력해주세요!');
+				$('#title').focus();
+				return false;
+			}
+			if(data.content == null || data.content == "") {
+				alert('내용을 입력해주세요!');
+				$('#content').focus();
+				return false;
 			}
 			console.log(data);
 			let jsonData = JSON.stringify(data);
@@ -325,12 +337,13 @@ $(document).ready(function() {
 						            calendar.render();
 					});
 </script>
-<div id='calendar' style="position: relative;">
+
+<div id='calendar' style="position:relative;">
+ <c:if test="${principal.grade>=4}">
 	<button type="button" class="btn btn-primary" id="add-button"
 		data-bs-toggle="modal" data-bs-target="#exampleModal">일정추가</button>
+	</c:if>
 </div>
-
-
 <!-- 일정추가 Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1"
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -431,10 +444,12 @@ $(document).ready(function() {
 				</div>
 			</div>
 			<div class="modal-footer">
+			<c:if test="${principal.grade>=4}">
 				<button type="button" class="btn btn-secondary"
 					data-bs-dismiss="modal" id="delete-button">삭 제</button>
 				<button type="button" class="btn btn-primary" id="update-button">수
 					정</button>
+					</c:if>
 			</div>
 		</div>
 	</div>

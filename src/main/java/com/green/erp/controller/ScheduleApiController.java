@@ -32,14 +32,7 @@ public class ScheduleApiController {
 	
 	@PostMapping("/api/addSchedule")
 	public ScheduleDto addSchedule(@RequestBody ScheduleDto dto) {
-		Employees employees = (Employees)session.getAttribute(Define.PRINCIPAL);
-		if(dto.getTitle() == null) {
-			throw new CustomRestfullException("제목을 입력 하세요", HttpStatus.BAD_REQUEST);
-		}
-		if(dto.getContent() == null) {
-			throw new CustomRestfullException("내용을 입력 하세요", HttpStatus.BAD_REQUEST);
-		}
-		
+		Employees principal = (Employees)session.getAttribute(Define.PRINCIPAL);
 		scheduleService.addSchedule(dto);
 		
 		return dto;
@@ -53,14 +46,14 @@ public class ScheduleApiController {
 	
 	@DeleteMapping("/api/deleteSchedule/{id}")
 	public String deleteSchedule(@PathVariable Integer id) {
-		Employees employees = (Employees)session.getAttribute(Define.PRINCIPAL);
+		Employees principal = (Employees)session.getAttribute(Define.PRINCIPAL);
 		int resultRow = scheduleService.deleteSchedule(id);
 		return resultRow + "";
 	}
 	
 	@PostMapping("/api/updateSchedule/{id}")
 	public String updateSchedule(@RequestBody ScheduleDto dto ,@PathVariable Integer id) {
-		Employees employees = (Employees)session.getAttribute(Define.PRINCIPAL);
+		Employees principal = (Employees)session.getAttribute(Define.PRINCIPAL);
 		int result = scheduleService.updateSchedule(dto, id);
 		return result + "";
 	}
