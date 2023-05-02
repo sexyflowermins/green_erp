@@ -24,11 +24,11 @@
 - 로그인 시 쿠키(Cookie) 및 세션(Session) 생성
 - 등록 개인 입사사진 가져오기
 
-#### 네비게이션 바 - <a href="https://github.com/sexyflowermins/green_erp/wiki/%EB%A1%9C%EA%B7%B8%EC%9D%B8" >상세보기 - WIKI 이동</a>
+#### 네비게이션 바 - <a href="https://github.com/sexyflowermins/green_erp/wiki/%EB%84%A4%EB%B9%84%EA%B2%8C%EC%9D%B4%EC%85%98-%EB%B0%94" >상세보기 - WIKI 이동</a>
 - 로그아웃 기능
 - 최근 공지사항 기능
 
-#### 메인 페이지 - <a href="https://github.com/sexyflowermins/green_erp/wiki/%EB%A1%9C%EA%B7%B8%EC%9D%B8" >상세보기 - WIKI 이동</a>
+#### 메인 페이지 - <a href="https://github.com/sexyflowermins/green_erp/wiki/%EB%A9%94%EC%9D%B8-%ED%8E%98%EC%9D%B4%EC%A7%80" >상세보기 - WIKI 이동</a>
 - 미니 캘린더
 - 최근 공지사항 캐러셀
 - 전체 게시글 카테고리 차트
@@ -36,34 +36,34 @@
 - 날씨 API 데이터 표
 - 애니메이션 효과 적용
 
-#### 마이 페이지 - <a href="https://github.com/sexyflowermins/green_erp/wiki/%EB%A1%9C%EA%B7%B8%EC%9D%B8" >상세보기 - WIKI 이동</a>
+#### 마이 페이지 - <a href="https://github.com/sexyflowermins/green_erp/wiki/%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80" >상세보기 - WIKI 이동</a>
 - 출퇴근 기능 구현
 - 개인 정보 및 연봉 조회 
 - 개인정보 수정 기능
 - 연도별 호봉에 따른 연봉 알고리즘
 - 내 질문 확인하기
 
-#### 일정 관리 페이지 - <a href="https://github.com/sexyflowermins/green_erp/wiki/%EB%A1%9C%EA%B7%B8%EC%9D%B8" >상세보기 - WIKI 이동</a>
+#### 일정 관리 페이지 - <a href="https://github.com/sexyflowermins/green_erp/wiki/%EC%9D%BC%EC%A0%95%EA%B4%80%EB%A6%AC" >상세보기 - WIKI 이동</a>
 - fullcalendar
 - 일정 CRUD 기능
 - 캘린더 일정 표시
 - 일정 상세 페이지
 
-#### 공지사항 페이지 - <a href="https://github.com/sexyflowermins/green_erp/wiki/%EB%A1%9C%EA%B7%B8%EC%9D%B8" >상세보기 - WIKI 이동</a>
+#### 공지사항 페이지 - <a href="https://github.com/sexyflowermins/green_erp/wiki/%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD" >상세보기 - WIKI 이동</a>
 - 공지사항 CRUD 기능
 - 모달 창 활용 Read 기능
 
-#### 자유 게시판 페이지 - <a href="https://github.com/sexyflowermins/green_erp/wiki/%EB%A1%9C%EA%B7%B8%EC%9D%B8" >상세보기 - WIKI 이동</a>
+#### 자유 게시판 페이지 - <a href="https://github.com/sexyflowermins/green_erp/wiki/%EC%9E%90%EC%9C%A0-%EA%B2%8C%EC%8B%9C%ED%8C%90" >상세보기 - WIKI 이동</a>
 - 게시판 CRUD 기능
 - 게시판 페이징 처리
 - 게시글 보기 개수 설정
 
-#### 사원 등록 페이지 - <a href="https://github.com/sexyflowermins/green_erp/wiki/%EB%A1%9C%EA%B7%B8%EC%9D%B8" >상세보기 - WIKI 이동</a>
+#### 사원 등록 페이지 - <a href="https://github.com/sexyflowermins/green_erp/wiki/%EC%82%AC%EC%9B%90-%EB%93%B1%EB%A1%9D" >상세보기 - WIKI 이동</a>
 - 사번 중복 체크
 - 입사 사진 등록 
 - 사원 등록 기능 
 
-#### 사원 관리 페이지 - <a href="https://github.com/sexyflowermins/green_erp/wiki/%EB%A1%9C%EA%B7%B8%EC%9D%B8" >상세보기 - WIKI 이동</a>
+#### 사원 관리 페이지 - <a href="https://github.com/sexyflowermins/green_erp/wiki/%EC%82%AC%EC%9B%90-%EA%B4%80%EB%A6%AC" >상세보기 - WIKI 이동</a>
 - 부서 별 사원 목록 조회
 - 사원 정보 수정,삭제
 - 모달 창 활용 UPDATE 기능
