@@ -109,13 +109,11 @@ public class adminController {
 
 	}
 	// 사원정보 상세 페이지 수정
-	//,@RequestParam("file")MultipartFile file 사진 수정 할려면 써야함 추후 예정
 	@PostMapping("/updatefromadmin")
 	public String updatefromadmin(Employees employees, SalaryHistoryDto salaryHistoryDto,HttpServletRequest request) {
 		
-		if(employees.getId() == null) {
-			// 현재 시간이랑 비교해서 만들기
-			throw new CustomRestfullException("사번을 입력하세요", HttpStatus.BAD_REQUEST);
+		if (employees.getPassword() == null || employees.getPassword().isEmpty()) {
+			throw new CustomRestfullException("비밀번호를 입력하세요", HttpStatus.BAD_REQUEST);
 		}
 		if (employees.getName() == null || employees.getName().isEmpty()) {
 			throw new CustomRestfullException("이름을 입력하세요", HttpStatus.BAD_REQUEST);
@@ -131,6 +129,9 @@ public class adminController {
 		}
 		if (employees.getHireDate() == null || employees.getHireDate().isEmpty()) {
 			throw new CustomRestfullException("입사일을 입력하세요", HttpStatus.BAD_REQUEST);
+		}
+		if (employees.getResignDate() == null || employees.getResignDate().isEmpty()) {
+			throw new CustomRestfullException("퇴사일을 입력하세요", HttpStatus.BAD_REQUEST);
 		}
 		adminservice.updateemployees(employees);
 		return "/admin/adminPage";
@@ -166,7 +167,7 @@ public class adminController {
 	public String salaryHistoryDetail(@PathVariable Integer id, Model model) {
 		List<SalaryHistory> salaryHistoryDetail = adminservice.selectSalaryHistory(id);
 		model.addAttribute("salaryHistoryDetail", salaryHistoryDetail);
-		return "/salaryHistoryView";
+		return "/admin/salaryHistoryView";
 	}
 	
 	@PostMapping("/updateImage")

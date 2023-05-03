@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.green.erp.dto.NoticeFormDto;
 import com.green.erp.dto.NoticeUpdateFormDto;
 import com.green.erp.handler.exception.CustomRestfullException;
+import com.green.erp.repository.model.Board;
 import com.green.erp.repository.model.Employees;
 import com.green.erp.repository.model.Notice;
 import com.green.erp.service.EmployeesService;
@@ -58,13 +59,13 @@ public class NoticeController {
 		return "notice/list";
 	}
 
-	@GetMapping("/post/{id}")
-	public String postById(@PathVariable Integer id, Model model) {
+	@GetMapping("/detail/{id}")
+	public String getDetailById(@PathVariable Integer id, Model model) {
 
 		Notice notice = noticeService.findById(id);
 		model.addAttribute(notice);
 
-		return "notice/post";
+		return "notice/detail";
 	}
 
 	@GetMapping("/write")
@@ -87,7 +88,7 @@ public class NoticeController {
 
 	@GetMapping("/update/{id}")
 	public String updateNotice(@PathVariable Integer id, Model model) {
-
+		
 		Notice notice = noticeService.findById(id);
 		notice.setContent(notice.getContent().replaceAll("<BR>", "\r\n"));
 		model.addAttribute(notice);

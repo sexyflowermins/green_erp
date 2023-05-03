@@ -21,8 +21,10 @@
 					<div>
 					<c:choose>
 					<c:when test="${principal != null}">
-					<div class="d-flex justify-content-center align-item-center mt-3">
-						<img alt="" src="<c:url value="${principal.setUploadFileName()}"/>" >
+					<div class="card-body text-center">
+					<!-- <div class="d-flex justify-content-center align-item-center mt-3"> -->
+						<img src="/employees/profile/${principal.uploadFileName}" alt="" class="img-fluid rounded-circle mb-2" width="128"
+							height="128" />
 					</div>
 					</c:when>
 					<c:otherwise>
@@ -55,12 +57,7 @@
 						</div>
 					</div>
 					<hr class="my-0" />
-					<%-- 					<div class="card-body">
-						<h5 class="h6 card-title">Skills</h5>
-						<a href="#" class="badge bg-primary me-1 my-1">${principal.id}</a> <a href="#" class="badge bg-primary me-1 my-1">${principal.email}</a> <a href="#" class="badge bg-primary me-1 my-1">${principal.age}</a>
-						<a href="#" class="badge bg-primary me-1 my-1">${principal.address}</a> <a href="#" class="badge bg-primary me-1 my-1">${principal.hireDate}</a> <a href="#" class="badge bg-primary me-1 my-1">${principal.resignDate}</a>
-						<a href="#" class="badge bg-primary me-1 my-1">${principal.department}</a> <a href="#" class="badge bg-primary me-1 my-1">${principal.grade}</a> <a href="#" class="badge bg-primary me-1 my-1">UX</a>
-					</div> --%>
+					
 					<hr class="my-0" />
 					<div class="card-body">
 						<h5 class="h6 card-title">About</h5>
@@ -78,35 +75,6 @@
 					</div>
 					<hr class="my-0" />
 					<div class="card-body">
-						<%-- <form action="/ec/updateInformation" method="post">
-							<div class="mb-3">
-								<label class="form-label">password</label> <input class="form-control form-control-lg" type="password" name="password" value="${principal.password}" />
-							</div>
-							<div class="mb-3">
-								<label class="form-label">Name</label> <input class="form-control form-control-lg" type="text" name="name" value="${principal.name}" />
-							</div>
-							<div class="mb-3">
-								<label class="form-label">Email</label> <input class="form-control form-control-lg" type="email" name="email" value="${principal.email}" />
-							</div>
-							<div class="mb-3">
-								<label class="form-label">Age</label> <input class="form-control form-control-lg" type="text" name="age" value="${principal.age}" />
-							</div>
-							<div class="mb-3">
-								<label class="form-label">address</label> <input class="form-control form-control-lg" type="text" name="address" value="${principal.address}" />
-							</div>
-
-							<div class="text-center mt-3">
-								<button type="submit" class="btn btn-lg btn-primary">수정</button>
-							</div>
-						</form> --%>
-						<!-- 						<h5 class="h6 card-title">Elsewhere</h5>
-						<ul class="list-unstyled mb-0">
-							<li class="mb-1"><a href="#">staciehall.co</a></li>
-							<li class="mb-1"><a href="#">Twitter</a></li>
-							<li class="mb-1"><a href="#">Facebook</a></li>
-							<li class="mb-1"><a href="#">Instagram</a></li>
-							<li class="mb-1"><a href="#">LinkedIn</a></li>
-						</ul> -->
 					</div>
 				</div>
 			</div>

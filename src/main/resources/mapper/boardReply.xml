@@ -17,6 +17,16 @@
 		where b.board_id = #{boardId};
 	</select>
 	
+	<select id="findByBoardId"
+		resultType="com.green.erp.repository.model.BoardReply">
+		select
+		b.id,b.emp_id,b.content,b.board_id,b.date_time,e.name as employees_name
+		from board_reply as b
+		left join employees as e
+		on b.emp_id = e.id
+		where b.id = #{id};
+	</select>
+	
 	<delete id="deleteById">
 		delete from board_reply where id = #{id}
 	</delete>

@@ -6,7 +6,7 @@
 	<select id="findByUsernameAndPassword"
 		resultType="com.green.erp.repository.model.Employees">
 		select e.id,e.name,e.password,e.email,e.age,e.address,e.hire_date,e.resign_date,
-		e.grade,e.department,g.name as gName,d.name as dName
+		e.grade,e.department,g.name as gName,d.name as dName, e.upload_file_name as upload_file_name
 		from employees as e
 		left join grade as g
 		on e.grade = g.id
@@ -26,6 +26,7 @@
 		values( #{id}, #{name}, #{email}, #{age}, #{address}, #{hireDate},
 		#{department}, #{grade},#{uploadFileName});
 	</insert>
+	
 	<update id="updateById">
 		update employees set department = #{department}, grade = #{grade}
 		where id = #{id}

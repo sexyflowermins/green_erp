@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.green.erp.dto.BoardFormDto;
+import com.green.erp.handler.exception.CustomRestfullException;
 import com.green.erp.repository.model.Board;
 import com.green.erp.repository.model.BoardReply;
 import com.green.erp.repository.model.Category;
@@ -95,29 +97,37 @@ public class BoardController {
 
 		String content = boardFormDto.getContent().replaceAll("\r\n", "<BR>");
 		boardFormDto.setContent(content);
-		Employees employees = (Employees) session.getAttribute(Define.PRINCIPAL);
-		boardFormDto.setEmpId(employees.getId());
+		Employees principal = (Employees) session.getAttribute(Define.PRINCIPAL);
+		boardFormDto.setEmpId(principal.getId());
 		boardService.createBoard(boardFormDto);
 
 		return "redirect:/board/list";
 	}
 
-	@GetMapping("/post/{id}")
+	@GetMapping("/detail/{id}")
 	public String getBoard(@PathVariable Integer id, Model model) {
+
+		Board board = boardService.findById(id);
 
 		boardService.updateViews(id);
 
-		Board board = boardService.findById(id);
 		List<BoardReply> replyList = boardReplyService.findBoardReplyListById(id);
 
 		model.addAttribute("board", board);
 		model.addAttribute("replyList", replyList);
 
-		return "board/post";
+		return "board/detail";
 	}
 
 	@GetMapping("/delete/{id}")
 	public String deleteBoard(@PathVariable Integer id) {
+		
+		Employees principal = (Employees) session.getAttribute(Define.PRINCIPAL);
+
+		Board board = boardService.findById(id);
+		if (!principal.getId().equals(board.getEmpId())) {
+			throw new CustomRestfullException("회원 정보가 다릅니다.", HttpStatus.UNAUTHORIZED);
+		}
 
 		boardService.deleteBoard(id);
 
@@ -127,8 +137,14 @@ public class BoardController {
 	@GetMapping("/update/{id}")
 	public String updateBoard(@PathVariable Integer id, Model model) {
 
-		boardService.updateViews(id);
+		Employees principal = (Employees) session.getAttribute(Define.PRINCIPAL);
+
 		Board board = boardService.findById(id);
+		if (!principal.getId().equals(board.getEmpId())) {
+			throw new CustomRestfullException("회원 정보가 다릅니다.", HttpStatus.UNAUTHORIZED);
+		}
+
+		boardService.updateViews(id);
 		String content = board.getContent().replaceAll("<BR>", "\r\n");
 		board.setContent(content);
 		model.addAttribute(board);
@@ -138,6 +154,13 @@ public class BoardController {
 
 	@PostMapping("/updateProc")
 	public String updateBoardProc(BoardFormDto boardFormDto) {
+
+		Employees principal = (Employees) session.getAttribute(Define.PRINCIPAL);
+
+		Board board = boardService.findById(boardFormDto.getId());
+		if (!principal.getId().equals(board.getEmpId())) {
+			throw new CustomRestfullException("회원 정보가 다릅니다.", HttpStatus.UNAUTHORIZED);
+		}
 
 		String content = boardFormDto.getContent().replaceAll("\r\n", "<BR>");
 		boardFormDto.setContent(content);

@@ -57,7 +57,7 @@
 									<c:otherwise></c:otherwise>
 								</c:choose>
 
-								<tr onclick="location.href='/board/post/${board.id}'">
+								<tr onclick="location.href='/board/detail/${board.id}'">
 									<td>${pageCount + vs.index + 1}</td>
 									<td class="d-none d-xl-table-cell">${board.title}</td>
 									<td class="d-none d-xl-table-cell">${board.dateTime}</td>

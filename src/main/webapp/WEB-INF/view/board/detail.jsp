@@ -13,8 +13,6 @@
 				</div>
 				<div class="mb-3 p-1">
 					<p class="border rounded border-2 border-secondary text-justify">${board.content}</p>
-					<%-- <input class="form-control" type="text" value="${board.content}"
-						aria-label="Disabled input example" disabled readonly> --%>
 				</div>
 				<c:choose>
 					<c:when test="${board.empId eq principal.id}">
@@ -35,7 +33,6 @@
 		<p class="fst-italic">댓글창</p>
 		<div class="card bg-light col-md-10">
 			<div class="card-body">
-				<!-- Comment form-->
 				<form action="/boardReply/write" method="post"
 					class="mb-4 d-flex flex-column">
 					<textarea class="form-control" id="description" name="content"
@@ -46,11 +43,9 @@
 					<button class="btn btn-primary text-uppercase" id="submitButton"
 						type="submit" style="background-color: #FFA479; margin: 10px 0px;">등록</button>
 				</form>
-				<!-- Comment with nested comments-->
 				
 				<c:forEach var="list" items="${replyList}">
 					<div class="d-flex mb-4" style="display: flex;">
-						<!-- Parent comment-->
 						<div class="flex-shrink-0">
 							<img class="rounded-circle"
 								src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
@@ -69,7 +64,6 @@
 							</c:if>
 						</form>
 					</div>
-					<!-- Single comment-->
 				</c:forEach>
 			</div>
 		</div>

@@ -100,7 +100,7 @@ public class EmployeesController {
 			model.addAttribute("mySalaryList", mySalaries);
 		}
 
-		System.out.println(mySalaries.toString());
+		System.out.println(principal.getUploadFileName());
 		return "/employees/profile";
 	}
 

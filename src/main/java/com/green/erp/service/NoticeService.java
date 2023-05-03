@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.green.erp.dto.NoticeFormDto;
 import com.green.erp.dto.NoticeUpdateFormDto;
@@ -16,6 +17,7 @@ public class NoticeService {
 	@Autowired
 	private NoticeRepository noticeRepository;
 
+	@Transactional
 	public void createNotice(NoticeFormDto noticeFormDto) {
 
 		int result = noticeRepository.insert(noticeFormDto);
@@ -24,6 +26,7 @@ public class NoticeService {
 		}
 	}
 
+	@Transactional
 	public List<Notice> findAll() {
 		List<Notice> noticeList = noticeRepository.findAll();
 		if (noticeList == null) {
@@ -33,6 +36,7 @@ public class NoticeService {
 		return noticeList;
 	}
 	
+	@Transactional
 	public List<Notice> findWithName() {
 		List<Notice> noticeList = noticeRepository.findWithName();
 		if (noticeList == null) {
@@ -42,6 +46,7 @@ public class NoticeService {
 		return noticeList;
 	}
 	
+	@Transactional
 	public List<Notice> findWithNameOrderBy() {
 		List<Notice> noticeList = noticeRepository.findWithNameOrderBy();
 		if (noticeList == null) {
@@ -51,6 +56,7 @@ public class NoticeService {
 		return noticeList;
 	}
 	
+	@Transactional
 	public List<Notice> findBySearch(String search) {
 		List<Notice> noticeList = noticeRepository.findBySearch(search);
 		if (noticeList == null) {
@@ -60,6 +66,7 @@ public class NoticeService {
 		return noticeList;
 	}
 
+	@Transactional
 	public Notice findById(int id) {
 
 		Notice notice = noticeRepository.findById(id);
@@ -70,6 +77,7 @@ public class NoticeService {
 		return notice;
 	}
 
+	@Transactional
 	public int updateNotice(NoticeUpdateFormDto updateFormDto) {
 
 		int resultRowCount = noticeRepository.updateByForm(updateFormDto);
@@ -81,6 +89,7 @@ public class NoticeService {
 		return resultRowCount;
 	}
 
+	@Transactional
 	public int deleteNotice(int id) {
 		int resultRowCount = noticeRepository.deleteById(id);
 

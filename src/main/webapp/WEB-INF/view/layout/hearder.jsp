@@ -71,13 +71,14 @@
 							</a></li>
 						</c:otherwise>
 					</c:choose>
-
-					<!-- 					<li class="sidebar-item"><a class="sidebar-link"
-						href="pages-sign-up"> <i class="align-middle"
-							data-feather="user-plus"></i> <span class="align-middle">Sign
-								Up</span>
-					</a></li> -->
-
+					<li class="sidebar-item"><a class="sidebar-link"
+						href="/calender/scheduleView"> <i class="align-middle"
+							data-feather="calendar"></i> <span class="align-middle">일정</span>
+					</a></li>
+					<li class="sidebar-item"><a class="sidebar-link"
+						href="/board/list"> <i class="align-middle"
+							data-feather="edit"></i> <span class="align-middle">자유게시판</span>
+					</a></li>
 
 					<li class="sidebar-header">관리자</li>
 
@@ -190,9 +191,17 @@
 								data-feather="bell"></i>
 						</a> <a class="nav-link dropdown-toggle d-none d-sm-inline-block"
 							href="#" data-bs-toggle="dropdown"> <c:choose>
+							
+							
+							
 									<c:when test="${principal != null}">
-										<img src="<c:url value="${principal.setUploadFileName()}"/>"
-											class="avatar img-fluid rounded me-1" alt="Charles Hall" />
+										<img src="${employees.uploadFileName}"
+											class="avatar img-fluid rounded me-1" alt="" />
+											
+											<img src="/layout/header/${principal.uploadFileName}" alt="" class="avatar img-fluid rounded me-1" width="40"
+							height="40"/>
+											
+											
 										<span class="text-dark">${principal.id}</span>
 									</c:when>
 									<c:otherwise>

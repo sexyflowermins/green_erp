@@ -24,7 +24,6 @@
 						name="content" rows="5"></textarea>
 				</div>
 				<div class="d-md-flex justify-content-md-end">
-					<!-- class="d-md-flex justify-content-md-end" -->
 					<button type="submit"
 						class="btn  btn-primary">글쓰기</button>
 				</div>

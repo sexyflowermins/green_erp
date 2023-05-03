@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="/WEB-INF/view/layout/hearder.jsp"%>
-<!-- <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 <link href="/static/css/schedulePopup.css" rel='stylesheet' />
 <!-- 팝업창 날짜 선택 부분 -->
 <link rel="stylesheet"
@@ -285,9 +283,7 @@ $(document).ready(function() {
 															}
 														});
 									},
-									dayMaxEvents : true, // allow "more" link when too many events
-									// 이벤트 객체 필드 document : https://fullcalendar.io/docs/event-object
-									 
+									dayMaxEvents : true, 
 									events: [
 										 <c:forEach var="schedule" items="${scheduleList}" varStatus="vs">
 	                                        {
@@ -306,10 +302,8 @@ $(document).ready(function() {
 						                    }
 						                ],
 						                eventClick:function(event) {
-						                	// primarykey 값을 통해서 일정 데이터 출력
 						             		let id = parseInt(event.event._def.publicId);
 						             		console.log('/api/scheduleDetail/'+id)
-						                	// 통신 성공 
 						                	$.ajax({
 						                		url : '/api/scheduleDetail/'+id,
 						                		type : "GET",
@@ -324,12 +318,6 @@ $(document).ready(function() {
 						                			$("#exampleModalDetail").modal("show");
 						                		}
 						                	});
-						                	// DOM 접근해서 값 넣기 -- js, jquery
-						                	// value 
-						                	// val() <-- input value
-						                	// text()
-						                	
-						                	/* $("#exampleModalDetail").modal("show"); */
 						                }
 						                
 						            });
@@ -395,8 +383,6 @@ $(document).ready(function() {
 	</div>
 </div>
 
-<!--  -->
-
 <!-- 일정 디테일 Modal -->
 <div class="modal fade" id="exampleModalDetail" tabindex="-1"
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -455,5 +441,4 @@ $(document).ready(function() {
 	</div>
 </div>
 
-<!--  -->
 <%@include file="/WEB-INF/view/layout/footer.jsp"%>

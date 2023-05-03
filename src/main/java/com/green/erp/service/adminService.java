@@ -49,8 +49,9 @@ public class adminService {
 		List<Employees> list = adminRepository.findByEmployees(employees);
 		return list;
 	}
+
 	@Transactional
-	public List<Grade> serchGrade(){
+	public List<Grade> serchGrade() {
 		List<Grade> list = adminRepository.serchGrade();
 		return list;
 	}
@@ -68,26 +69,28 @@ public class adminService {
 		int result = adminRepository.updateemployees(employees);
 		return result;
 	}
-@Transactional
-public int insertSalaryHistory(SalaryHistoryDto salaryHistoryDto) {
-	int result = adminRepository.insertSalaryHistory(salaryHistoryDto);
-	return result;
-}
+
+	@Transactional
+	public int insertSalaryHistory(SalaryHistoryDto salaryHistoryDto) {
+		int result = adminRepository.insertSalaryHistory(salaryHistoryDto);
+		return result;
+	}
+
 	// 사원 모든 정보 삭제
-	// 
+	//
 	@Transactional
 	public int deleteEmpoyees(Integer id) {
-		
+
 		int resultRowcount = adminRepository.deleteEmpoyees(id);
 		return resultRowcount;
 	}
-	
+
 	@Transactional
 	public List<WorkTime> selectWorkTime(Integer empId) {
 		List<WorkTime> workTimeEntity = adminRepository.selectWorkTime(empId);
-        return workTimeEntity;
-    }
-	
+		return workTimeEntity;
+	}
+
 	@Transactional
 	public List<SalaryHistory> selectSalaryHistory(Integer id) {
 		List<SalaryHistory> salaryHistoryEntity = adminRepository.selectSalaryHistory(id);
@@ -95,33 +98,34 @@ public int insertSalaryHistory(SalaryHistoryDto salaryHistoryDto) {
 	}
 
 	@Transactional
-	public List<SalaryDto> selectSalary( ) {
+	public List<SalaryDto> selectSalary() {
 		List<SalaryDto> list = adminRepository.selectSalary();
-		return list;		
-	}
-	@Transactional
-	public List<RatingDto> selectRating(){
-		List<RatingDto> list  = adminRepository.selectRating();
 		return list;
 	}
-	
+
 	@Transactional
-	public List<DepartmentCountDto>  findByDepartment1(){
-		
+	public List<RatingDto> selectRating() {
+		List<RatingDto> list = adminRepository.selectRating();
+		return list;
+	}
+
+	@Transactional
+	public List<DepartmentCountDto> findByDepartment1() {
+
 		List<DepartmentCountDto> departmentList = adminRepository.departmentList();
 		return departmentList;
 	}
-	@Transactional 
-	public List<GradeCountDto> gradeCount(){
+
+	@Transactional
+	public List<GradeCountDto> gradeCount() {
 		List<GradeCountDto> gradecount = adminRepository.gradeCount();
 		return gradecount;
 	}
+
 	// 사진 수정
-	@Transactional 
+	@Transactional
 	public int updateImage(Employees employees) {
 		int result = adminRepository.updateImage(employees);
 		return result;
 	}
-	}
-	
-
+}

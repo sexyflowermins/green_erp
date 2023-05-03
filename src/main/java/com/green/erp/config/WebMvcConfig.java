@@ -37,5 +37,9 @@ public class WebMvcConfig implements WebMvcConfigurer{
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/admin/privacy/**")
                 .addResourceLocations("file:///C:\\Users\\GGG\\Desktop\\새 폴더/");
+        registry.addResourceHandler("/employees/profile/**")
+        .addResourceLocations("file:///C:\\Users\\GGG\\Desktop\\새 폴더/");
+        registry.addResourceHandler("/layout/header/**")
+        .addResourceLocations("file:///C:\\Users\\GGG\\Desktop\\새 폴더/");
     }
 }

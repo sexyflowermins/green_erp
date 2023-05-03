@@ -25,7 +25,6 @@
 					<input type="hidden" name="id" value="${notice.id}">
 				</div>
 				<div class="d-md-flex justify-content-md-end">
-					<!-- class="d-md-flex justify-content-md-end" -->
 					<button type="submit"
 						class="btn btn-primary m-1">수정</button>
 					<button onclick="location.href='/notice/delete/${notice.id}'" type="button"

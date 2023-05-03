@@ -2,6 +2,7 @@ package com.green.erp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.green.erp.repository.DepartmentRepository;
 import com.green.erp.repository.model.Department;
@@ -13,6 +14,7 @@ public class DepartmentService {
 	@Autowired
 	private DepartmentRepository departmentRepository;
 	
+	@Transactional
 	public Department findById(int id) {
 
 		Department department = departmentRepository.findById(id);

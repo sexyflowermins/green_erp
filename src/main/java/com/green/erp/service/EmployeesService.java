@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.green.erp.dto.EndTimeFormDto;
 import com.green.erp.dto.SignInFormDto;
@@ -29,15 +30,18 @@ public class EmployeesService {
 	@Autowired
 	private MySalaryRepository mySalaryRepository;
 	
-	
+	@Transactional
 	public Employees signIn(SignInFormDto signInFormDto) {
 		Employees employeesEntity = employeesRepository.findByUsernameAndPassword(signInFormDto);
+		System.out.println(employeesEntity);
 		if(employeesEntity == null) {
 			throw new CustomRestfullException("아이디 혹은 비번이 틀렸습니다",HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+		
 		return employeesEntity;
 	}
 	
+	@Transactional
 	public Employees selectById(int id) {
 		Employees employeesEntity = employeesRepository.selectById(id);
 		if(employeesEntity == null) {
@@ -46,17 +50,15 @@ public class EmployeesService {
 		return employeesEntity;
 	}
 	
+	@Transactional
 	public void createEmployees(SignUpFormDto signUpFormDto) {
 		int result = employeesRepository.insert(signUpFormDto);
 		if (result != 1) {
 			throw new CustomRestfullException("회원 가입 실패", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	public void updateEmployees(SignUpFormDto signUpFormDto) {
-		
-	}
 
-	
+	@Transactional
 	public void changeInfo(UpdateInformationDto updateInformationDto) {
 		
 		int resultRowCount = employeesRepository.changeMyInfo(updateInformationDto);
@@ -65,14 +67,13 @@ public class EmployeesService {
 		}
 	}
 	
+	@Transactional
 	public WorkTime findByStartWork(Integer id) {
 		WorkTime WorkTimeEntity = workTimeRepository.selectByEmpIdAndToday(id);
-//		if(WorkTimeEntity == null) {
-//			throw new CustomRestfullException("해당 출근 기록을 찾을 수 없습니다", HttpStatus.INTERNAL_SERVER_ERROR);
-//		}
 		return WorkTimeEntity;
 	}
 	
+	@Transactional
 	public int start(StartTimeFormDto startTimeFormDto) {
 		int resultRowCount = workTimeRepository.insertByStartTime(startTimeFormDto);
 		if(resultRowCount != 1) {
@@ -81,6 +82,7 @@ public class EmployeesService {
 		return resultRowCount;
 	}
 	
+	@Transactional
 	public int end(EndTimeFormDto endTimeFormDto) {
 		int resultRowCount = workTimeRepository.updateByEndTime(endTimeFormDto);
 		if(resultRowCount != 1) {
@@ -89,12 +91,13 @@ public class EmployeesService {
 		return resultRowCount;
 	}
 	
+	@Transactional
 	public List<WorkTime> findByWorkList(Integer id){
 		List<WorkTime> WorkList = workTimeRepository.findByWorkList(id);
-		
 		return WorkList;
 	}
 	
+	@Transactional
 	public List<MySalary> mySalaryList(Integer id){  
 		List<MySalary> resultSalary = mySalaryRepository.findByMySalary(id);
 		return resultSalary;

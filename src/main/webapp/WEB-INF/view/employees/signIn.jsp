@@ -53,7 +53,7 @@
 										<div class="mb-3">
 											<label class="form-label">비밀 번호</label> <input
 												class="form-control form-control-lg" type="password"
-												name="password" id="password"placeholder="Enter your password" /> 												
+												name="password" id="password"placeholder="Enter your password" /> 										
 										</div>
 										<div class="text-center mt-3">
 											<button type="submit" class="btn btn-lg btn-primary">로그인</button>

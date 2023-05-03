@@ -12,5 +12,6 @@ public interface BoardReplyRepository {
 
 	public int insert(BoardReplyFormDto boardReplyFormDto);
 	public List<BoardReply> findListByBoardId(int id);
+	public BoardReply findByBoardId(int id);
 	public int deleteById(int id);
 }

@@ -86,7 +86,7 @@
 		select * from grade;
 	</select>
 
-<select id="selectWorkTime" resultType="com.green.erp.repository.model.WorkTime">
+	<select id="selectWorkTime" resultType="com.green.erp.repository.model.WorkTime">
         select * from work_time where emp_id = #{empId}
     </select>
     

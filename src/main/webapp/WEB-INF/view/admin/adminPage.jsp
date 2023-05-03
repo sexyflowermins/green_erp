@@ -36,7 +36,6 @@
 					</div>
 					<div class="card-body">
 						<div class="chart">
-							<!--  -->
 							<c:forEach var="selectdepartmentlist" items="${selectdepartmentlist}">
 								<p>
 									<a href="/admin/selectdepartment?name=${selectdepartmentlist.name}" class="text-decoration-none">${selectdepartmentlist.name}</a>
@@ -48,7 +47,7 @@
 
 			<div class="col-12 col-lg-6">
 				<div class="card">
-		
+
 					<div class="card-body">
 						<div class="chart p-1 ">
 							<c:forEach var="employeeslist" items="${employeeslist}">

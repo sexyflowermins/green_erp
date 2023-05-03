@@ -31,16 +31,19 @@ public class ScheduleService {
         }
     }
 
+    @Transactional
     public List<Schedule> selectSchedule() {
         List<Schedule> list = scheduleRepository.selectSchedule();
         return list;
     }
 
+    @Transactional
     public Schedule selectScheduleDetail(Integer id) {
         Schedule scheduleEntity = scheduleRepository.selectScheduleDetail(id);
         return scheduleEntity;
     }
 
+    @Transactional
     public int deleteSchedule(Integer id) {
         int resultRowCount = scheduleRepository.deleteSchedule(id);
         return resultRowCount;

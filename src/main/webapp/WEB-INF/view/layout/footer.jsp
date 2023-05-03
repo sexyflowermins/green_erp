@@ -8,7 +8,7 @@
 					<a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>Green</strong></a> &copy;
 				</p>
 			</div>
-			
+
 		</div>
 	</div>
 </footer>

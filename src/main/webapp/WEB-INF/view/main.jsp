@@ -112,8 +112,8 @@
 				<div class="card flex-fill">
 					<div class="card-header">
 
-						<h5 class="card-title mb-0">
-							<a href="/calender/scheduleView">Calendar</a>
+						<h5 class="card-title mb-0 ">
+							<a href="/calender/scheduleView" class="text-decoration-none ">일정</a>
 						</h5>
 					</div>
 					<div class="card-body d-flex">
@@ -131,7 +131,7 @@
 			<div class="col-12 col-lg-8 col-xxl-9 d-flex">
 				<div class="card flex-fill">
 					<div class="card-header ">
-						<h5 class="card-title mb-0" onclick="location.href='/board/list'">자유
+						<h5 class="card-title mb-0 text-primary" onclick="location.href='/board/list'">자유
 							게시판</h5>
 					</div>
 					<table class="table table-hover my-0">
@@ -162,7 +162,7 @@
 									<c:otherwise></c:otherwise>
 								</c:choose>
 
-								<tr onclick="location.href='/board/post/${board.id}'">
+								<tr onclick="location.href='/board/detail/${board.id}'">
 									<td>${board.employeesName}</td>
 									<td class="d-none d-xl-table-cell">${board.dateTime}</td>
 									<td class="d-none d-xl-table-cell">${board.title}</td>

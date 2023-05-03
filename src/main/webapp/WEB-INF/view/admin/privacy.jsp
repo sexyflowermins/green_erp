@@ -21,7 +21,7 @@
 					</div>
 					<div class="card-body text-center">
 						<!-- 사원 이미지 -->
-						<a data-bs-toggle="modal" data-bs-target="#imagemodal"><img src="/admin/privacy/${employees.uploadFileName}" alt="Christina Mason" class="img-fluid rounded-circle mb-2" width="128"
+						<a data-bs-toggle="modal" data-bs-target="#imagemodal"><img src="/admin/privacy/${employees.uploadFileName}" alt="" class="img-fluid rounded-circle mb-2" width="128"
 							height="128" /></a>
 						<h5 class="card-title mb-0">${employees.name}</h5>
 						<!-- Modal -->

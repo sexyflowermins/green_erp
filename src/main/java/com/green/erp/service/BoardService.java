@@ -5,6 +5,7 @@ import java.util.List;
 import org.h2.mvstore.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.green.erp.dto.BoardFormDto;
 import com.green.erp.repository.BoardRepository;
@@ -20,6 +21,7 @@ public class BoardService {
 	@Autowired
 	private CategoryRepository categoryRepository;
 
+	@Transactional
 	public void createBoard(BoardFormDto boardFormDto) {
 
 		int result = boardRepository.insert(boardFormDto);
@@ -28,6 +30,7 @@ public class BoardService {
 		}
 	}
 
+	@Transactional
 	public List<Board> findAll() {
 		List<Board> boardList = boardRepository.findAll();
 		if (boardList == null) {
@@ -37,6 +40,7 @@ public class BoardService {
 		return boardList;
 	}
 	
+	@Transactional
 	public List<Category> findCategoryCount(){
 		
 		List<Category> countList = categoryRepository.findCategoryCount();
@@ -47,6 +51,7 @@ public class BoardService {
 		return countList;
 	}
 	
+	@Transactional
 	public List<Category> findCategoryAll() {
 		List<Category> categoryList = categoryRepository.findCategoryAll();
 		
@@ -57,6 +62,7 @@ public class BoardService {
 		return categoryList;
 	}
 	
+	@Transactional
 	public List<Board> findLimit() {
 		List<Board> boardList = boardRepository.findLimit();
 		if (boardList == null) {
@@ -66,6 +72,7 @@ public class BoardService {
 		return boardList;
 	}
 	
+	@Transactional
 	public Board findById(int id) {
 
 		Board board = boardRepository.findById(id);
@@ -76,6 +83,7 @@ public class BoardService {
 		return board;
 	}
 
+	@Transactional
 	public int updateBoard(BoardFormDto boardFormDto) {
 
 		int resultRowCount = boardRepository.updateByForm(boardFormDto);
@@ -87,6 +95,7 @@ public class BoardService {
 		return resultRowCount;
 	}
 
+	@Transactional
 	// 조회수 올리기 기능
 	public int updateViews(int id) {
 		int resultRowCount = boardRepository.updateViews(id);
@@ -98,6 +107,7 @@ public class BoardService {
 		return resultRowCount;
 	}
 
+	@Transactional
 	public int deleteBoard(int id) {
 		int resultRowCount = boardRepository.deleteById(id);
 
@@ -108,12 +118,14 @@ public class BoardService {
 		return resultRowCount;
 	}
 	
+	@Transactional
 	public int findBoardCount() {
 		int boardCount = boardRepository.findBoardCount().getCount();
 
 		return boardCount;
 	}
 	
+	@Transactional
 	public List<Board> findBoardListByPage(int page,int boardViewCount){
 		
 		List<Board> boardList = boardRepository.findListByPage(page,boardViewCount);
@@ -124,6 +136,7 @@ public class BoardService {
 		return boardList;
 	}
 	
+	@Transactional
 	public List<Board> findBoardCountByCategory(){
 		List<Board> categoryList = boardRepository.findByCategory();
 		
